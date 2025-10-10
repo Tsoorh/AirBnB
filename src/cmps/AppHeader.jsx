@@ -3,10 +3,12 @@ import { useNavigate } from 'react-router'
 import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { logout } from '../store/actions/user.actions'
+import { StayFilter } from './StayFilter'
+import MenuIcon from '@mui/icons-material/Menu';
 
 export function AppHeader() {
-	const user = useSelector(storeState => storeState.userModule.user)
-	const navigate = useNavigate()
+	// const user = useSelector(storeState => storeState.userModule.user)
+	// const navigate = useNavigate()
 
 	async function onLogout() {
 		try {
@@ -20,7 +22,21 @@ export function AppHeader() {
 
 	return (
 		<header className="app-header full">
-			<nav>
+			<div className='logo'>
+				<img src='public\img\airbnb-icon.svg' alt="Airbnb" /><span>airbnb</span>
+			</div>
+
+			<div className='flex align-center'>
+				{/* filter */}
+				<StayFilter/>
+			</div>
+			
+			<div className='flex align-center'>
+				<a href="/">Become a host</a>
+				<MenuIcon/>
+			</div>
+
+			{/* <nav>
 				<NavLink to="/" className="logo">
 					E2E Demo
 				</NavLink>
@@ -42,7 +58,7 @@ export function AppHeader() {
 						<button onClick={onLogout}>logout</button>
 					</div>
 				)}
-			</nav>
+			</nav> */}
 		</header>
 	)
 }

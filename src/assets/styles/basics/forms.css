@@ -8,7 +8,8 @@ button {
 	color: whitesmoke;
 }
 
+
 button:hover {
 	transition: 0.3s;
-	background-color: var(--clr1-light)
+	background-color: whitesmoke
 }

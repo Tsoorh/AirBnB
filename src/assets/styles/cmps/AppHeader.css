@@ -1,11 +1,29 @@
 .app-header {
     display: flex;
-    min-height: 3.5rem;
-
-    background-color: var(--clr4);
+    justify-content: space-between;
+    min-height: 5rem;
+    background: (180deg, #ffffff 39.9%, #f8f8f8 100%);
     padding: .8rem 1rem;
-    
-    & nav {
+
+
+    >.logo {
+        display: flex;
+        align-items:center;
+
+        & img {
+            max-height: 2.5rem;
+        }
+        & span{
+            font-size: 20px;
+            font-weight: 600;
+            padding-left: 0.5rem;
+            color: #FF385C;
+        }
+    }
+
+
+
+    /* & nav {
         display: flex;
         width: 100%;
         align-items: center;
@@ -30,9 +48,9 @@
         & button {
             margin-inline-end: 0;
         }
-    }
+    } */
 
-    .user-info {
+    /* .user-info {
         display: flex;
         align-items: center;
         margin-inline-start: auto;
@@ -54,4 +72,5 @@
             border-radius: 50%;
         }
     }
+    */
 }
