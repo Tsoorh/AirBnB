@@ -11,5 +11,5 @@ button {
 
 button:hover {
 	transition: 0.3s;
-	background-color: whitesmoke
+	background-color: rgb(163, 163, 163)
 }
