@@ -104,28 +104,28 @@ export function StayFilter({ filterBy, setFilterBy }) {
             <button 
                 className="btn-clear" 
                 onClick={clearSort}>Clear</button> */}
-                <button className='filter-btn'>
+                <button className='filter-btn flex column'>
                 <label htmlFor="">Where</label>
                 <input 
                 type="text" 
                 placeholder='Search destinations'
                 />
                 </button>
-                <button className='filter-btn'>
+                <button className='filter-btn flex column'>
                 <label htmlFor="">Check in</label>
                 <input 
                 type="date" 
                 placeholder='Add dates'
                 />
                 </button>
-                <button className='filter-btn'>
+                <button className='filter-btn flex column'>
                 <label htmlFor="">Check out</label>
                 <input 
                 type="date" 
                 placeholder='Add dates'
                 />
                 </button>
-                <button className='filter-btn'>
+                <button className='filter-btn flex column'>
                 <label htmlFor="">Who</label>
                 <input type="text" 
                 placeholder='Add guests'

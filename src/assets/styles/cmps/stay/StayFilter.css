@@ -1,22 +1,30 @@
 .Stay-filter {
     display: flex;
-    >button{
+    align-items: center;
+    border: 0.1rem solid rgb(221, 221, 221);
+    border-radius: 2rem;
+    >button:not(:last-of-type){
         text-align: start;
-        padding-left: 1rem;
+        padding: 1rem;
     }
+    
 }
 .filter-btn{
-	 background-color: #fff;
-	 border: none;
-	 color: black;
-     border-radius: 1rem;
-     >input{
+    background-color: #fff;
+    border: none;
+    color: black;
+    border-radius: 2rem;
+    >input{
         border: none;
-     }
-}
-.filter-btn:hover{
+    }
 
 }
+
+
+
+
+
+
 .search-btn{
     background-color: #FF385C;
     border: none;
@@ -24,8 +32,16 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+    margin-right: 0.8rem;
 }
-
+.search-btn:hover{
+    background-color: #d72f4e;
+}
+SearchIcon{
+    padding: 10;
+}
     
     /*
     display: grid;
