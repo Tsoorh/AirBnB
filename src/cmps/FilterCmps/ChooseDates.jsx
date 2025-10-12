@@ -3,8 +3,8 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 
-export function ChooseDates({field,handleChange}) {
-    const monthes = [
+export function ChooseDates({ field, handleChange }) {
+  const monthes = [
     "Jan",
     "Feb",
     "Mar",
@@ -22,12 +22,21 @@ export function ChooseDates({field,handleChange}) {
   function onChangeDate(ev) {
     const { $D, $M, $y } = ev;
     const pickedDateFormatted = $D + " " + monthes[$M] + " " + $y;
-    handleChange({field:field,value:pickedDateFormatted})
+    handleChange({ field: field, value: pickedDateFormatted });
   }
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DateCalendar onChange={onChangeDate} />
+      <div className="flex justify-center align-center modal-calendar-container">
+        <div className="calendar-container">
+        <span>Check in</span>
+        <DateCalendar onChange={onChangeDate} />
+        </div>
+        <div className="calendar-container">
+        <span>Check out</span>
+        <DateCalendar onChange={onChangeDate} />
+        </div>
+      </div>
     </LocalizationProvider>
   );
 }

@@ -13,3 +13,18 @@ button:hover {
 	transition: 0.3s;
 	background-color: rgb(163, 163, 163)
 }
+
+.btn-round{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 2rem;
+	width: 2rem;
+	border-radius: 50%;
+	padding: 0.5rem;
+	border: 2px rgb(104, 104, 104) solid;
+	background-color: #fff;
+	color: rgb(0, 0, 0);
+	font-size: 20px;
+}
+

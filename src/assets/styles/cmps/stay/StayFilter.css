@@ -3,9 +3,11 @@
     align-items: center;
     border-radius: 2rem;
     background-color: #fff;
+    position: relative;
     >button:not(:last-of-type) {
         text-align: start;
         padding: 1rem;
+        border-right: 2px rgb(226, 226, 226) solid;
     }
 }
 
