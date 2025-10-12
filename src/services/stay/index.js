@@ -1,25 +1,75 @@
 const { DEV, VITE_LOCAL } = import.meta.env
 
-import { getRandomIntInclusive, makeId } from '../util.service'
+// import { getRandomIntInclusive, makeId } from '../util.service'
 
 import { stayService as local } from './Stay.service.local'
 import { stayService as remote } from './Stay.service.remote'
 
-function getEmptyStay() {
+
+export function getEmptyStay() {
+    const now = Date.now()
 	return {
         _id: '',
-		vendor: makeId(),
-		speed: getRandomIntInclusive(80, 240),
-		msgs: [],
+        name: '',
+        summary:'',
+        imgUrls: [],
+        price: { 
+            bace: 0,
+            currency: 'USD',
+            cleaningFee: 0,
+            serviceFeePct: 0.12
+            },
+        capacity: { 
+            guests: 1,
+            bedrooms: 0,
+            beds: 0,
+            bathrooms: 1
+            },
+        amenities: [],
+        labels: [],
+        host: {
+            _id:'',
+            fullname:'',
+            picture: '',
+            isSuperhost: false
+        },
+        loc: {
+            country:'',
+            countryCode:'',
+            city: '',
+            address: '',
+            lat: null,
+            lan: null
+        },
+        houseRule: [],
+        checkIn: {from: '15:00', to: '22:00'},  
+        checkOut: { by: '11:00'},
+        unavailable: [],
+        rating: {avg: 0, count: 0},
+        reviews: [],
+        likedByUsersIds: [],
+        createdAt: now,
+        updatedAt: now,
 	}
 }
 
-function getDefaultFilter() {
+export function getDefaultFilter() {
     return {
         txt: '',
-        minSpeed: '',
-        sortField: '',
-        sortDir: '',
+        city: '',
+        labels: [],
+        minPrice: 70,
+        maxPrice: 3000,
+        dates: {
+            checkIn: null,
+            checkOut: null
+        },
+        guests: {
+            adults: 1,
+            children: 0,
+            infants: 0,
+            pets: 0,
+        }
     }
 }
 
