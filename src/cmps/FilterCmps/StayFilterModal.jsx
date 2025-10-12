@@ -1,9 +1,10 @@
+export function StayFilterModal({children,onCloseModal}){
+    
 
-export function StayFilterModal({}){
 
     return (
-        <section className="filter-modal">
-            
+        <section className="filter-modal shadow">
+            {children}
         </section>
     )
 }

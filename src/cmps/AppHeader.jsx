@@ -35,6 +35,7 @@ export function AppHeader() {
 				<a href="/">Become a host</a>
 				<MenuIcon/>
 			</div>
+			
 
 			{/* <nav>
 				<NavLink to="/" className="logo">

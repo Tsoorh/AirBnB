@@ -7,7 +7,7 @@ import { ChooseDates } from "./FilterCmps/ChooseDates";
 
 export function StayFilter({ filterBy, setFilterBy }) {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentModalContent, SetCurrentModalContent] = useState(null);
   const [filter, setFilter] = useState({
     destination: "",
@@ -17,15 +17,17 @@ export function StayFilter({ filterBy, setFilterBy }) {
   });
 
   const modalContent = {
-    destination: <SearchDestination />,
-    time: <ChooseDates />,
-    guest: <GuestsPicker />,
+    destination: <SearchDestination handleChange={handleChange}/>,
+    checkIn: <ChooseDates field={"checkIn"} handleChange={handleChange}/>,
+    checkOut: <ChooseDates field={"checkIn"} handleChange={handleChange}/>,
+    guest: <GuestsPicker handleChange={handleChange} />,
   };
 
   function onHandleOpenFilter(ev) {
     setIsFilterOpen(true);
     onHandleClick(ev);
   }
+
 
   function onHandleClick({ currentTarget }) {
     const filterContainer = document.querySelector(".stay-filter");
@@ -35,11 +37,25 @@ export function StayFilter({ filterBy, setFilterBy }) {
       btn.classList.remove("active");
     });
     currentTarget.classList.add("active");
+
+
+    const {name}= currentTarget;
+    SetCurrentModalContent(name);
+    setIsModalOpen(true);    
+  }
+
+  function onCloseModal(){
+    SetCurrentModalContent(null)
+    isModalOpen(false);
+  }
+
+  function handleChange({field,value}){
+
   }
 
   if (isFilterOpen) {
     return (
-      <section className="stay-filter">
+      <section className="stay-filter shadow">
         <button
           className="filter-btn flex column"
           name="destination"
@@ -50,12 +66,13 @@ export function StayFilter({ filterBy, setFilterBy }) {
             type="text"
             placeholder="Search destinations"
             value={filter.destination}
+            onChange={handleChange}
           />
         </button>
 
         <button
           className="filter-btn flex column"
-          name="check-in"
+          name="checkIn"
           onClick={onHandleClick}
         >
           <span>Check in</span>
@@ -64,7 +81,7 @@ export function StayFilter({ filterBy, setFilterBy }) {
 
         <button
           className="filter-btn flex column"
-          name="check-out"
+          name="checkOut"
           onClick={onHandleClick}
         >
           <span>Check out</span>
@@ -86,7 +103,10 @@ export function StayFilter({ filterBy, setFilterBy }) {
           </button>
         </button>
 
-        {isOpenModal && <StayFilterModal></StayFilterModal>}
+        {isModalOpen && 
+        <StayFilterModal>
+         {modalContent[currentModalContent]}    
+        </StayFilterModal>}
       </section>
     );
   } else {
