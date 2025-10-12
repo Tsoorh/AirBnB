@@ -1,0 +1,9 @@
+.modal-calendar-container{
+    margin-top: 1rem;
+}
+
+.calendar-container{
+    span{
+        margin-left: 24px;
+    }
+}
