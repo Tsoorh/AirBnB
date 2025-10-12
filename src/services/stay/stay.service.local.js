@@ -5,6 +5,7 @@ import { userService } from '../user'
 import { getDefaultFilter } from '.'
 
 const STORAGE_KEY = 'stayDB'
+// Initialize stays when module loads
 _createStays()
 
 export const stayService = {
@@ -39,7 +40,7 @@ async function query(filterBy = {}) {
     }
 
     if(f.minPrice != null) stays = stays.filter(s => (s.price?.base ?? 0) >= f.minPrice) 
-    if(f.maxPrice != null) stays = stays.filter(s => (s.price?.base ?? 0) >= f.maxPrice) 
+    if(f.maxPrice != null) stays = stays.filter(s => (s.price?.base ?? 0) <= f.maxPrice) 
 
     if(f.dates?.checkIn && f.dates?.checkOut) {
         stays = stays.filter(s => isAvailable(s, f.dates))
@@ -49,6 +50,7 @@ async function query(filterBy = {}) {
         const needed = (f.guests.adults || 0) + (f.guests.children || 0)
         stays = stays.filter(s => (s.capacity?.guests ?? 0) >= needed)
     }
+    
     return stays
 }
 
@@ -118,7 +120,7 @@ async function _createStays() {
     if(!stays || !stays.length) {
         stays = [
             {
-                _id: stayService.makeId(),
+                _id: makeId(),
                 name: 'Sunny Loft in Neve Tzedek',
                 type: 'Apartment',
                 summary: 'Bright loft near the beach, perfect for couples.',
@@ -140,7 +142,7 @@ async function _createStays() {
                 updatedAt: Date.now(),
             },
             {
-                _id: stayService.makeId(),
+                _id: makeId(),
                 name: 'Quiet Garden Suite',
                 type: 'House',
                 summary: 'Private suite with a lovely garden.',

@@ -1,27 +1,24 @@
-import { userService } from '../services/user'
 import { StayPreview } from './StayPreview'
 
-export function StayList({ stays, onRemoveStay, onUpdateStay }) {
-    
-    function shouldShowActionBtns(Stay) {
-        const user = userService.getLoggedinUser()
-        
-        if (!user) return false
-        if (user.isAdmin) return true
-        return Stay.owner?._id === user._id
+export function StayList({ stays }) {
+    if (!stays || stays.length === 0) {
+        return (
+            <div className="stays-grid-empty">
+                <h2>No stays available</h2>
+                <p>Check back later for new listings</p>
+            </div>
+        )
     }
 
-    return <section>
-        <ul className="Stay-list">
-            {stays.map(Stay =>
-                <li key={Stay._id}>
-                    <StayPreview Stay={Stay}/>
-                    {shouldShowActionBtns(Stay) && <div className="actions">
-                        <button onClick={() => onUpdateStay(Stay)}>Edit</button>
-                        <button onClick={() => onRemoveStay(Stay._id)}>x</button>
-                    </div>}
-                </li>)
-            }
-        </ul>
-    </section>
+    return (
+        <section className="stays-section">
+            <div className="stays-grid">
+                {stays.map(Stay => (
+                    <div key={Stay._id} className="stay-card">
+                        <StayPreview Stay={Stay}/>
+                    </div>
+                ))}
+            </div>
+        </section>
+    )
 }
