@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     min-height: 5rem;
-    background: (180deg, #ffffff 39.9%, #f8f8f8 100%);
+    background: linear-gradient(180deg, #ffffff 39.9%, #f0f0f0 100%);
     padding: .8rem 1rem;
 
 

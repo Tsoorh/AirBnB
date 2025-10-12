@@ -1,9 +1,8 @@
 .stay-filter {
     display: flex;
     align-items: center;
-    border: 0.1rem solid rgb(221, 221, 221);
     border-radius: 2rem;
-
+    background-color: #fff;
     >button:not(:last-of-type) {
         text-align: start;
         padding: 1rem;
@@ -17,26 +16,39 @@
     border-radius: 2rem;
     >input {
         border: none;
+        border-radius: 1em;
+        padding: 0.2rem;
+        background-color: #fff;
+        
     }
+    >input:focus{
+        outline: none;
+        border: none;
+    }
+}
+
+span.light-color{
+    color: rgb(108, 108, 108);
+}
+
+.filter-btn:last-of-type>div{
+    text-align: start;
+    padding: 1rem;
 }
 
 .filter-btn:hover{
     background-color: #eeeeee;
+    >input{
+            background-color: #eeeeee;
+    }
 }
-
-/* .filter-btn:not(:last-of-type)::after {
-    content: "";
-    position: absolute;
-    top: 10px;
-    bottom: 10px;
-    right: 0;
-    width: 1px;
-    background-color: black;
-} */
 
 .filter-btn.active{
     background-color: rgb(210, 210, 210);
     transition: background-color 0.5s ease-in-out;
+    >input{
+        background-color: rgb(210, 210, 210);
+    }
 }
 
 .stay-filter.active{
@@ -48,6 +60,7 @@
     background-color: #FF385C;
     border: none;
     display: flex;
+    align-self: center;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
@@ -57,8 +70,8 @@
 }
 
 .search-btn.small-search {
-    height: 2rem;
-    width: 2rem;
+    height: 2.3rem;
+    width: 2.3rem;
 }
 
 .search-btn:hover {

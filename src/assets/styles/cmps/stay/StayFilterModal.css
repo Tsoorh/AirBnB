@@ -1,0 +1,11 @@
+.filter-modal{
+    display: grid;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 2rem;
+    background-color: rgb(255, 255, 255);
+    height: 500px;
+    width: 570px;
+}
