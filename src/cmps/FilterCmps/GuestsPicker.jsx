@@ -1,7 +1,7 @@
 import { ChildCare } from "@mui/icons-material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export function GuestsPicker() {
+export function GuestsPicker({ handleChange }) {
   const [counters, setCounters] = useState({
     adults: 0,
     children: 0,
@@ -9,42 +9,85 @@ export function GuestsPicker() {
     pets: 0,
   });
 
+  useEffect(() => {
+    handleChange("guests", counters);
+  }, [counters]);
+
   const guestsDetails = [
     {
       title: "Adults",
       subtitle: "Ages 13 or above",
-      counterName:"adults"
+      counterName: "adults",
     },
     {
       title: "Children",
       subtitle: "Ages 2-12",
-      counterName:"children"
+      counterName: "children",
     },
     {
       title: "Infants",
       subtitle: "Under 2",
-      counterName:"infants"
+      counterName: "infants",
     },
     {
-        title:"Pets",
-        subtitle:<a>Bringing a service animal?</a>,
-        counterName:"pets"
-    }
+      title: "Pets",
+      subtitle: <a>Bringing a service animal?</a>,
+      counterName: "pets",
+    },
   ];
+
+  function onHandleChange({ target }) {
+    const { innerText, name } = target;
+    console.log("🚀 ~ onHandleChange ~ name:", name);
+    switch (innerText) {
+      case "+":
+        setCounters((prevCounters) => ({
+          ...prevCounters,
+          [name]: prevCounters[name] + 1,
+        }));
+        break;
+      case "-":
+        setCounters((prevCounters) => ({
+          ...prevCounters,
+          [name]: prevCounters[name] + -1,
+        }));
+    }
+  }
 
   return (
     <ul className="guest-picker-container">
-      {guestsDetails.map((Details) => {
+      {guestsDetails.map((Details, idx) => {
         return (
-          <li className="flex align-center space-between">
+          <li
+            className="flex align-center space-between"
+            key={Details.title + idx}
+          >
             <div className="flex column space-between">
               <p>{Details.title}</p>
               <span className="light-color">{Details.subtitle}</span>
             </div>
             <div className="flex align-center">
-              <button className="btn-round">-</button>
+              {counters[Details.counterName] > 0 ? (
+                <button
+                  className="btn-round"
+                  name={Details.counterName}
+                  onClick={onHandleChange}
+                >
+                  -
+                </button>
+              ) : (
+                <button className="btn-round" disabled>
+                  -
+                </button>
+              )}
               <span>{counters[Details.counterName]}</span>
-              <button className="btn-round">+</button>
+              <button
+                className="btn-round"
+                name={Details.counterName}
+                onClick={onHandleChange}
+              >
+                +
+              </button>
             </div>
           </li>
         );

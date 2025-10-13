@@ -1,34 +1,56 @@
 import { useState, useEffect } from "react";
+import { DynamicModalCmp } from "./FilterCmps/DynamicModalCmp";
 import SearchIcon from "@mui/icons-material/Search";
-import { StayFilterModal } from "./FilterCmps/StayFilterModal";
-import { SearchDestination } from "./FilterCmps/SearchDestination";
-import { GuestsPicker } from "./FilterCmps/GuestsPicker";
-import { ChooseDates } from "./FilterCmps/ChooseDates";
+import { getDefaultFilter } from "../services/stay";
+import { useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+
 
 export function StayFilter({ filterBy, setFilterBy }) {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentModalContent, SetCurrentModalContent] = useState(null);
-  const [filter, setFilter] = useState({
-    destination: "",
-    checkIn: "",
-    checkOut: "",
-    guest: "",
-  });
+  const [filter, setFilter] = useState(getDefaultFilter);
+  const [searchParams,setSearchParams] = useSearchParams({...filter});
+  
 
-  const modalContent = {
-    destination: <SearchDestination handleChange={handleChange}/>,
-    checkIn: <ChooseDates field={"checkIn"} handleChange={handleChange}/>,
-    checkOut: <ChooseDates field={"checkIn"} handleChange={handleChange}/>,
-    guest: <GuestsPicker handleChange={handleChange} />,
-  };
+  useEffect(()=>{
+    console.log(filter);
+    
+    setSearchParams({...(refactorFilter(filter))})
+  },[filter])
+
+  function refactorFilter(filterObj){
+    let flatObj = {}
+        for(const key in filterObj){
+      if(typeof filterObj[key] === 'object' && filterObj[key] !== null){
+        for(const nestedKey in filterObj[key]){
+          flatObj = {...flatObj,[nestedKey]:filterObj[key][nestedKey]}
+        }
+      }else{
+        flatObj = {...flatObj,[key]:filterObj[key]}
+      }
+    }
+    return flatObj;
+  }
+
+  const buttonDetails = [
+    {
+      name: "checkIn",
+      span: "Check in",
+      placeholder:  filter.dates.checkIn || "Add dates" ,
+    },
+    {
+      name: "checkOut",
+      span: "Check out",
+      placeholder:filter.dates.checkOut ||  "Add dates" ,
+    },
+  ];
 
   function onHandleOpenFilter(ev) {
     setIsFilterOpen(true);
     onHandleClick(ev);
   }
-
-
   function onHandleClick({ currentTarget }) {
     const filterContainer = document.querySelector(".stay-filter");
     filterContainer.classList.add("active");
@@ -38,19 +60,48 @@ export function StayFilter({ filterBy, setFilterBy }) {
     });
     currentTarget.classList.add("active");
 
-
-    const {name}= currentTarget;
+    const { name } = currentTarget;
     SetCurrentModalContent(name);
-    setIsModalOpen(true);    
+    setIsModalOpen(true);
   }
-
-  function onCloseModal(){
-    SetCurrentModalContent(null)
+  function onCloseModal() {
+    SetCurrentModalContent(null);
     isModalOpen(false);
   }
-
-  function handleChange({field,value}){
-
+  function handleChange(field, value) {
+    switch (field) {
+      case "city":
+        setFilter((prevFilter) => ({
+          ...prevFilter,
+          city: value ,
+        }));
+        break;
+      case "guests":
+        setFilter((prevFilter) => ({
+          ...prevFilter,
+          guests: { ...value },
+        }));
+        break;
+        case "checkIn":
+        console.log("🚀 ~ handleChange ~ field,value:", field,value)
+        setFilter((prevFilter) => ({
+          ...prevFilter,
+          dates: {
+            ...prevFilter.dates,
+            checkIn: value,
+          },
+        }));
+        break;
+      case "checkOut":
+        setFilter((prevFilter) => ({
+          ...prevFilter,
+          dates: {
+            ...prevFilter.dates,
+            checkOut: value,
+          },
+        }));
+        break;
+    }
   }
 
   if (isFilterOpen) {
@@ -65,48 +116,43 @@ export function StayFilter({ filterBy, setFilterBy }) {
           <input
             type="text"
             placeholder="Search destinations"
-            value={filter.destination}
+            value={filter.city}
             onChange={handleChange}
           />
         </button>
-
-        <button
-          className="filter-btn flex column"
-          name="checkIn"
-          onClick={onHandleClick}
-        >
-          <span>Check in</span>
-          <span className="light-color">{"Add dates" || filter.checkOut}</span>
-        </button>
-
-        <button
-          className="filter-btn flex column"
-          name="checkOut"
-          onClick={onHandleClick}
-        >
-          <span>Check out</span>
-          <span className="light-color">{"Add dates" || filter.checkOut}</span>
-        </button>
-
+        {buttonDetails.map((btn) => {
+          return (
+            <button
+              key={btn.name}
+              className="filter-btn flex column"
+              name={btn.name}
+              onClick={onHandleClick}
+            >
+              <span>{btn.span}</span>
+              <span className="light-color">{btn.placeholder}</span>
+            </button>
+          );
+        })}
         <button
           className="filter-btn flex "
           name="guest"
           onClick={onHandleClick}
         >
-            <div className="flex column">
-          <span>Who</span>
-          <span className="light-color">{"add guests" || filter.guest}</span>
-
-            </div>
+          <div className="flex column">
+            <span>Who</span>
+            <span className="light-color">{"add guests" || filter.guests}</span>
+          </div>
           <button className="search-btn">
             <SearchIcon />
           </button>
         </button>
 
-        {isModalOpen && 
-        <StayFilterModal>
-         {modalContent[currentModalContent]}    
-        </StayFilterModal>}
+        {isModalOpen && (
+          <DynamicModalCmp
+            currentModalContent={currentModalContent}
+            handleChange={handleChange}
+          />
+        )}
       </section>
     );
   } else {
