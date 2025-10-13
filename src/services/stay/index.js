@@ -11,6 +11,7 @@ export function getEmptyStay() {
 	return {
         _id: '',
         name: '',
+        type: '',
         summary:'',
         imgUrls: [],
         price: { 
@@ -41,13 +42,13 @@ export function getEmptyStay() {
             lat: null,
             lan: null
         },
+        reviews: [],
+        likedByUsersIds: [],
         houseRule: [],
         checkIn: {from: '15:00', to: '22:00'},  
         checkOut: { by: '11:00'},
-        unavailable: [],
+        unavailable: [], //array of objects like this: { startDate: "2025-10-18", endDate: "2025-10-21" } that tells the stay is booked in this dates
         rating: {avg: 0, count: 0},
-        reviews: [],
-        likedByUsersIds: [],
         createdAt: now,
         updatedAt: now,
 	}
