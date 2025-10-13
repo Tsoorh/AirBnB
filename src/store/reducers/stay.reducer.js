@@ -1,3 +1,5 @@
+// import { act } from "react"
+
 export const SET_STAYS = 'SET_STAYS'
 export const SET_STAY = 'SET_STAY'
 export const REMOVE_STAY = 'REMOVE_STAY'
@@ -7,39 +9,67 @@ export const ADD_STAY_MSG = 'ADD_STAY_MSG'
 
 const initialState = {
     stays: [],
-    Stay: null
+    Stay: null,
+    lastStays: []
+
 }
 
 export function stayReducer(state = initialState, action) {
-    var newState = state
-    var stays
+    // var newState = state
+    // var stays
     switch (action.type) {
         case SET_STAYS:
-            newState = { ...state, stays: action.stays }
-            break
-        case SET_STAY:
-            newState = { ...state, Stay: action.Stay }
-            break
-        case REMOVE_STAY:
-            const lastRemovedStay = state.stays.find(s => s._id === action.stayId)
-            stays = state.stays.filter(Stay => Stay._id !== action.stayId)
-            newState = { ...state, stays, lastRemovedStay }
-            break
-        case ADD_STAY:
-            newState = { ...state, stays: [...state.stays, action.Stay] }
-            break
-        case UPDATE_STAY:
-            stays = state.stays.map(Stay => (Stay._id === action.Stay._id) ? action.Stay : Stay)
-            newState = { ...state, stays }
-            break
-        case ADD_STAY_MSG:
-            if (action.msg && state.Stay) {
-                newState = { ...state, Stay: { ...state.Stay, msgs: [...state.Stay.msgs || [], action.msg] } }
-                break
+            return {
+                ...state,
+                stays: action.stays
             }
+            // newState = { ...state, stays: action.stays }
+            // break
+        case SET_STAY:
+            return {
+                ...state,
+                Stay: action.Stay
+            }
+            // newState = { ...state, Stay: action.Stay }
+            // break
+        case REMOVE_STAY:
+            return {
+                lastStays: [...state.stays],
+                ...state,
+                stays: state.stays.filter(stay => stay._id !== action.stayId)
+
+            }
+            // const lastRemovedStay = state.stays.find(s => s._id === action.stayId)
+            // stays = state.stays.filter(Stay => Stay._id !== action.stayId)
+            // newState = { ...state, stays, lastRemovedStay }
+            // break
+        case ADD_STAY:
+            return {
+                ...state,
+                stays: [...state.stays, action.stay]
+            }
+            // newState = { ...state, stays: [...state.stays, action.Stay] }
+            // break
+        case UPDATE_STAY:
+            return {
+                ...state,
+                stays: state.stays.map(stay => stay._id === action.stay._id ? action.stay : stay)
+            }
+            // stays = state.stays.map(Stay => (Stay._id === action.Stay._id) ? action.Stay : Stay)
+            // newState = { ...state, stays }
+            // break
+        // case ADD_STAY_MSG:
+        //     if (action.msg && state.Stay) {
+        //         return{
+        //             ...state, 
+        //             Stay: { ...state.Stay, 
+        //                 msgs: [...state.Stay.msgs || [], action.msg] } 
+        //         }
+        //     }
         default:
+                return state
+
     }
-    return newState
 }
 
 // unitTestReducer()
