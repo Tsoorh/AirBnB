@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types'
+
 export function StayPreview({ Stay }) {
     const price = Stay.price?.base || 0
-    const currency = Stay.price?.currency || 'ILS'
     
     return (
         <article className="stay-preview">
@@ -20,4 +21,20 @@ export function StayPreview({ Stay }) {
             </div>
         </article>
     )
+}
+
+StayPreview.propTypes = {
+    Stay: PropTypes.shape({
+        _id: PropTypes.string,
+        name: PropTypes.string,
+        imgUrls: PropTypes.arrayOf(PropTypes.string),
+        price: PropTypes.shape({
+            base: PropTypes.number,
+            currency: PropTypes.string
+        }),
+        loc: PropTypes.shape({
+            city: PropTypes.string,
+            country: PropTypes.string
+        })
+    }).isRequired
 }

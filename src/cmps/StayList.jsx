@@ -1,4 +1,5 @@
 import { StayPreview } from './StayPreview'
+import PropTypes from 'prop-types'
 
 export function StayList({ stays }) {
     if (!stays || stays.length === 0) {
@@ -22,3 +23,8 @@ export function StayList({ stays }) {
         </section>
     )
 }
+
+StayList.propTypes = {
+    stays: PropTypes.arrayOf(PropTypes.object)
+}
+
