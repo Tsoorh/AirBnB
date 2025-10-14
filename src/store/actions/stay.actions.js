@@ -105,13 +105,12 @@ function getCmdAddStayMsg(msg) {
 }
 
 // unitTestActions()
-async function unitTestActions() {
-    await loadStays()
-    await addStay(stayService.getEmptyStay())
-    await updateStay({
-        _id: 'm1oC7',
-        vendor: 'Stay-Good',
-    })
-    await removeStay('m1oC7')
-    // TODO unit test addStayMsg
-}
+// async function unitTestActions() {
+//     await loadStays()
+//     await addStay(stayService.getEmptyStay())
+//     await updateStay({
+//         _id: 'm1oC7',
+//         vendor: 'Stay-Good',
+//     })
+//     await removeStay('m1oC7')
+// }
