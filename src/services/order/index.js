@@ -34,9 +34,19 @@ export function getEmptyOrder() {
   }
 }
 
+function getEmptyOrderFilter() {
+      return {
+          status: '', // 'pending', 'approved', 'rejected', ''
+          guestId: '',
+          hostId: '',
+          stayId: '',
+          upcomingOnly: null, // true = future bookings, false = past
+      }
+  }
+
 
 const service = (VITE_LOCAL === 'true') ? local : remote
-export const orderService = { getEmptyOrder, ...service }
+export const orderService = { getEmptyOrderFilter, getEmptyOrder, ...service }
 
 // Easy access to this service from the dev tools console
 // when using script - dev / dev:local

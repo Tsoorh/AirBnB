@@ -16,6 +16,7 @@ async function query(filterBy ={}) {
     let orders = await loadFromStorage('order')
     if(filterBy.guestId) orders = orders.filter(o => o.guest._id === filterBy.guestId)
     if(filterBy.hostId) orders = orders.filter(o => o.stay.hostId === filterBy.hostId)
+    if(filterBy.stayId) orders = orders.filter(o => o.stay.stayId === filterBy.stayId)
     if(filterBy.status) orders = orders.filter(o => o.status === filterBy.status)
     if(filterBy.upcomingOnly) {
         const now = Date.now()
