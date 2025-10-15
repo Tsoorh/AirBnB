@@ -3,13 +3,13 @@ import { SearchDestination } from "./SearchDestination";
 import { GuestsPicker } from "./GuestsPicker";
 import { ChooseDates } from "./ChooseDates";
 
-export function  DynamicModalCmp({currentModalContent,handleChange}){
+export function  DynamicModalCmp({currentModalContent,handleChange, onCloseModal}){
 
     const modalContent = {
-    destination: <SearchDestination handleChange={handleChange} />,
+    destination: <SearchDestination handleChange={handleChange} isOpen={currentModalContent === 'destination'} onCloseModal={onCloseModal} />,
     checkIn: <ChooseDates handleChange={handleChange} />,
     checkOut: <ChooseDates handleChange={handleChange} />,
-    guest: <GuestsPicker handleChange={handleChange} />,
+    guest: <GuestsPicker handleChange={handleChange}/>,
     };
 
   const activeComponent = modalContent[currentModalContent];

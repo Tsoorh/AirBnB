@@ -66,8 +66,39 @@ export function StayFilter({ filterBy, setFilterBy }) {
   }
   function onCloseModal() {
     SetCurrentModalContent(null);
-    isModalOpen(false);
+    setIsModalOpen(false);
   }
+
+  // function onCloseAutocomplete() {
+  //   // Close the autocomplete dropdown but keep the modal open
+  //   SetCurrentModalContent(null);
+  //   setIsModalOpen(false);
+  // }
+
+  function onSearchClick(ev) {
+    // Stop event from bubbling to parent button
+    ev.stopPropagation();
+    ev.preventDefault();
+
+    // Close all modals
+    SetCurrentModalContent(null);
+    setIsModalOpen(false);
+
+    // Apply the filter (if setFilterBy is provided as prop)
+    if (setFilterBy) {
+      setFilterBy(filter);
+    }
+
+    // Update URL search params (this will trigger filtering in parent component)
+    setSearchParams({...(refactorFilter(filter))});
+
+    // Remove active class from filter container
+    const filterContainer = document.querySelector(".stay-filter");
+    if (filterContainer) {
+      filterContainer.classList.remove("active");
+    }
+  }
+
   function handleChange(field, value) {
     switch (field) {
       case "city":
@@ -142,7 +173,7 @@ export function StayFilter({ filterBy, setFilterBy }) {
             <span>Who</span>
             <span className="light-color">{"add guests" || filter.guests}</span>
           </div>
-          <button className="search-btn">
+          <button className="search-btn" onClick={onSearchClick}>
             <SearchIcon />
           </button>
         </button>
@@ -151,6 +182,7 @@ export function StayFilter({ filterBy, setFilterBy }) {
           <DynamicModalCmp
             currentModalContent={currentModalContent}
             handleChange={handleChange}
+            onCloseModal={onCloseModal}
           />
         )}
       </section>
