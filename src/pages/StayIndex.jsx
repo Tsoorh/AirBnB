@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
 import { loadStays, addStay, updateStay, removeStay } from '../store/actions/stay.actions'
@@ -8,16 +8,14 @@ import { stayService } from '../services/stay'
 import { userService } from '../services/user'
 
 import { StayList } from '../cmps/StayList'
-import { StayFilter } from '../cmps/StayFilter'
 
 export function StayIndex() {
 
-    const [ filterBy, setFilterBy ] = useState(stayService.getDefaultFilter())
     const stays = useSelector(storeState => storeState.stayModule.stays)
 
     useEffect(() => {
-        loadStays(filterBy)
-    }, [filterBy])
+        loadStays()
+    }, [])
 
     async function onRemoveStay(stayId) {
         try {
@@ -54,11 +52,6 @@ export function StayIndex() {
 
     return (
         <section className="Stay-index">
-            <header>
-                <h2>stays</h2>
-                {userService.getLoggedinUser() && <button onClick={onAddStay}>Add a Stay</button>}
-            </header>
-            <StayFilter filterBy={filterBy} setFilterBy={setFilterBy} />
             <StayList 
                 stays={stays}
                 onRemoveStay={onRemoveStay} 

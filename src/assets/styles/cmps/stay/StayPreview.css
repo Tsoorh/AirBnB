@@ -1,3 +1,9 @@
+.stay-preview-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
 .stay-preview {
     border-radius: 12px;
     overflow: hidden;
