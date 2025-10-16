@@ -3,7 +3,7 @@ import { DynamicModalCmp } from "./FilterCmps/DynamicModalCmp";
 import SearchIcon from "@mui/icons-material/Search";
 import { getDefaultFilter } from "../services/stay";
 import { useSearchParams } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 
 export function StayFilter({ filterBy, setFilterBy }) {
@@ -12,11 +12,20 @@ export function StayFilter({ filterBy, setFilterBy }) {
   const [currentModalContent, SetCurrentModalContent] = useState(null);
   const [filter, setFilter] = useState(getDefaultFilter);
   const [searchParams,setSearchParams] = useSearchParams({...filter});
-  
+  const location = useLocation();
+
+  useEffect(() => {
+  setIsFilterOpen(false);
+  setIsModalOpen(false);
+  SetCurrentModalContent(null);
+
+  // const el = document.querySelector(".stay-filter");
+  // if (el) el.classList.remove("active");
+}, [location.pathname]); 
+
 
   useEffect(()=>{
     console.log(filter);
-    
     setSearchParams({...(refactorFilter(filter))})
   },[filter])
 
