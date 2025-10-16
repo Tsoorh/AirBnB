@@ -137,7 +137,7 @@ export function StayFilter({ filterBy, setFilterBy }) {
 
   if (isFilterOpen) {
     return (
-      <section className="stay-filter shadow">
+      <section className="stay-filter shadow open">
         <button
           className="filter-btn flex column"
           name="destination"
@@ -165,17 +165,16 @@ export function StayFilter({ filterBy, setFilterBy }) {
           );
         })}
         <button
-          className="filter-btn flex "
+          className="filter-btn flex column"
           name="guest"
           onClick={onHandleClick}
         >
-          <div className="flex column">
-            <span>Who</span>
-            <span className="light-color">{"add guests" || filter.guests}</span>
-          </div>
-          <button className="search-btn" onClick={onSearchClick}>
-            <SearchIcon />
-          </button>
+          <span>Who</span>
+          <span className="light-color">{"add guests" || filter.guests}</span>
+        </button>
+        <button className="search-btn open" onClick={onSearchClick}>
+          <SearchIcon />        
+          <span className="search-text">Search</span>
         </button>
 
         {isModalOpen && (
@@ -191,20 +190,21 @@ export function StayFilter({ filterBy, setFilterBy }) {
     return (
       <section className="stay-filter">
         <button
-          className="filter-btn flex column"
+          className="filter-btn flex column des"
           onClick={onHandleOpenFilter}
           name="destination"
           id="destination"
         >
+          <img src="/img/house.png" alt="house" className="house-icon" />
           Anywhere
         </button>
         <button
-          className="filter-btn flex column"
+          className="filter-btn flex column border-right"
           onClick={onHandleOpenFilter}
           name="time"
           id="time"
         >
-          AnyTime
+          Any Week
         </button>
         <button
           className="filter-btn flex column"

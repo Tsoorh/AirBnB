@@ -1,10 +1,10 @@
 .app-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     min-height: 5rem;
     background: linear-gradient(180deg, #ffffff 39.9%, #f0f0f0 100%);
-    padding: .8rem 1rem;
-
+    padding: 1rem 2rem;
 
     >.logo {
         display: flex;
@@ -19,6 +19,11 @@
             padding-left: 0.5rem;
             color: #FF385C;
         }
+    }
+
+    .flex.align-center{
+        display: flex;
+        gap: 15px;        
     }
 
 
