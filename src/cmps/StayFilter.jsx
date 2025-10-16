@@ -51,6 +51,7 @@ export function StayFilter({ filterBy, setFilterBy }) {
     setIsFilterOpen(true);
     onHandleClick(ev);
   }
+
   function onHandleClick({ currentTarget }) {
     const filterContainer = document.querySelector(".stay-filter");
     filterContainer.classList.add("active");
@@ -64,16 +65,11 @@ export function StayFilter({ filterBy, setFilterBy }) {
     SetCurrentModalContent(name);
     setIsModalOpen(true);
   }
+
   function onCloseModal() {
     SetCurrentModalContent(null);
     setIsModalOpen(false);
   }
-
-  // function onCloseAutocomplete() {
-  //   // Close the autocomplete dropdown but keep the modal open
-  //   SetCurrentModalContent(null);
-  //   setIsModalOpen(false);
-  // }
 
   function onSearchClick(ev) {
     // Stop event from bubbling to parent button
@@ -88,15 +84,18 @@ export function StayFilter({ filterBy, setFilterBy }) {
     if (setFilterBy) {
       setFilterBy(filter);
     }
-
     // Update URL search params (this will trigger filtering in parent component)
     setSearchParams({...(refactorFilter(filter))});
-
     // Remove active class from filter container
     const filterContainer = document.querySelector(".stay-filter");
     if (filterContainer) {
       filterContainer.classList.remove("active");
     }
+  }
+
+  function classModalOpen(){
+    if(isModalOpen) return 'open'
+    else return ''
   }
 
   function handleChange(field, value) {
@@ -172,7 +171,7 @@ export function StayFilter({ filterBy, setFilterBy }) {
           <span>Who</span>
           <span className="light-color">{"add guests" || filter.guests}</span>
         </button>
-        <button className="search-btn open" onClick={onSearchClick}>
+        <button className={`search-btn ${classModalOpen()}`} onClick={onSearchClick}>
           <SearchIcon />        
           <span className="search-text">Search</span>
         </button>

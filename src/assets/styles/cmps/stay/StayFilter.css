@@ -39,7 +39,7 @@
 
 
 .filter-btn {
-    background-color: #fff;
+    background:fixed;
     border: none;
     color: black;
     /* font-weight: 600; */
@@ -92,15 +92,15 @@ span.light-color{
 }
 
 .filter-btn.active{
-    background-color: rgb(210, 210, 210);
+    background-color: #fff;
     transition: background-color 0.5s ease-in-out;
     >input{
-        background-color: rgb(210, 210, 210);
+        background:fixed;
     }
 }
 
 .stay-filter.active{
-    background-color: #fff;
+    background-color: rgb(230, 230, 230);
 }
 
 .check-in{
@@ -138,15 +138,19 @@ span.light-color{
     background-color: #FF385C;
 }
 
-.search-btn.open:hover {
-    background-color: #d72f4e;
+.search-btn.open {
     width: 6rem;
     border-radius: 2rem;
-    /* transform: scale(1.1); */
     transition: width 0.3s ease, background-color 0.2s ease, border-radius 0.3s ease;
+    background-color: #d72f4e;
+
 }
 
-.search-btn:hover .search-text {
+.search-btn.open:hover {
+    background-color: #d72f4e;
+}
+
+.search-btn.open .search-text {
     display: inline;
 }
 
