@@ -1,10 +1,27 @@
 import { stayService } from '../../services/stay'
 import { store } from '../store'
 import { ADD_STAY, REMOVE_STAY, SET_STAYS, SET_STAY, UPDATE_STAY, ADD_STAY_MSG } from '../reducers/stay.reducer'
+import { useLocation } from 'react-router-dom'
+
 
 export async function loadStays(filterBy) {
     try {
-        const stays = await stayService.query(filterBy)
+        // 1. Get the URLSearchParams instance from the current URL's query string
+        const currentUrlParams = new URLSearchParams(window.location.search);
+
+        // 2. Convert to a JavaScript object
+        const currentParamsObject = Object.fromEntries(currentUrlParams);
+
+        for (const key in currentParamsObject) { 
+            const element = currentParamsObject[key];
+            console.log(element)
+        }
+
+        console.log(currentParamsObject);
+        // From current URL:
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        console.log(window.location)
+        const stays = await stayService.query(currentParamsObject)
         store.dispatch(getCmdSetStays(stays))
     } catch (err) {
         console.log('Cannot load stays', err)
