@@ -6,7 +6,7 @@ import { orderService as local } from './order.service.local'
 // import { orderService as remote } from './order.service.remote'  
 
 
-export function getEmptyOrder() {
+function getEmptyOrder() {
   const now = Date.now()
   return {
     _id: '',                      
@@ -17,7 +17,7 @@ export function getEmptyOrder() {
     checkOut: null,                  
     guests: {
       adults: 1,
-      kids: 0,
+      children: 0,
       infants: 0,                   
       pets: 0
     },

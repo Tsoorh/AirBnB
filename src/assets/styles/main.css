@@ -27,6 +27,7 @@
 @import "cmps/Stay/ChooseDate";
 @import "cmps/Stay/GuestPicker";
 @import "cmps/stay/FilterCmps/SearchDestination";
+@import "cmps/stay/Order";
 
 @import "cmps/review/ReviewEdit";
 @import "cmps/review/ReviewList";
