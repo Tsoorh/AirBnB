@@ -143,14 +143,14 @@ export function Order() {
 
 
 
-                    <div>
+                    <div className='order-dates'>
                         <div>
                             <h2>Dates</h2>
                             <p>{`${checkIn} - ${checkOut}`}</p>  
                         </div>
                         <button className='change-btn'>Change</button>
                     </div>
-                    <div>
+                    <div className='order-guests'>
                         <div>
                             <h2>Guests</h2>
                             {adults > 0 && (
@@ -171,15 +171,15 @@ export function Order() {
                     <div className='order-price-details'>
                         <h2>Price details</h2>
                         <div>
-                            <span>{`₪${order.priceBreakdown.pricePerNight} x ${order.nights} nights`}</span>
+                            <span>{`₪${order.priceBreakdown.pricePerNight} x ${order.nights} nights `}</span>
                             <span>{`₪${order.priceBreakdown.subtotal.toFixed(2)}`}</span>
                         </div>
                         <div>
-                            <span>Cleaning fee</span>
+                            <span>Cleaning fee </span>
                             <span>{`₪${order.priceBreakdown.cleaningFee.toFixed(2)}`}</span>
                         </div>
                         <div>
-                            <span>Service fee</span>
+                            <span>Service fee </span>
                             <span>{`₪${order.priceBreakdown.serviceFee.toFixed(2)}`}</span>
                         </div>
                     </div>

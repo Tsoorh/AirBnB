@@ -22,9 +22,9 @@ export function AppHeader() {
 
 	return (
 		<header className="app-header full">
-			<div className='logo'>
+			<Link to="/" className='logo'>
 				<img src='public\img\airbnb-icon.svg' alt="Airbnb" /><span>airbnb</span>
-			</div>
+			</Link>
 
 			<div className='flex align-center'>
 				{/* filter */}
