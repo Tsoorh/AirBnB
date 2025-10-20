@@ -6,6 +6,8 @@
     "imgUrls": [
       "/img/sunflowers.jpg",
       "/img/sunflowers.jpg",
+      "/img/sunflowers.jpg",
+      "/img/sunflowers.jpg",
       "/img/sunflowers.jpg"
     ],
     "price": { "base": 450, "currency": "ILS", "cleaningFee": 80, "serviceFeePct": 0.12 },
@@ -50,6 +52,8 @@
     "type": "House",
     "summary": "Private suite with a lovely garden.",
     "imgUrls": [
+      "/img/sunflowers.jpg",
+      "/img/sunflowers.jpg",
       "/img/sunflowers.jpg",
       "/img/sunflowers.jpg",
       "/img/sunflowers.jpg"
@@ -98,6 +102,8 @@
     "imgUrls": [
       "/img/sunflowers.jpg",
       "/img/sunflowers.jpg",
+      "/img/sunflowers.jpg",
+      "/img/sunflowers.jpg",
       "/img/sunflowers.jpg"
     ],
     "price": { "base": 390, "currency": "ILS", "cleaningFee": 70, "serviceFeePct": 0.12 },
@@ -142,6 +148,8 @@
     "type": "Apartment",
     "summary": "Penthouse near the beach with a private terrace and sea breeze.",
     "imgUrls": [
+      "/img/sunflowers.jpg",
+      "/img/sunflowers.jpg",
       "/img/sunflowers.jpg",
       "/img/sunflowers.jpg",
       "/img/sunflowers.jpg"
@@ -190,6 +198,8 @@
     "imgUrls": [
       "/img/sunflowers.jpg",
       "/img/sunflowers.jpg",
+      "/img/sunflowers.jpg",
+      "/img/sunflowers.jpg",
       "/img/sunflowers.jpg"
     ],
     "price": { "base": 340, "currency": "ILS", "cleaningFee": 50, "serviceFeePct": 0.12 },
@@ -234,6 +244,8 @@
     "type": "Villa",
     "summary": "Authentic stone villa with patio, near wineries and nature.",
     "imgUrls": [
+      "/img/sunflowers.jpg",
+      "/img/sunflowers.jpg",
       "/img/sunflowers.jpg",
       "/img/sunflowers.jpg",
       "/img/sunflowers.jpg"
@@ -282,6 +294,8 @@
     "imgUrls": [
       "/img/sunflowers.jpg",
       "/img/sunflowers.jpg",
+      "/img/sunflowers.jpg",
+      "/img/sunflowers.jpg",
       "/img/sunflowers.jpg"
     ],
     "price": { "base": 560, "currency": "ILS", "cleaningFee": 90, "serviceFeePct": 0.12 },
@@ -326,6 +340,8 @@
     "type": "Apartment",
     "summary": "Historic quarter loft with stone arches and panoramic terrace.",
     "imgUrls": [
+      "/img/sunflowers.jpg",
+      "/img/sunflowers.jpg",
       "/img/sunflowers.jpg",
       "/img/sunflowers.jpg",
       "/img/sunflowers.jpg"
@@ -374,6 +390,8 @@
     "imgUrls": [
       "/img/sunflowers.jpg",
       "/img/sunflowers.jpg",
+      "/img/sunflowers.jpg",
+      "/img/sunflowers.jpg",
       "/img/sunflowers.jpg"
     ],
     "price": { "base": 110, "currency": "EUR", "cleaningFee": 35, "serviceFeePct": 0.12 },
@@ -418,6 +436,8 @@
     "type": "Apartment",
     "summary": "Sunny flat with a rooftop terrace and Acropolis view.",
     "imgUrls": [
+      "/img/sunflowers.jpg",
+      "/img/sunflowers.jpg",
       "/img/sunflowers.jpg",
       "/img/sunflowers.jpg",
       "/img/sunflowers.jpg"
