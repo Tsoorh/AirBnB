@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import '../assets/styles/cmps/BookingWidget.css'
+import { Link } from 'react-router-dom'
 
 export function BookingWidget() {
   const stay = useSelector(storeState => storeState.stayModule.Stay)
@@ -60,7 +61,9 @@ export function BookingWidget() {
           </select>
         </div>
 
-        <button className="reserve-button">Reserve</button>
+        <Link to={`/Stay/${stay._id}/order`}><button className="reserve-button">Reserve</button></Link>
+
+        {/* <button className="reserve-button">Reserve</button> */}
 
         <p className="no-charge-text">You won't be charged yet</p>
       </div>

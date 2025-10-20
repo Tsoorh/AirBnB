@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { useSearchParams } from 'react-router-dom'
 
 import { loadStays, addStay, updateStay, removeStay } from '../store/actions/stay.actions'
 
@@ -10,12 +11,12 @@ import { userService } from '../services/user'
 import { StayList } from '../cmps/StayList'
 
 export function StayIndex() {
-
     const stays = useSelector(storeState => storeState.stayModule.stays)
+    const [searchParams] = useSearchParams()
 
     useEffect(() => {
         loadStays()
-    }, [])
+    }, [searchParams])
 
     async function onRemoveStay(stayId) {
         try {

@@ -7,20 +7,11 @@ import { useLocation } from 'react-router-dom'
 export async function loadStays(filterBy) {
     try {
         // 1. Get the URLSearchParams instance from the current URL's query string
-        const currentUrlParams = new URLSearchParams(window.location.search);
-
+        const currentUrlParams = new URLSearchParams(window.location.search);        
         // 2. Convert to a JavaScript object
         const currentParamsObject = Object.fromEntries(currentUrlParams);
+        console.log('currentParamsObject: ', currentParamsObject);
 
-        for (const key in currentParamsObject) { 
-            const element = currentParamsObject[key];
-            console.log(element)
-        }
-
-        console.log(currentParamsObject);
-        // From current URL:
-        const urlSearchParams = new URLSearchParams(window.location.search);
-        console.log(window.location)
         const stays = await stayService.query(currentParamsObject)
         store.dispatch(getCmdSetStays(stays))
     } catch (err) {
