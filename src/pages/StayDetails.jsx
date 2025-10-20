@@ -14,6 +14,7 @@ export function StayDetails() {
   useEffect(() => {
     loadStay(stayId)
   }, [stayId])
+  
 
   if (!stay) {
     return <div className="stay-details-loading">Loading...</div>

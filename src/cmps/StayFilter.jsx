@@ -122,7 +122,6 @@ export function StayFilter({ filterBy, setFilterBy }) {
         }));
         break;
         case "checkIn":
-        console.log("🚀 ~ handleChange ~ field,value:", field,value)
         setFilter((prevFilter) => ({
           ...prevFilter,
           dates: {

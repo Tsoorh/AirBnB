@@ -40,15 +40,24 @@ async function query(filterBy = {}) {
         stays = stays.filter (s => f.labels.every(l => (s.labels || []).includes(l)))
     }
 
-    if(f.minPrice != null) stays = stays.filter(s => (s.price?.base ?? 0) >= f.minPrice) 
-    if(f.maxPrice != null) stays = stays.filter(s => (s.price?.base ?? 0) <= f.maxPrice) 
+    if(f.minPrice != null){
+        f.minPrice = Number(f.minPrice)        
+        stays = stays.filter(s => (s.price?.base ?? 0) >= f.minPrice)
+    } 
+
+    if(f.maxPrice != null) {
+        f.maxPrice = Number(f.maxPrice)        
+        stays = stays.filter(s => (s.price?.base ?? 0) <= f.maxPrice) 
+    }
 
     if(f.dates?.checkIn && f.dates?.checkOut) {
         stays = stays.filter(s => isAvailable(s, f.dates))
     }
 
-    if(f.guests?.adults) {
-        const needed = (f.guests.adults || 0) + (f.guests.children || 0)
+    if(f.adults) {
+        f.adults = Number(f.adults)        
+        f.children = Number(f.children)
+        const needed = (f.adults || 0) + (f.children || 0)        
         stays = stays.filter(s => (s.capacity?.guests ?? 0) >= needed)
     }
     

@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 
 export function StayPreview({ Stay }) {
     const price = Stay.price?.base || 0
+    const [searchParams] = useSearchParams()  
     
     return (
-        <Link to={`/Stay/${Stay._id}`} className="stay-preview-link">
+        <Link to={`/Stay/${Stay._id}?${searchParams.toString()}`} className="stay-preview-link">
             <article className="stay-preview">
                 <div className="stay-content">
                     <div className="stay-image">
