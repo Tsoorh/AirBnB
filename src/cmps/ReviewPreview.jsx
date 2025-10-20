@@ -48,7 +48,7 @@ ReviewPreview.propTypes = {
         _id: PropTypes.string,
         txt: PropTypes.string.isRequired,
         rating: PropTypes.number,
-        createdAt: PropTypes.number,
+        createdAt: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
         byUser: PropTypes.shape({
             _id: PropTypes.string,
             fullname: PropTypes.string,

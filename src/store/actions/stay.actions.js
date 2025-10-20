@@ -10,7 +10,7 @@ export async function loadStays(filterBy) {
         const currentUrlParams = new URLSearchParams(window.location.search);        
         // 2. Convert to a JavaScript object
         const currentParamsObject = Object.fromEntries(currentUrlParams);
-        console.log('currentParamsObject: ', currentParamsObject);
+        // console.log('currentParamsObject: ', currentParamsObject);
 
         const stays = await stayService.query(currentParamsObject)
         store.dispatch(getCmdSetStays(stays))
