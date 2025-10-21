@@ -16,11 +16,15 @@
 .main-image-container {
   position: relative;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .main-image-container:hover {
   transform: scale(1.01);
+}
+
+.main-image-container:hover .main-image {
+  filter: brightness(0.8);
 }
 
 .main-image {
@@ -38,11 +42,15 @@
 .small-image-container {
   position: relative;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .small-image-container:hover {
   transform: scale(1.01);
+}
+
+.small-image-container:hover .small-image {
+  filter: brightness(0.8);
 }
 
 .small-image {
@@ -51,12 +59,11 @@
   object-fit: cover;
 }
 
-
 .show-all-photos-button {
   position: absolute;
   bottom: 12px;
   right: 12px;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: white;
   border: none;
   border-radius: 8px;
   padding: 8px 12px;
@@ -64,9 +71,6 @@
   font-weight: 600;
   color: #222222;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   transition: all 0.2s ease;
 }
@@ -74,11 +78,6 @@
 .show-all-photos-button:hover {
   background-color: white;
   transform: scale(1.05);
-}
-
-.grid-icon {
-  font-size: 16px;
-  font-weight: bold;
 }
 
 /* Modal for showing all photos */

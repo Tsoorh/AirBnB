@@ -6,7 +6,7 @@ export function StayPreview({ Stay }) {
     const [searchParams] = useSearchParams()  
     
     return (
-        <Link to={`/Stay/${Stay._id}?${searchParams.toString()}`} className="stay-preview-link">
+        <Link to={`/Stay/${Stay._id}?${searchParams.toString()}`} className="stay-preview-link" target="_blank" rel="noopener noreferrer">
             <article className="stay-preview">
                 <div className="stay-content">
                     <div className="stay-image">
