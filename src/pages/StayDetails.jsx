@@ -22,10 +22,8 @@ export function StayDetails() {
 
   return (
     <div className="stay-details">
-      {/* Header with back button */}
-      <div className="stay-details-header">
-        <Link to="/stay" className="back-button">← Back to stays</Link>
-      </div>
+      {/* Title above gallery (Airbnb style) */}
+      <h1 className="stay-title page-title">{stay.name}</h1>
 
       {/* Image Gallery */}
       <ImageGallery 
@@ -37,9 +35,8 @@ export function StayDetails() {
       <div className="stay-main-layout">
         {/* Content Sections (Left Column) */}
         <div className="content-sections">
-          {/* Title and Basic Info - Narrow */}
+          {/* Basic Info - Narrow */}
           <div className="section-narrow">
-            <h1 className="stay-title">{stay.name}</h1>
             
             <div className="stay-location">
               <span className="location-text">{stay.loc?.city}, {stay.loc?.country}</span>

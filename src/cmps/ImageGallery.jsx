@@ -94,7 +94,7 @@ export function ImageGallery({ images, alt }) {
                   className="small-image"
                 />
                 {/* Show "Show all photos" button on the last small image */}
-                {index === 3 && remainingCount > 0 && (
+                {index === 3 && (
                   <button 
                     className="show-all-photos-button"
                     onClick={(e) => {
@@ -102,7 +102,6 @@ export function ImageGallery({ images, alt }) {
                       handleShowAllPhotos()
                     }}
                   >
-                    <span className="grid-icon">⊞</span>
                     Show all photos
                   </button>
                 )}

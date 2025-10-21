@@ -382,6 +382,28 @@
   line-height: 1.2;
 }
 
+/* Page title above gallery (Airbnb-like) */
+.page-title {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  margin: 8px 0 16px 0;
+}
+
+@media (min-width: 1128px) {
+  .page-title {
+    font-size: 36px;
+    margin: 8px 0 20px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 26px;
+    margin: 4px 0 12px 0;
+  }
+}
+
 .stay-location {
   display: flex;
   flex-direction: column;
