@@ -2,11 +2,11 @@ const { DEV, VITE_LOCAL } = import.meta.env
 
 // import { getRandomIntInclusive, makeId } from '../util.service'
 
-import { stayService as local } from './Stay.service.local'
-import { stayService as remote } from './Stay.service.remote'
+import { orderService as local } from './order.service.local'
+// import { orderService as remote } from './order.service.remote'  
 
 
-export function getEmptyOrder() {
+function getEmptyOrder() {
   const now = Date.now()
   return {
     _id: '',                      
@@ -17,7 +17,7 @@ export function getEmptyOrder() {
     checkOut: null,                  
     guests: {
       adults: 1,
-      kids: 0,
+      children: 0,
       infants: 0,                   
       pets: 0
     },
@@ -45,10 +45,11 @@ function getEmptyOrderFilter() {
   }
 
 
-const service = (VITE_LOCAL === 'true') ? local : remote
+// const service = (VITE_LOCAL ==='true') ? local : remote
+const service = local
 export const orderService = { getEmptyOrderFilter, getEmptyOrder, ...service }
 
 // Easy access to this service from the dev tools console
 // when using script - dev / dev:local
 
-if (DEV) window.stayService = orderService
+if (DEV) window.orderService = orderService

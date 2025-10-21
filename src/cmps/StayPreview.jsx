@@ -1,24 +1,24 @@
 import PropTypes from 'prop-types'
 import { Link, useSearchParams } from 'react-router-dom'
 
-export function StayPreview({ Stay }) {
-    const price = Stay.price?.base || 0
+export function StayPreview({ stay }) {
+    const price = stay.price?.base || 0
     const [searchParams] = useSearchParams()  
     
     return (
-        <Link to={`/Stay/${Stay._id}?${searchParams.toString()}`} className="stay-preview-link" target="_blank" rel="noopener noreferrer">
+        <Link to={`/stay/${stay._id}?${searchParams.toString()}`} className="stay-preview-link">
             <article className="stay-preview">
                 <div className="stay-content">
                     <div className="stay-image">
                         <img 
-                            src={Stay.imgUrls?.[0] || '/img/sunflowers.jpg'} 
-                            alt={Stay.name}
+                            src={stay.imgUrls?.[0] || '/img/sunflowers.jpg'} 
+                            alt={stay.name}
                         />
                     </div>
                     
                     <div className="stay-info">
-                        <h3>{Stay.name}</h3>
-                        <p className="stay-location">{Stay.loc?.city || 'Tel Aviv'}, {Stay.loc?.country || 'Israel'}</p>
+                        <h3>{stay.name}</h3>
+                        <p className="stay-location">{stay.loc?.city || 'Tel Aviv'}, {stay.loc?.country || 'Israel'}</p>
                         <p className="stay-price">₪{price} / night</p>
                     </div>
                 </div>
@@ -28,7 +28,7 @@ export function StayPreview({ Stay }) {
 }
 
 StayPreview.propTypes = {
-    Stay: PropTypes.shape({
+    stay: PropTypes.shape({
         _id: PropTypes.string,
         name: PropTypes.string,
         imgUrls: PropTypes.arrayOf(PropTypes.string),

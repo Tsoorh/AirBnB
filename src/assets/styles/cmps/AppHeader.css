@@ -9,6 +9,7 @@
     >.logo {
         display: flex;
         align-items:center;
+        cursor: pointer;
 
         & img {
             max-height: 2.5rem;
@@ -24,6 +25,14 @@
     .flex.align-center{
         display: flex;
         gap: 15px;        
+    }
+
+    a.logo:hover,
+    a.logo:active,
+    a.logo:visited,
+    a.logo:focus {
+        text-decoration: none;
+        color: inherit;
     }
 
 

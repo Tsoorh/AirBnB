@@ -9,7 +9,7 @@ export const ADD_STAY_MSG = 'ADD_STAY_MSG'
 
 const initialState = {
     stays: [],
-    Stay: null,
+    stay: null,
     lastStays: []
 
 }
@@ -25,7 +25,7 @@ export function stayReducer(state = initialState, action) {
         case SET_STAY:
             return {
                 ...state,
-                Stay: action.Stay
+                stay: action.stay
             }
 
         case REMOVE_STAY:
@@ -48,11 +48,11 @@ export function stayReducer(state = initialState, action) {
                 stays: state.stays.map(stay => stay._id === action.stay._id ? action.stay : stay)
             }
         case ADD_STAY_MSG:
-            if (action.msg && state.Stay) {
+            if (action.msg && state.stay) {
                 return{
                     ...state,
-                    Stay: { ...state.Stay,
-                        msgs: [...state.Stay.msgs || [], action.msg] }
+                    stay: { ...state.stay,
+                        msgs: [...state.stay.msgs || [], action.msg] }
                 }
             }
             return state

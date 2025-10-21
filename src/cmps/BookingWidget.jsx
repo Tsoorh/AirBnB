@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 import '../assets/styles/cmps/BookingWidget.css'
 import { Link } from 'react-router-dom'
 
 export function BookingWidget() {
-  const stay = useSelector(storeState => storeState.stayModule.Stay)
+  const stay = useSelector(storeState => storeState.stayModule.stay)
   const [searchParams] = useSearchParams()
 
   // Get dates from URL params or use empty string
@@ -96,7 +96,7 @@ export function BookingWidget() {
           </select>
         </div>
 
-        <Link to={`/Stay/${stay._id}/order?${searchParams.toString()}`}>
+        <Link to={`/stay/${stay._id}/order?${searchParams.toString()}`}>
           <button className="reserve-button">Reserve</button>
         </Link>
 

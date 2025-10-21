@@ -31,12 +31,12 @@ export function RootCmp() {
                         <Route path="team" element={<AboutTeam />} />
                         <Route path="vision" element={<AboutVision />} />
                     </Route>
-                    <Route path="Stay" element={<StayIndex />} />
-                    <Route path="Stay/:stayId" element={<StayDetails />} />
+                    <Route path="stay" element={<StayIndex />} />
+                    <Route path="stay/:stayId" element={<StayDetails />} />
                     <Route path="user/:id" element={<UserDetails />} />
                     <Route path="review" element={<ReviewIndex />} />
                     <Route path="chat" element={<ChatApp />} />
-                    <Route path="Stay/:stayId/order" element={<Order />} />
+                    <Route path="stay/:stayId/order" element={<Order />} />
                     <Route path="admin" element={<AdminIndex />} />
                     <Route path="auth" element={<LoginSignup />}>
                         <Route path="login" element={<Login />} />

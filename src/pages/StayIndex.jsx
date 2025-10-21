@@ -21,38 +21,38 @@ export function StayIndex() {
     async function onRemoveStay(stayId) {
         try {
             await removeStay(stayId)
-            showSuccessMsg('Stay removed')            
+            showSuccessMsg('stay removed')            
         } catch (err) {
-            showErrorMsg('Cannot remove Stay')
+            showErrorMsg('Cannot remove stay')
         }
     }
 
     async function onAddStay() {
-        const Stay = stayService.getEmptyStay()
-        Stay.vendor = prompt('Vendor?', 'Some Vendor')
+        const stay = stayService.getEmptyStay()
+        stay.vendor = prompt('Vendor?', 'Some Vendor')
         try {
-            const savedStay = await addStay(Stay)
-            showSuccessMsg(`Stay added (id: ${savedStay._id})`)
+            const savedStay = await addStay(stay)
+            showSuccessMsg(`stay added (id: ${savedStay._id})`)
         } catch (err) {
-            showErrorMsg('Cannot add Stay')
+            showErrorMsg('Cannot add stay')
         }        
     }
 
-    async function onUpdateStay(Stay) {
-        const speed = +prompt('New speed?', Stay.speed) || 0
-        if(speed === 0 || speed === Stay.speed) return
+    async function onUpdateStay(stay) {
+        const speed = +prompt('New speed?', stay.speed) || 0
+        if(speed === 0 || speed === stay.speed) return
 
-        const stayToSave = { ...Stay, speed }
+        const stayToSave = { ...stay, speed }
         try {
             const savedStay = await updateStay(stayToSave)
-            showSuccessMsg(`Stay updated, new speed: ${savedStay.speed}`)
+            showSuccessMsg(`stay updated, new speed: ${savedStay.speed}`)
         } catch (err) {
-            showErrorMsg('Cannot update Stay')
+            showErrorMsg('Cannot update stay')
         }        
     }
 
     return (
-        <section className="Stay-index">
+        <section className="stay-index">
             <StayList 
                 stays={stays}
                 onRemoveStay={onRemoveStay} 

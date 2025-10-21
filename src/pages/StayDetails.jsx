@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { loadStay } from '../store/actions/stay.actions'
@@ -9,7 +9,7 @@ import '../assets/styles/cmps/stay/StayDetails.css'
 
 export function StayDetails() {
   const { stayId } = useParams()
-  const stay = useSelector(storeState => storeState.stayModule.Stay)
+  const stay = useSelector(storeState => storeState.stayModule.stay)
 
   useEffect(() => {
     loadStay(stayId)
