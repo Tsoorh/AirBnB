@@ -109,54 +109,6 @@
   letter-spacing: 0.5px;
 }
 
-/* Stay Details Info */
-.stay-details-info {
-  padding: 24px 0;
-  border-bottom: 1px solid #dddddd;
-}
-
-.stay-type-capacity {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.stay-type {
-  margin-bottom: 8px;
-}
-
-.type-label {
-  font-size: 18px;
-  font-weight: 600;
-  color: #222222;
-}
-
-.capacity-info {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-}
-
-.capacity-item {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-}
-
-.capacity-number {
-  font-size: 20px;
-  font-weight: 600;
-  color: #222222;
-  line-height: 1;
-}
-
-.capacity-label {
-  font-size: 14px;
-  color: #717171;
-  font-weight: 400;
-}
-
 /* Summary */
 .stay-summary {
   padding: 24px 0;
@@ -371,6 +323,109 @@
   .amenities-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Share and Save Buttons */
+.share-save-buttons {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 16px;
+  justify-content: flex-end;
+}
+
+.share-button,
+.save-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.2s ease;
+}
+
+.share-button:hover,
+.save-button:hover {
+  opacity: 0.7;
+}
+
+.share-icon,
+.save-icon {
+  width: 16px;
+  height: 16px;
+  stroke: #222222;
+  stroke-width: 2;
+  fill: none;
+}
+
+.button-text {
+  font-size: 16px;
+  font-weight: 400;
+  color: #222222;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Stay Info Header */
+.stay-info-header {
+  margin-bottom: 24px;
+}
+
+.stay-type-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #222222;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+.stay-capacity-summary {
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #222222;
+  white-space: nowrap;
+}
+
+.capacity-item {
+  display: inline;
+}
+
+.capacity-item:not(:last-child)::after {
+  content: " · ";
+  color: #222222;
+  font-weight: 600;
+}
+
+.rating-summary {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 16px;
+  color: #222222;
+}
+
+.rating-star {
+  color: #ff385c;
+  font-size: 16px;
+}
+
+.rating-number {
+  font-weight: 600;
+}
+
+.rating-separator {
+  color: #717171;
+}
+
+.rating-count {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.rating-count:hover {
+  color: #717171;
 }
 
 /* Title and Location */
