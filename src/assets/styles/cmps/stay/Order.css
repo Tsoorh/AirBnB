@@ -104,7 +104,7 @@
 .back-btn{
     align-self: flex-start;
     border-radius: 50%;
-    background: #efefef;
+    background: var(--gray0);
     color: #222;
     font-size: 1.5rem;
     width: 48px;
@@ -118,7 +118,7 @@
 }
 
 .back-btn:hover {
-    background: #efefef;
+    background: var(--gray0);
 }
 
 .order-stay-img{

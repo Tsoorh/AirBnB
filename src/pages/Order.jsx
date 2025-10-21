@@ -13,7 +13,7 @@ export function Order() {
 
     const [order, setOrder] = useState(null)
     const stay = useSelector(storeState => storeState.stayModule.stay )
-    const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
+    const loggedInUser = useSelector(storeState => storeState.userModule.user)
 
     // Get from url
     const checkIn = searchParams.get('checkIn') || ''
