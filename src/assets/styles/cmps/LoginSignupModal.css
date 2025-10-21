@@ -1,0 +1,162 @@
+/* Modal Overlay */
+.login-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Modal Container */
+.login-signup {
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    padding: 2.5rem;
+    max-width: 568px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+    z-index: 1000;
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Close Button */
+.login-signup .close-btn {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #222;
+    transition: background-color 0.2s;
+}
+
+.login-signup .close-btn:hover {
+    background-color: #f7f7f7;
+}
+
+/* Modal Header */
+.login-signup h2 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: #222;
+    text-align: center;
+    border-bottom: 1px solid #ebebeb;
+    padding-bottom: 1rem;
+}
+
+/* Form Styles */
+.login-signup form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.login-signup input {
+    padding: 0.875rem 1rem;
+    border: 1px solid #b0b0b0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.login-signup input:focus {
+    outline: none;
+    border-color: #222;
+    box-shadow: 0 0 0 1px #222;
+}
+
+.login-signup input::placeholder {
+    color: #717171;
+}
+
+/* Submit Button */
+.login-signup button[type="submit"] {
+    background: linear-gradient(to right, #e61e4d 0%, #e31c5f 50%, #d70466 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    margin-top: 0.5rem;
+}
+
+.login-signup button[type="submit"]:hover {
+    opacity: 0.9;
+}
+
+.login-signup button[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+/* Toggle Link */
+.login-signup .btns {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #ebebeb;
+}
+
+.login-signup .btns a {
+    color: #222;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.login-signup .btns a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .login-signup {
+        padding: 1.5rem;
+        width: 95%;
+    }
+
+    .login-signup h2 {
+        font-size: 1.125rem;
+    }
+}

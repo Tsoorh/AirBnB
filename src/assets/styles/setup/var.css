@@ -7,10 +7,12 @@
 
   --clr1-light: color-mix(in lab, var(--clr1), white 15%);
 
-  --gray1: #ddd;
+  --gray0: #efefef;
+  --gray1: #dfdfdf;
   --gray2: #aaa;
   --gray3: #777;
   --gray4: #333;
+
 
   --success: rgb(41, 189, 73);
   --error: rgb(216, 59, 59);

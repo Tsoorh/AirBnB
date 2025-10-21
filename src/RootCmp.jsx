@@ -15,7 +15,8 @@ import { Order } from './pages/Order'
 import { AppHeader } from './cmps/AppHeader'
 import { AppFooter } from './cmps/AppFooter'
 import { UserMsg } from './cmps/UserMsg.jsx'
-import { LoginSignup, Login, Signup } from './pages/LoginSignup.jsx'
+import { LoginSignupModal } from './cmps/LoginSignupModal.jsx'
+// import { LoginSignup, Login, Signup } from './pages/LoginSignup.jsx'
 
 
 export function RootCmp() {
@@ -38,10 +39,11 @@ export function RootCmp() {
                     <Route path="chat" element={<ChatApp />} />
                     <Route path="stay/:stayId/order" element={<Order />} />
                     <Route path="admin" element={<AdminIndex />} />
-                    <Route path="auth" element={<LoginSignup />}>
+                    {/* <Route path="auth" element={<LoginSignupModal />} /> */}
+                    {/* <Route path="auth" element={<LoginSignupModal />}>
                         <Route path="login" element={<Login />} />
                         <Route path="signup" element={<Signup />} />
-                    </Route>
+                    </Route> */}
                 </Routes>
             </main>
             <AppFooter />
