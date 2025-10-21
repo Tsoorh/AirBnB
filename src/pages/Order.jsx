@@ -6,12 +6,15 @@ import { loadStay } from '../store/actions/stay.actions'
 import CreditCardForm from '../cmps/CreditCardForm.jsx'
 import { addOrder } from '../store/actions/order.actiona.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
+import { LoginSignupModal } from '../cmps/LoginSignupModal.jsx'
 
 
 export function Order() {
     const navigate = useNavigate()
     const {stayId} = useParams()
     const [searchParams] = useSearchParams()
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
+
 
     // const [card, setCard] = useState({cardNumber: '', expiration: '', cvv: '',zipCode: '', })
     const [order, setOrder] = useState(null)
@@ -110,6 +113,14 @@ export function Order() {
         navigate(-1)
     }
 
+    function openLoginModal(){
+        setIsLoginModalOpen(true)
+    }
+
+    function closeLoginModal() {
+		setIsLoginModalOpen(false)
+	}
+
 
     if (!stay || !order) {
         return (
@@ -129,7 +140,7 @@ export function Order() {
                     <h1>Confirm and pay</h1>
                     <div className='step step-1'>
                         <div>1.Log in or Sign up</div>
-                        <button className='order-btn'>Continue</button>
+                        <button className='order-btn' onClick={openLoginModal}>Continue</button>
                     </div>
                     <div className='step step-2'>2.Add a Payment method</div>
                     <div className='step step-3'>3.Review your request</div>
@@ -207,6 +218,9 @@ export function Order() {
                         <strong>{`₪${order.priceBreakdown.total.toFixed(2)}`}</strong>
                     </div>
                 </div>
+                {isLoginModalOpen && (
+                    <LoginSignupModal onClose={closeLoginModal} />
+                )}
 
             </section>
         )
