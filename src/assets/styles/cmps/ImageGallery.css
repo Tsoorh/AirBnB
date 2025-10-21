@@ -61,7 +61,7 @@
 
 .show-all-photos-button {
   position: absolute;
-  bottom: 12px;
+  bottom: 50px;
   right: 12px;
   background-color: white;
   border: none;
@@ -76,7 +76,6 @@
 }
 
 .show-all-photos-button:hover {
-  background-color: white;
   transform: scale(1.05);
 }
 
@@ -175,7 +174,7 @@
   }
   
   .show-all-photos-button {
-    bottom: 8px;
+    bottom: 30px;
     right: 8px;
     padding: 6px 10px;
     font-size: 12px;

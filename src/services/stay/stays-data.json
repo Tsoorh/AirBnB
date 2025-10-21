@@ -4,11 +4,13 @@
     "type": "Apartment",
     "summary": "Bright loft near the beach, perfect for couples.",
     "imgUrls": [
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg"
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&crop=center"
     ],
     "price": { "base": 450, "currency": "ILS", "cleaningFee": 80, "serviceFeePct": 0.12 },
     "capacity": { "guests": 3, "bedrooms": 1, "beds": 2, "bathrooms": 1 },
@@ -53,11 +55,13 @@
     "type": "House",
     "summary": "Private suite with a lovely garden.",
     "imgUrls": [
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg"
+      "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&h=600&fit=crop&crop=center"
     ],
     "price": { "base": 320, "currency": "ILS", "cleaningFee": 60, "serviceFeePct": 0.12 },
     "capacity": { "guests": 2, "bedrooms": 1, "beds": 1, "bathrooms": 1 },
@@ -101,11 +105,13 @@
     "type": "Apartment",
     "summary": "Modern 2BR with Carmel mountain & bay views.",
     "imgUrls": [
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg"
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop&crop=center"
     ],
     "price": { "base": 390, "currency": "ILS", "cleaningFee": 70, "serviceFeePct": 0.12 },
     "capacity": { "guests": 4, "bedrooms": 2, "beds": 3, "bathrooms": 1.5 },
@@ -149,11 +155,13 @@
     "type": "Apartment",
     "summary": "Penthouse near the beach with a private terrace and sea breeze.",
     "imgUrls": [
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg"
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop&crop=center"
     ],
     "price": { "base": 520, "currency": "ILS", "cleaningFee": 90, "serviceFeePct": 0.12 },
     "capacity": { "guests": 5, "bedrooms": 2, "beds": 3, "bathrooms": 2 },
@@ -197,11 +205,13 @@
     "type": "House",
     "summary": "Cozy wooden cabin with Kinneret views and garden.",
     "imgUrls": [
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg"
+      "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop&crop=center"
     ],
     "price": { "base": 340, "currency": "ILS", "cleaningFee": 50, "serviceFeePct": 0.12 },
     "capacity": { "guests": 3, "bedrooms": 1, "beds": 2, "bathrooms": 1 },
@@ -245,11 +255,13 @@
     "type": "Villa",
     "summary": "Authentic stone villa with patio, near wineries and nature.",
     "imgUrls": [
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg"
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=600&fit=crop&crop=center"
     ],
     "price": { "base": 680, "currency": "ILS", "cleaningFee": 120, "serviceFeePct": 0.12 },
     "capacity": { "guests": 6, "bedrooms": 3, "beds": 4, "bathrooms": 2 },
@@ -293,11 +305,13 @@
     "type": "Apartment",
     "summary": "Waterfront suite with balcony overlooking the marina.",
     "imgUrls": [
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg"
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop&crop=center"
     ],
     "price": { "base": 560, "currency": "ILS", "cleaningFee": 90, "serviceFeePct": 0.12 },
     "capacity": { "guests": 4, "bedrooms": 1, "beds": 2, "bathrooms": 1 },
@@ -341,11 +355,13 @@
     "type": "Apartment",
     "summary": "Historic quarter loft with stone arches and panoramic terrace.",
     "imgUrls": [
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg"
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop&crop=center"
     ],
     "price": { "base": 300, "currency": "ILS", "cleaningFee": 40, "serviceFeePct": 0.12 },
     "capacity": { "guests": 2, "bedrooms": 1, "beds": 1, "bathrooms": 1 },
@@ -389,11 +405,13 @@
     "type": "Apartment",
     "summary": "Charming duplex by the Douro river, walk to Ribeira.",
     "imgUrls": [
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg"
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop&crop=center"
     ],
     "price": { "base": 110, "currency": "EUR", "cleaningFee": 35, "serviceFeePct": 0.12 },
     "capacity": { "guests": 4, "bedrooms": 1, "beds": 2, "bathrooms": 1 },
@@ -437,11 +455,13 @@
     "type": "Apartment",
     "summary": "Sunny flat with a rooftop terrace and Acropolis view.",
     "imgUrls": [
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg",
-      "/img/sunflowers.jpg"
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=600&fit=crop&crop=center"
     ],
     "price": { "base": 95, "currency": "EUR", "cleaningFee": 30, "serviceFeePct": 0.12 },
     "capacity": { "guests": 3, "bedrooms": 1, "beds": 2, "bathrooms": 1 },

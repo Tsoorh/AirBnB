@@ -57,9 +57,6 @@ export function ImageGallery({ images, alt }) {
     )
   }
 
-  // Show first 5 images in Airbnb-style layout
-  const displayImages = images.slice(0, 5)
-  const remainingCount = images.length - 5
 
   return (
     <div className="image-gallery">
@@ -93,8 +90,8 @@ export function ImageGallery({ images, alt }) {
                   alt={`${alt || 'Image'} ${imageIndex + 1}`}
                   className="small-image"
                 />
-                {/* Show "Show all photos" button on the last small image */}
-                {index === 3 && (
+                {/* Show "Show all photos" button on the last small image if there are more than 5 images */}
+                {index === 3 && images.length > 5 && (
                   <button 
                     className="show-all-photos-button"
                     onClick={(e) => {
