@@ -1,7 +1,7 @@
 import { Link, NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router'
 import { useSelector } from 'react-redux'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { logout } from '../store/actions/user.actions'
 import { StayFilter } from './StayFilter'
@@ -13,6 +13,13 @@ export function AppHeader() {
 	const user = useSelector(storeState => storeState.userModule.user)
 	const navigate = useNavigate()
 	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
+
+	//for debag
+	useEffect(() => {
+		if(user) console.log('logged in user: ', user.fullname);
+		else console.log('there is no user logged in');
+	})
+	
 
 	async function onLogout() {
 		try {
@@ -36,8 +43,6 @@ export function AppHeader() {
 	function closeLoginModal() {
 		setIsLoginModalOpen(false)
 	}
-
-	console.log(isLoginModalOpen);
 	
 
 	return (

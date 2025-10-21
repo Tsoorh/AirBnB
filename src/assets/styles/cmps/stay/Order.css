@@ -142,3 +142,15 @@
     display: flex;
     flex-direction: column; 
 }
+
+.credit-card{
+    flex-direction: column;
+}
+
+.credit-card p{
+    align-self: flex-start;
+}
+
+.credit-or-debit{
+    font-weight: 300;
+}
