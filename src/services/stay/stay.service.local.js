@@ -87,18 +87,18 @@ async function remove(stayId) {
     await storageService.remove(STORAGE_KEY, stayId)
 }
 
-async function save(Stay) {
+async function save(stay) {
     var savedStay
-    if (Stay._id) {
+    if (stay._id) {
         const stayToSave = {
-            _id: Stay._id,
-            speed: Stay.speed
+            _id: stay._id,
+            speed: stay.speed
         }
         savedStay = await storageService.put(STORAGE_KEY, stayToSave)
     } else {
         const stayToSave = {
-            vendor: Stay.vendor,
-            speed: Stay.speed,
+            vendor: stay.vendor,
+            speed: stay.speed,
             // Later, owner is set by the backend
             owner: userService.getLoggedinUser(),
             msgs: []
@@ -110,15 +110,15 @@ async function save(Stay) {
 
 async function addStayMsg(stayId, txt) {
     // Later, this is all done by the backend
-    const Stay = await getById(stayId)
+    const stay = await getById(stayId)
 
     const msg = {
         id: makeId(),
         by: userService.getLoggedinUser(),
         txt
     }
-    Stay.msgs.push(msg)
-    await storageService.put(STORAGE_KEY, Stay)
+    stay.msgs.push(msg)
+    await storageService.put(STORAGE_KEY, stay)
 
     return msg
 }

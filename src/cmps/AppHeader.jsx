@@ -35,31 +35,6 @@ export function AppHeader() {
 				<a href="/">Become a host</a>
 				<MenuIcon/>
 			</div>
-			
-
-			{/* <nav>
-				<NavLink to="/" className="logo">
-					E2E Demo
-				</NavLink>
-				<NavLink to="about">About</NavLink>
-				<NavLink to="Stay">stays</NavLink>
-				<NavLink to="chat">Chat</NavLink>
-				<NavLink to="review">Review</NavLink>
-
-                {user?.isAdmin && <NavLink to="/admin">Admin</NavLink>}
-
-				{!user && <NavLink to="auth/login" className="login-link">Login</NavLink>}
-				{user && (
-					<div className="user-info">
-						<Link to={`user/${user._id}`}>
-							{user.imgUrl && <img src={user.imgUrl} />}
-							{user.fullname}
-						</Link>
-						<span className="score">{user.score?.toLocaleString()}</span>
-						<button onClick={onLogout}>logout</button>
-					</div>
-				)}
-			</nav> */}
 		</header>
 	)
 }

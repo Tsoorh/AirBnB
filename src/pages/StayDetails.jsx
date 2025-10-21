@@ -9,7 +9,7 @@ import '../assets/styles/cmps/stay/StayDetails.css'
 
 export function StayDetails() {
   const { stayId } = useParams()
-  const stay = useSelector(storeState => storeState.stayModule.Stay)
+  const stay = useSelector(storeState => storeState.stayModule.stay)
 
   useEffect(() => {
     loadStay(stayId)
@@ -24,7 +24,7 @@ export function StayDetails() {
     <div className="stay-details">
       {/* Header with back button */}
       <div className="stay-details-header">
-        <Link to="/Stay" className="back-button">← Back to stays</Link>
+        <Link to="/stay" className="back-button">← Back to stays</Link>
       </div>
 
       {/* Image Gallery */}

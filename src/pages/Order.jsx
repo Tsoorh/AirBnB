@@ -12,7 +12,7 @@ export function Order() {
     const [searchParams] = useSearchParams()
 
     const [order, setOrder] = useState(null)
-    const stay = useSelector(storeState => storeState.stayModule.Stay )
+    const stay = useSelector(storeState => storeState.stayModule.stay )
     const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
 
     // Get from url

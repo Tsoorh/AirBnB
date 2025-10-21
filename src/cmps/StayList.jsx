@@ -14,9 +14,9 @@ export function StayList({ stays }) {
     return (
         <section className="stays-section">
             <div className="stays-grid">
-                {stays.map(Stay => (
-                    <div key={Stay._id} className="stay-card">
-                        <StayPreview Stay={Stay}/>
+                {stays.map(stay => (
+                    <div key={stay._id} className="stay-card">
+                        <StayPreview stay={stay}/>
                     </div>
                 ))}
             </div>

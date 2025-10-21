@@ -21,10 +21,10 @@ export async function loadStays(filterBy) {
 
 export async function loadStay(stayId) {
     try {
-        const Stay = await stayService.getById(stayId)
-        store.dispatch(getCmdSetStay(Stay))
+        const stay = await stayService.getById(stayId)
+        store.dispatch(getCmdSetStay(stay))
     } catch (err) {
-        console.log('Cannot load Stay', err)
+        console.log('Cannot load stay', err)
         throw err
     }
 }
@@ -35,29 +35,29 @@ export async function removeStay(stayId) {
         await stayService.remove(stayId)
         store.dispatch(getCmdRemoveStay(stayId))
     } catch (err) {
-        console.log('Cannot remove Stay', err)
+        console.log('Cannot remove stay', err)
         throw err
     }
 }
 
-export async function addStay(Stay) {
+export async function addStay(stay) {
     try {
-        const savedStay = await stayService.save(Stay)
+        const savedStay = await stayService.save(stay)
         store.dispatch(getCmdAddStay(savedStay))
         return savedStay
     } catch (err) {
-        console.log('Cannot add Stay', err)
+        console.log('Cannot add stay', err)
         throw err
     }
 }
 
-export async function updateStay(Stay) {
+export async function updateStay(stay) {
     try {
-        const savedStay = await stayService.save(Stay)
+        const savedStay = await stayService.save(stay)
         store.dispatch(getCmdUpdateStay(savedStay))
         return savedStay
     } catch (err) {
-        console.log('Cannot save Stay', err)
+        console.log('Cannot save stay', err)
         throw err
     }
 }
@@ -68,7 +68,7 @@ export async function addStayMsg(stayId, txt) {
         store.dispatch(getCmdAddStayMsg(msg))
         return msg
     } catch (err) {
-        console.log('Cannot add Stay msg', err)
+        console.log('Cannot add stay msg', err)
         throw err
     }
 }
@@ -80,10 +80,10 @@ function getCmdSetStays(stays) {
         stays
     }
 }
-function getCmdSetStay(Stay) {
+function getCmdSetStay(stay) {
     return {
         type: SET_STAY,
-        Stay
+        stay
     }
 }
 function getCmdRemoveStay(stayId) {
@@ -92,16 +92,16 @@ function getCmdRemoveStay(stayId) {
         stayId
     }
 }
-function getCmdAddStay(Stay) {
+function getCmdAddStay(stay) {
     return {
         type: ADD_STAY,
-        Stay
+        stay
     }
 }
-function getCmdUpdateStay(Stay) {
+function getCmdUpdateStay(stay) {
     return {
         type: UPDATE_STAY,
-        Stay
+        stay
     }
 }
 function getCmdAddStayMsg(msg) {
@@ -117,7 +117,7 @@ function getCmdAddStayMsg(msg) {
 //     await addStay(stayService.getEmptyStay())
 //     await updateStay({
 //         _id: 'm1oC7',
-//         vendor: 'Stay-Good',
+//         vendor: 'stay-Good',
 //     })
 //     await removeStay('m1oC7')
 // }
