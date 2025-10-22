@@ -4,6 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { getDefaultFilter } from "../services/stay";
 import { useSearchParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { useObserver } from "../customHooks/useObserver";
 
 
 export function StayFilter({ filterBy, setFilterBy }) {
@@ -13,6 +14,8 @@ export function StayFilter({ filterBy, setFilterBy }) {
   const [filter, setFilter] = useState(getDefaultFilter);
   const [searchParams, setSearchParams] = useSearchParams({...filter});
   const location = useLocation();
+  const [isOnViewPort,observeRef] = useObserver();
+
 
   useEffect(() => {
   setIsFilterOpen(false);
@@ -28,6 +31,20 @@ export function StayFilter({ filterBy, setFilterBy }) {
     console.log(filter);
     setSearchParams({...(refactorFilter(filter))})
   },[filter])
+
+  useEffect(()=>{
+    console.log("🚀 ~ StayFilter ~ isOnViewPort:", isOnViewPort)
+    // const filterContainer = document.querySelector(".stay-filter");
+
+    if(isOnViewPort){
+          // filterContainer.classList.add("active");
+          setIsFilterOpen(true);
+          
+        }else{
+          setIsFilterOpen(false);
+          // filterContainer.classList.remove("active");
+    }
+  },[isOnViewPort])
 
   function refactorFilter(filterObj){
     let flatObj = {}
@@ -145,6 +162,7 @@ export function StayFilter({ filterBy, setFilterBy }) {
   if (isFilterOpen) {
     return (
       <section className="stay-filter shadow open">
+        <div ref={observeRef}></div>
         <button
           className="filter-btn flex column"
           name="destination"
@@ -196,6 +214,7 @@ export function StayFilter({ filterBy, setFilterBy }) {
   } else {
     return (
       <section className="stay-filter">
+        <div ref={observeRef}></div>
         <button
           className="filter-btn flex column des"
           onClick={onHandleOpenFilter}

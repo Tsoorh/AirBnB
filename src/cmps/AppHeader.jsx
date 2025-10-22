@@ -6,7 +6,7 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { logout } from '../store/actions/user.actions'
 import { StayFilter } from './StayFilter'
 import MenuIcon from '@mui/icons-material/Menu';
-import { LoginSignupModal } from './LoginSignupModal'
+import { LoginSignupModal } from './LoginSignupModal';
 
 export function AppHeader() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
