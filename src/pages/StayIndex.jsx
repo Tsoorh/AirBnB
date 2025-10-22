@@ -14,9 +14,13 @@ export function StayIndex() {
     const stays = useSelector(storeState => storeState.stayModule.stays)
     const [searchParams] = useSearchParams()
 
+    // useEffect(() => {
+    //     loadStays()
+    // }, [searchParams])
+
     useEffect(() => {
         loadStays()
-    }, [searchParams])
+    }, [])
 
     async function onRemoveStay(stayId) {
         try {

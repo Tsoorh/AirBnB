@@ -4,6 +4,10 @@ import SearchIcon from "@mui/icons-material/Search";
 import { getDefaultFilter } from "../services/stay";
 import { useSearchParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router'
+
+
 
 
 export function StayFilter({ filterBy, setFilterBy }) {
@@ -13,6 +17,8 @@ export function StayFilter({ filterBy, setFilterBy }) {
   const [filter, setFilter] = useState(getDefaultFilter);
   const [searchParams, setSearchParams] = useSearchParams({...filter});
   const location = useLocation();
+  const navigate = useNavigate()
+
 
   useEffect(() => {
   setIsFilterOpen(false);
@@ -100,6 +106,8 @@ export function StayFilter({ filterBy, setFilterBy }) {
     if (filterContainer) {
       filterContainer.classList.remove("active");
     }
+
+    navigate(`/search/?${searchParams.toString()}`)
   }
 
   function classModalOpen(){
@@ -179,10 +187,12 @@ export function StayFilter({ filterBy, setFilterBy }) {
           <span>Who</span>
           <span className="light-color">{"add guests" || filter.guests}</span>
         </button>
-        <button className={`search-btn ${classModalOpen()}`} onClick={onSearchClick}>
-          <SearchIcon />        
-          <span className="search-text">Search</span>
-        </button>
+
+          <button className={`search-btn ${classModalOpen()}`} onClick={onSearchClick}>
+            <SearchIcon />        
+            <span className="search-text">Search</span>
+          </button>
+
 
         {isModalOpen && (
           <DynamicModalCmp
@@ -221,14 +231,16 @@ export function StayFilter({ filterBy, setFilterBy }) {
         >
           Add guests
         </button>
-        <button
-          className="search-btn small-search"
-          onClick={() => {
-            setIsFilterOpen(true);
-          }}
-        >
-          <SearchIcon />
-        </button>
+
+          <button
+            className="search-btn small-search"
+            // onClick={() => {
+            //   setIsFilterOpen(true);
+            // }}
+          >
+            <SearchIcon />
+          </button>        
+
       </section>
     );
   }

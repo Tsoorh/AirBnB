@@ -14,11 +14,6 @@ export function AppHeader() {
 	const navigate = useNavigate()
 	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
 
-	//for debag
-	useEffect(() => {
-		if(user) console.log('logged in user: ', user.fullname);
-		else console.log('there is no user logged in');
-	})
 	
 
 	async function onLogout() {

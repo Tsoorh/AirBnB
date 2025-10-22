@@ -11,11 +11,12 @@ import { AdminIndex } from './pages/AdminIndex.jsx'
 import { StayDetails } from './pages/StayDetails'
 import { UserDetails } from './pages/UserDetails'
 import { Order } from './pages/Order'
+import { StaySearch } from './pages/StaySearch'
 
 import { AppHeader } from './cmps/AppHeader'
 import { AppFooter } from './cmps/AppFooter'
 import { UserMsg } from './cmps/UserMsg.jsx'
-import { LoginSignupModal } from './cmps/LoginSignupModal.jsx'
+// import { LoginSignupModal } from './cmps/LoginSignupModal.jsx'
 // import { LoginSignup, Login, Signup } from './pages/LoginSignup.jsx'
 
 
@@ -39,6 +40,7 @@ export function RootCmp() {
                     <Route path="chat" element={<ChatApp />} />
                     <Route path="stay/:stayId/order" element={<Order />} />
                     <Route path="admin" element={<AdminIndex />} />
+                    <Route path="search" element={<StaySearch />} />
                     {/* <Route path="auth" element={<LoginSignupModal />} /> */}
                     {/* <Route path="auth" element={<LoginSignupModal />}>
                         <Route path="login" element={<Login />} />
