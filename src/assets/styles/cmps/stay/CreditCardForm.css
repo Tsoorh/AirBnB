@@ -1,0 +1,71 @@
+
+
+.credit-card-form{
+    width: 100%;
+}
+
+.credit-card-form form{
+    display: flex;
+    flex-direction: column;
+}
+
+.credit-card-form input{
+    padding: 0.75rem 1rem;
+    border: 1px solid #b0b0b0;
+    font-size: 1rem;
+    background-color: white;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    font-family: inherit;
+
+}
+
+.card-number{
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    width: 100%;
+    
+}
+
+
+.expiration, .cvv{
+    width: 50%;
+}
+
+.expiration{
+    border-bottom-left-radius: 0.5rem;
+}
+
+.cvv{
+    border-bottom-right-radius: 0.5rem;
+}
+
+.exp-cvv, .zip-code{
+    margin-bottom: 1rem;
+}
+
+.zip-code{
+    width: 100%;
+    border-radius: 0.5rem;
+}
+
+.cvv:hover,
+.expiration:hover,
+.zip-code:hover, 
+.card-number:hover{
+    border-color: #222;
+    border-radius: 0.5rem;
+
+}
+
+.cvv:focus,
+.expiration:focus,
+.zip-code:focus,
+.card-number:focus{
+    outline: none;
+    border-color: #222;
+    box-shadow: 0 0 0 1px #222;
+    border-radius: 0.5rem;
+
+}
+

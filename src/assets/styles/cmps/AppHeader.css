@@ -118,3 +118,10 @@
         font-weight: 300;
         margin-top: 5px;
 }
+
+.btn-account{
+    background-color: #222222;
+    border-radius: 50%;
+    height: 48px;
+    width: 48px;
+}

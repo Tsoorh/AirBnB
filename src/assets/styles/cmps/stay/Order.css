@@ -132,11 +132,6 @@
     color: black;
 }
 
-.refund-rule{
-    /* Remove or change align-self to move it left */
-    /* align-self: flex-start; */
-}
-
 .order-stay{
     gap: 10px;
     display: flex;
@@ -153,4 +148,8 @@
 
 .credit-or-debit{
     font-weight: 300;
+}
+
+.payment-step{
+    margin-bottom: 2rem;
 }

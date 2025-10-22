@@ -235,7 +235,7 @@ export function Order() {
                 <div className='order-steps'>
                     <h1>Confirm and pay</h1>
                     <div className='step step-1 credit-card'>
-                        <p>1.Add a Payment method</p>
+                        <p className='payment-step'>1.Add a Payment method</p>
                         <p className='credit-or-debit'>💳 Credit or debit card</p>
                         <CreditCardForm saveOrder={addedOrderAfterPayment}/>
 

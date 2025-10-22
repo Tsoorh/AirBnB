@@ -58,6 +58,9 @@ export function AppHeader() {
 			
 			<div className='flex align-center'>
 				<a href="/">Become a host</a>
+				{ user && (
+					<button className='btn-account' >{`${user.fullname[0]}`}</button>
+				)}
 				<button className='btn-menu' onClick={toggleMenu}><MenuIcon/></button>
 			</div>
 

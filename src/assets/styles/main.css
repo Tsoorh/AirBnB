@@ -29,6 +29,8 @@
 @import "cmps/stay/GuestPicker";
 @import "cmps/stay/FilterCmps/SearchDestination";
 @import "cmps/stay/Order";
+@import "cmps/stay/CreditCardForm";
+@import "cmps/stay/CountrySelect";
 
 @import "cmps/review/ReviewEdit";
 @import "cmps/review/ReviewList";

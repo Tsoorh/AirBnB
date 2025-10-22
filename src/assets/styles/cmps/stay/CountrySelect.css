@@ -1,0 +1,175 @@
+/* Country Select Button */
+.country-select-button {
+    padding: 0.75rem 1rem;
+    border: 1px solid #b0b0b0;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: white;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    width: 100%;
+    font-family: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+}
+
+.country-select-button:hover {
+    border-color: #222;
+}
+
+.country-select-button:focus {
+    outline: none;
+    border-color: #222;
+    box-shadow: 0 0 0 1px #222;
+}
+
+.country-select-button .dropdown-arrow {
+    font-size: 0.75rem;
+    color: #717171;
+}
+
+/* Modal Overlay */
+.country-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.2s ease-out;
+}
+
+/* Modal Container */
+.country-modal {
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    max-width: 568px;
+    width: 90%;
+    max-height: 80vh;
+    overflow: hidden;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+    z-index: 1001;
+    animation: slideUp 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Modal Header */
+.country-modal-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--gray1);
+}
+
+.country-modal-header h2 {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #222;
+}
+
+.country-modal-header .close-btn {
+    position: relative;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #222;
+    transition: background-color 0.2s;
+}
+
+.country-modal-header .close-btn:hover {
+    background-color: #f7f7f7;
+}
+
+/* Country List */
+.country-list {
+    overflow-y: auto;
+    padding: 0.5rem  1rem;
+    gap: 0.5rem;
+    max-height: calc(80vh - 80px);
+}
+
+/* .country-item hr{
+        border: none;
+    border-top: 1px solid #ebebeb;
+    margin: 0.5rem 0;
+} */
+
+.country-item {
+    color: #222;
+    padding: 1.3rem 1rem;
+    background: white;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    font-size: 1rem;
+    transition: background-color 0.2s, border-color 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--gray1);
+}
+
+/* .country-item:hover {
+    background-color: #f7f7f7;
+    border-color: #222;
+} */
+
+/* .country-item.selected {
+    color: #222;
+    font-weight: 600;
+} */
+
+.country-item .checkmark {
+    color: #222;
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .country-modal {
+        width: 95%;
+        max-height: 90vh;
+    }
+
+    .country-list {
+        grid-template-columns: 1fr;
+    }
+}

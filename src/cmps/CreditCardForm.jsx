@@ -1,67 +1,78 @@
-import * as React from 'react';
-import Card from '@mui/joy/Card';
-import CardActions from '@mui/joy/CardActions';
-import CardContent from '@mui/joy/CardContent';
-import Checkbox from '@mui/joy/Checkbox';
-import Divider from '@mui/joy/Divider';
-import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
-import Input from '@mui/joy/Input';
-import Typography from '@mui/joy/Typography';
-import Button from '@mui/joy/Button';
-import InfoOutlined from '@mui/icons-material/InfoOutlined';
-import CreditCardIcon from '@mui/icons-material/CreditCard';
+import { useState } from "react";
+import { CountrySelect } from "./CountrySelect";
 
 export default function CreditCardForm({ saveOrder }) {
+  const [cardDetails, setCardDetails] =useState({cardNumber: '', expiration:'', cvv: ''})
+  const [address, setAddress] =useState({country: {code: 'IL', name: 'Israel'}, zipCode: ''})
 
+
+  function onCountryChange(country){
+    setAddress(prev => ({...prev, country}))
+  }
+
+  function handleChangeCardDetails({ target }) {
+        const { name: field, value } = target
+        setCardDetails(prevCreds => ({ ...prevCreds, [field]: value }))
+  }
+
+  function handleChangeAddress({ target }) {
+        const { name: field, value } = target
+        setAddress(prevCreds => ({ ...prevCreds, [field]: value }))
+  }
 
   return (
-    <Card
-      variant="outlined"
-      sx={{
-        maxHeight: 'max-content',
-        maxWidth: '100%',
-        mx: 'auto',
-        // to make the demo resizable
-        overflow: 'auto',
-        resize: 'horizontal',
-      }}
-    >
-      <Typography level="title-lg" startDecorator={<InfoOutlined />}>
-        Add new card
-      </Typography>
-      <Divider inset="none" />
-      <CardContent
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(2, minmax(80px, 1fr))',
-          gap: 1.5,
-        }}
-      >
-        <FormControl sx={{ gridColumn: '1/-1' }}>
-          <FormLabel>Card number</FormLabel>
-          <Input endDecorator={<CreditCardIcon />} />
-        </FormControl>
-        <FormControl>
-          <FormLabel>Expiry date</FormLabel>
-          <Input endDecorator={<CreditCardIcon />} />
-        </FormControl>
-        <FormControl>
-          <FormLabel>CVC/CVV</FormLabel>
-          <Input endDecorator={<InfoOutlined />} />
-        </FormControl>
-        <FormControl sx={{ gridColumn: '1/-1' }}>
-          <FormLabel>Card holder name</FormLabel>
-          <Input placeholder="Enter cardholder's full name" />
-        </FormControl>
-        <Checkbox label="Save card" sx={{ gridColumn: '1/-1', my: 1 }} />
-        <CardActions sx={{ gridColumn: '1/-1' }}>
-          <button 
-            onClick={saveOrder}>
-            Next
-          </button>
-        </CardActions>
-      </CardContent>
-    </Card>
+    <section className="credit-card-form">
+          <form >
+            <div>
+              <input 
+                type="text" 
+                className="card-number"
+                placeholder="Card number"
+                name="cardNumber"
+                value={cardDetails.cardNumber}
+                onChange={handleChangeCardDetails}
+                required
+              />
+            </div>
+
+            <div className="exp-cvv">
+              <input 
+              type="text"
+              className="expiration"
+              placeholder="Expiration"
+              name="expiration"
+              value={cardDetails.expiration}
+              onChange={handleChangeCardDetails}
+              required
+            />
+            <input 
+              type="text"
+              className="cvv"
+              placeholder="CVV"
+              name="cvv"
+              value={cardDetails.cvv}
+              onChange={handleChangeCardDetails}
+              required
+            />
+            </div>
+          <div>
+            <input 
+              type="text"
+              className="zip-code"
+              placeholder="ZIP code"
+              value={address.zipCode}
+              onChange={handleChangeAddress}
+              required
+            />
+          </div>
+          <div>
+          <CountrySelect onCountryChange={onCountryChange}/>
+          </div>
+
+        </form>
+
+    </section>
+
+
   );
 }
