@@ -66,7 +66,7 @@ export default function CreditCardForm({ saveOrder }) {
             />
           </div>
           <div>
-          <CountrySelect onCountryChange={onCountryChange}/>
+          <CountrySelect selectedCountry={address.country.code} onCountryChange={onCountryChange}/>
           </div>
 
         </form>

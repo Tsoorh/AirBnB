@@ -65,10 +65,8 @@ export function CountrySelect({ selectedCountry, onCountryChange, className = ''
                                 <button
                                     key={country.code}
                                     className={`country-item ${selectedCountry === country.code ? 'selected' : ''}`}
-                                    onClick={() => {
+                                    onClick={() => 
                                         handleCountrySelect(country)}
-
-                                    }
                                 >
                                     {country.name}
                                     {selectedCountry === country.code && <span className="checkmark">✓</span>}

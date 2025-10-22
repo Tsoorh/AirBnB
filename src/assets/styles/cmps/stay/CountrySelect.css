@@ -15,9 +15,7 @@
     text-align: left;
 }
 
-.country-select-button:hover {
-    border-color: #222;
-}
+
 
 .country-select-button:focus {
     outline: none;
@@ -37,7 +35,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.3);
     z-index: 1000;
     display: flex;
     align-items: center;
@@ -49,7 +47,7 @@
 .country-modal {
     position: relative;
     background: white;
-    border-radius: 12px;
+    border-radius: 2rem;
     max-width: 568px;
     width: 90%;
     max-height: 80vh;
@@ -84,17 +82,20 @@
 /* Modal Header */
 .country-modal-header {
     display: flex;
-    justify-content: center;
+    /* justify-content: space-between; */
     align-items: center;
-    padding: 1.5rem;
+    padding: 1rem;
     border-bottom: 1px solid var(--gray1);
+    
 }
 
 .country-modal-header h2 {
     margin: 0;
     font-size: 1.125rem;
-    font-weight: 600;
+    font-weight: 500;
     color: #222;
+    margin-left: 30%;
+
 }
 
 .country-modal-header .close-btn {
@@ -112,6 +113,8 @@
     border-radius: 50%;
     color: #222;
     transition: background-color 0.2s;
+    
+    
 }
 
 .country-modal-header .close-btn:hover {
@@ -126,11 +129,6 @@
     max-height: calc(80vh - 80px);
 }
 
-/* .country-item hr{
-        border: none;
-    border-top: 1px solid #ebebeb;
-    margin: 0.5rem 0;
-} */
 
 .country-item {
     color: #222;
@@ -147,20 +145,23 @@
     border-bottom: 1px solid var(--gray1);
 }
 
-/* .country-item:hover {
-    background-color: #f7f7f7;
-    border-color: #222;
-} */
 
-/* .country-item.selected {
-    color: #222;
+.country-item.selected {
     font-weight: 600;
-} */
+    display: flex;
+    justify-content: space-between;
+}
 
 .country-item .checkmark {
     color: #222;
     font-weight: bold;
+    margin-left: 85%;
 }
+
+.country-item:hover{
+    background-color:white ;
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {
