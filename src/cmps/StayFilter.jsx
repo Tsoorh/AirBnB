@@ -4,60 +4,48 @@ import SearchIcon from "@mui/icons-material/Search";
 import { getDefaultFilter } from "../services/stay";
 import { useSearchParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router'
-import { useObserver } from "../customHooks/useObserver";
+// import { useObserver } from "../customHooks/useObserver";
 
-
-export function StayFilter({ filterBy, setFilterBy }) {
+export function StayFilter({isOnViewPort }) {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentModalContent, SetCurrentModalContent] = useState(null);
   const [filter, setFilter] = useState(getDefaultFilter);
-  const [searchParams, setSearchParams] = useSearchParams({...filter});
+  const [searchParams, setSearchParams] = useSearchParams({ ...filter });
   const location = useLocation();
-  const navigate = useNavigate()
-  const [isOnViewPort,observeRef] = useObserver();
-
+  // const [isOnViewPort, observeRef] = useObserver();
 
   useEffect(() => {
-  setIsFilterOpen(false);
-  setIsModalOpen(false);
-  SetCurrentModalContent(null);
+    setIsFilterOpen(false);
+    setIsModalOpen(false);
+    SetCurrentModalContent(null);
 
-  // const el = document.querySelector(".stay-filter");
-  // if (el) el.classList.remove("active");
-}, [location.pathname]); 
+    // const el = document.querySelector(".stay-filter");
+    // if (el) el.classList.remove("active");
+  }, [location.pathname]);
 
-
-  useEffect(()=>{
+  useEffect(() => {
     console.log(filter);
-    setSearchParams({...(refactorFilter(filter))})
-  },[filter])
+    setSearchParams({ ...refactorFilter(filter) });
+  }, [filter]);
 
-  useEffect(()=>{
-    console.log("🚀 ~ StayFilter ~ isOnViewPort:", isOnViewPort)
-    // const filterContainer = document.querySelector(".stay-filter");
-
-    if(isOnViewPort){
-          // filterContainer.classList.add("active");
-          setIsFilterOpen(true);
-          
-        }else{
-          setIsFilterOpen(false);
-          // filterContainer.classList.remove("active");
+  useEffect(() => {
+    if (isOnViewPort) {
+      setIsFilterOpen(true);
+    } else {
+      setIsFilterOpen(false);
     }
-  },[isOnViewPort])
+  }, [isOnViewPort]);
 
-  function refactorFilter(filterObj){
-    let flatObj = {}
-        for(const key in filterObj){
-      if(typeof filterObj[key] === 'object' && filterObj[key] !== null){
-        for(const nestedKey in filterObj[key]){
-          flatObj = {...flatObj,[nestedKey]:filterObj[key][nestedKey]}
+  function refactorFilter(filterObj) {
+    let flatObj = {};
+    for (const key in filterObj) {
+      if (typeof filterObj[key] === "object" && filterObj[key] !== null) {
+        for (const nestedKey in filterObj[key]) {
+          flatObj = { ...flatObj, [nestedKey]: filterObj[key][nestedKey] };
         }
-      }else{
-        flatObj = {...flatObj,[key]:filterObj[key]}
+      } else {
+        flatObj = { ...flatObj, [key]: filterObj[key] };
       }
     }
     return flatObj;
@@ -67,12 +55,12 @@ export function StayFilter({ filterBy, setFilterBy }) {
     {
       name: "checkIn",
       span: "Check in",
-      placeholder:  filter.dates.checkIn || "Add dates" ,
+      placeholder: filter.dates.checkIn || "Add dates",
     },
     {
       name: "checkOut",
       span: "Check out",
-      placeholder:filter.dates.checkOut ||  "Add dates" ,
+      placeholder: filter.dates.checkOut || "Add dates",
     },
   ];
 
@@ -114,19 +102,17 @@ export function StayFilter({ filterBy, setFilterBy }) {
       setFilterBy(filter);
     }
     // Update URL search params (this will trigger filtering in parent component)
-    setSearchParams({...(refactorFilter(filter))});
+    setSearchParams({ ...refactorFilter(filter) });
     // Remove active class from filter container
     const filterContainer = document.querySelector(".stay-filter");
     if (filterContainer) {
       filterContainer.classList.remove("active");
     }
-
-    navigate(`/search/?${searchParams.toString()}`)
   }
 
-  function classModalOpen(){
-    if(isModalOpen) return 'open'
-    else return ''
+  function classModalOpen() {
+    if (isModalOpen) return "open";
+    else return "";
   }
 
   function handleChange(field, value) {
@@ -134,7 +120,7 @@ export function StayFilter({ filterBy, setFilterBy }) {
       case "city":
         setFilter((prevFilter) => ({
           ...prevFilter,
-          city: value ,
+          city: value,
         }));
         break;
       case "guests":
@@ -143,7 +129,7 @@ export function StayFilter({ filterBy, setFilterBy }) {
           guests: { ...value },
         }));
         break;
-        case "checkIn":
+      case "checkIn":
         setFilter((prevFilter) => ({
           ...prevFilter,
           dates: {
@@ -166,98 +152,95 @@ export function StayFilter({ filterBy, setFilterBy }) {
 
   if (isFilterOpen) {
     return (
-      <section className="stay-filter shadow open">
-        <div ref={observeRef}></div>
-        <button
-          className="filter-btn flex column"
-          name="destination"
-          onClick={onHandleClick}
-        >
-          <span>Where</span>
-          <input
-            type="text"
-            placeholder="Search destinations"
-            value={filter.city}
-            onChange={handleChange}
-          />
-        </button>
-        {buttonDetails.map((btn) => {
-          return (
-            <button
-              key={btn.name}
-              className="filter-btn flex column"
-              name={btn.name}
-              onClick={onHandleClick}
-            >
-              <span>{btn.span}</span>
-              <span className="light-color">{btn.placeholder}</span>
-            </button>
-          );
-        })}
-        <button
-          className="filter-btn flex column"
-          name="guest"
-          onClick={onHandleClick}
-        >
-          <span>Who</span>
-          <span className="light-color">{"add guests" || filter.guests}</span>
-        </button>
-
-          <button className={`search-btn ${classModalOpen()}`} onClick={onSearchClick}>
-            <SearchIcon />        
+              <section className="stay-filter shadow open">
+          <button
+            className="filter-btn flex column"
+            name="destination"
+            onClick={onHandleClick}
+          >
+            <span>Where</span>
+            <input
+              type="text"
+              placeholder="Search destinations"
+              value={filter.city}
+              onChange={handleChange}
+            />
+          </button>
+          {buttonDetails.map((btn) => {
+            return (
+              <button
+                key={btn.name}
+                className="filter-btn flex column"
+                name={btn.name}
+                onClick={onHandleClick}
+              >
+                <span>{btn.span}</span>
+                <span className="light-color">{btn.placeholder}</span>
+              </button>
+            );
+          })}
+          <button
+            className="filter-btn flex column"
+            name="guest"
+            onClick={onHandleClick}
+          >
+            <span>Who</span>
+            <span className="light-color">{"add guests" || filter.guests}</span>
+          </button>
+          <button
+            className={`search-btn ${classModalOpen()}`}
+            onClick={onSearchClick}
+          >
+            <SearchIcon />
             <span className="search-text">Search</span>
           </button>
 
-
-        {isModalOpen && (
-          <DynamicModalCmp
-            currentModalContent={currentModalContent}
-            handleChange={handleChange}
-            onCloseModal={onCloseModal}
-          />
-        )}
-      </section>
+          {isModalOpen && (
+            <DynamicModalCmp
+              currentModalContent={currentModalContent}
+              handleChange={handleChange}
+              onCloseModal={onCloseModal}
+            />
+          )}
+        </section>
     );
   } else {
     return (
-      <section className="stay-filter">
-        <div ref={observeRef}></div>
-        <button
-          className="filter-btn flex column des"
-          onClick={onHandleOpenFilter}
-          name="destination"
-          id="destination"
-        >
-          <img src="/img/house.png" alt="house" className="house-icon" />
-          Anywhere
-        </button>
-        <button
-          className="filter-btn flex column border-right"
-          onClick={onHandleOpenFilter}
-          name="time"
-          id="time"
-        >
-          Any Week
-        </button>
-        <button
-          className="filter-btn flex column"
-          onClick={onHandleOpenFilter}
-          name="guest"
-          id="guest"
-        >
-          Add guests
-        </button>
-
+        <section className="stay-filter">
+          <button
+            className="filter-btn flex column des"
+            onClick={onHandleOpenFilter}
+            name="destination"
+            id="destination"
+          >
+            <img src="/img/house.png" alt="house" className="house-icon" />
+            Anywhere
+          </button>
+          <button
+            className="filter-btn flex column border-right"
+            onClick={onHandleOpenFilter}
+            name="time"
+            id="time"
+          >
+            Any Week
+          </button>
+          <button
+            className="filter-btn flex column"
+            onClick={onHandleOpenFilter}
+            name="guest"
+            id="guest"
+          >
+            Add guests
+          </button>
           <button
             className="search-btn small-search"
-            // onClick={() => {
-            //   setIsFilterOpen(true);
-            // }}
+            onClick={() => {
+              setIsFilterOpen(true);
+            }}
           >
             <SearchIcon />
-          </button>        
-
-      </section>
+          </button>
+        </section>
     );
   }
 }

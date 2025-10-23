@@ -7,12 +7,16 @@ import { logout } from '../store/actions/user.actions'
 import { StayFilter } from './StayFilter'
 import MenuIcon from '@mui/icons-material/Menu';
 import { LoginSignupModal } from './LoginSignupModal';
+import { useObserver } from "../customHooks/useObserver";
+
 
 export function AppHeader() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
 	const user = useSelector(storeState => storeState.userModule.user)
 	const navigate = useNavigate()
 	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
+	const [isOnViewPort, observeRef] = useObserver();
+
 
 	
 
@@ -41,6 +45,9 @@ export function AppHeader() {
 	
 
 	return (
+		<>
+		        <div ref={observeRef}></div>
+
 		<header className="app-header full">
 			<Link to="/" className='logo'>
 				<img src='public\img\airbnb-icon.svg' alt="Airbnb" /><span>airbnb</span>
@@ -48,7 +55,7 @@ export function AppHeader() {
 
 			<div className='flex align-center'>
 				{/* filter */}
-				<StayFilter/>
+				<StayFilter isOnViewPort={isOnViewPort}/>
 			</div>
 			
 			<div className='flex align-center'>
@@ -105,5 +112,6 @@ export function AppHeader() {
 				<LoginSignupModal onClose={closeLoginModal} />
 			)}
 		</header>
+		</>
 	)
 }

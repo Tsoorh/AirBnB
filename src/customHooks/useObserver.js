@@ -10,7 +10,7 @@ export const useObserver = () => {
 
     const options = {
       root: null,
-      rootMargin: "-10px 0px 0px 0px",
+      rootMargin: "1px 0px 0px 0px",
       threshold: 0,
     };
 
