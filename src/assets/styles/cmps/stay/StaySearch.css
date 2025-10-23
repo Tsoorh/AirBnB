@@ -1,0 +1,34 @@
+
+
+
+
+.stay-search{
+    display: grid;
+    /* grid-template-columns: minmax(320px, 1.35fr) minmax(380px, 1fr); */
+    grid-template-columns: 3fr 2fr;
+    align-items: start;
+    padding: 16px 24px;
+    gap: 20px;
+}
+
+.results-stay-list{
+    grid-column: 1;
+}
+
+
+
+.map-container{
+    grid-column: 2;
+    position: sticky;
+    /* width: 100%; */
+
+  top: 88px;                /* adjust to match your header height */
+  height: calc(100vh - 88px - 24px);
+}
+
+#map{
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+}

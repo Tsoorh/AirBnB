@@ -113,8 +113,7 @@
     border-radius: 50%;
     color: #222;
     transition: background-color 0.2s;
-    
-    
+    font-weight: 300;
 }
 
 .country-modal-header .close-btn:hover {
@@ -146,6 +145,8 @@
 }
 
 
+
+
 .country-item.selected {
     font-weight: 600;
     display: flex;
@@ -154,8 +155,9 @@
 
 .country-item .checkmark {
     color: #222;
-    font-weight: bold;
+    font-weight: 600;
     margin-left: 85%;
+    font-size: 1.5rem;
 }
 
 .country-item:hover{

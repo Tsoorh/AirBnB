@@ -8,6 +8,10 @@ export function StayIndex() {
     const stays = useSelector(storeState => storeState.stayModule.stays)
     const [cityScrollPositions, setCityScrollPositions] = useState({})
 
+    // useEffect(() => {
+    //     loadStays()
+    // }, [searchParams])
+
     useEffect(() => {
         loadStays()
     }, [])

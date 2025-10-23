@@ -31,6 +31,7 @@
 @import "cmps/stay/Order";
 @import "cmps/stay/CreditCardForm";
 @import "cmps/stay/CountrySelect";
+@import "cmps/stay/StaySearch";
 
 @import "cmps/review/ReviewEdit";
 @import "cmps/review/ReviewList";
