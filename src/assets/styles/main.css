@@ -28,6 +28,7 @@
 @import "cmps/stay/ChooseDate";
 @import "cmps/stay/GuestPicker";
 @import "cmps/stay/FilterCmps/SearchDestination";
+@import "cmps/stay/FilterCmps/DynamicModalCmp.css";
 @import "cmps/stay/Order";
 @import "cmps/stay/CreditCardForm";
 @import "cmps/stay/CountrySelect";

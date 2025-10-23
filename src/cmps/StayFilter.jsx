@@ -152,7 +152,7 @@ export function StayFilter({isOnViewPort }) {
 
   if (isFilterOpen) {
     return (
-              <section className="stay-filter shadow open">
+        <section className="stay-filter shadow open">
           <button
             className="filter-btn flex column"
             name="destination"
@@ -192,7 +192,7 @@ export function StayFilter({isOnViewPort }) {
             onClick={onSearchClick}
           >
             <SearchIcon />
-            <span className="search-text">Search</span>
+            <span className="search-text">{"Search" ||filter.guests} </span>
           </button>
 
           {isModalOpen && (

@@ -38,7 +38,6 @@ export function GuestsPicker({ handleChange }) {
 
   function onHandleChange({ target }) {
     const { innerText, name } = target;
-    console.log("🚀 ~ onHandleChange ~ name:", name);
     switch (innerText) {
       case "+":
         setCounters((prevCounters) => ({
