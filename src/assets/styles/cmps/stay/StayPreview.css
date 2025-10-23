@@ -4,57 +4,149 @@
     display: block;
 }
 
+.stay-preview-link:hover {
+    text-decoration: none;
+}
+
 .stay-preview {
     border-radius: 12px;
     overflow: hidden;
     background: white;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
     z-index: 1;
     cursor: pointer;
+    width: 100%;
 }
 
 .stay-preview:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: none;
 }
 
-.stay-content {
-    display: block;
+.stay-image-container {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
 }
 
 .stay-image {
     width: 100%;
-    height: 200px;
-    overflow: hidden;
-}
-
-.stay-image img {
-    width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 16px;
+}
+
+.heart-icon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #222;
+}
+
+.heart-icon:hover {
+    background: #f7f7f7;
+    transform: scale(1.05);
+}
+
+.heart-icon svg {
+    width: 16px;
+    height: 16px;
+    fill: #222;
+}
+
+.guest-favorite-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #000;
+    color: white;
+    border-radius: 20px;
+    padding: 6px 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.guest-favorite-badge svg {
+    color: white;
 }
 
 .stay-info {
-    padding: 16px;
+    padding: 8px 0 0 0;
 }
 
-.stay-info h3 {
-    margin: 0 0 8px 0;
-    font-size: 16px;
+.stay-title {
+    margin: 0 0 2px 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 15px;
     font-weight: 600;
     color: #222;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-.stay-location {
-    margin: 0 0 8px 0;
+.stay-dates {
+    margin: 0 0 2px 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     font-size: 14px;
     color: #717171;
+    font-weight: 400;
 }
 
-.stay-price {
+.stay-price-rating {
+    display: flex;
+    align-items: center;
     margin: 0;
-    font-size: 16px;
+    gap: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.stay-price-bold {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
     font-weight: 600;
     color: #222;
+    white-space: nowrap;
+    padding-left: 3px;
+}
+
+.stay-price-normal {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #717171;
+    white-space: nowrap;
+}
+
+.stay-rating {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #717171;
+    white-space: nowrap;
+}
+
+.stay-rating .star {
+    color: #222;
+    font-size: 14px;
 }
