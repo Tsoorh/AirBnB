@@ -150,8 +150,7 @@ export function StayFilter({isOnViewPort }) {
   //   }
   // }
   
-  function handleCityChange({target}) {
-    const city = target.value;
+  function handleCityChange(city) {
     setFilter((prev) => ({ ...prev, city }));
   }
   
