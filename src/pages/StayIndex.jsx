@@ -1,18 +1,12 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { useSearchParams } from 'react-router-dom'
 
-import { loadStays, addStay, updateStay, removeStay } from '../store/actions/stay.actions'
-
-import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
-import { stayService } from '../services/stay'
-import { userService } from '../services/user'
-
+import { loadStays } from '../store/actions/stay.actions'
 import { StayList } from '../cmps/StayList'
 
 export function StayIndex() {
     const stays = useSelector(storeState => storeState.stayModule.stays)
-    const [searchParams] = useSearchParams()
+    const [cityScrollPositions, setCityScrollPositions] = useState({})
 
     // useEffect(() => {
     //     loadStays()
@@ -22,45 +16,87 @@ export function StayIndex() {
         loadStays()
     }, [])
 
-    async function onRemoveStay(stayId) {
-        try {
-            await removeStay(stayId)
-            showSuccessMsg('stay removed')            
-        } catch (err) {
-            showErrorMsg('Cannot remove stay')
+    // Function to handle scroll navigation
+    const handleScroll = (city, direction) => {
+        const currentPosition = cityScrollPositions[city] || 0
+        const staysForCity = staysByCity[city] || []
+        
+        let newPosition
+        if (direction === 'left') {
+            newPosition = Math.max(0, currentPosition - 1)
+        } else {
+            newPosition = Math.min(staysForCity.length - 7, currentPosition + 1)
         }
+        
+        setCityScrollPositions(prev => ({
+            ...prev,
+            [city]: newPosition
+        }))
     }
 
-    async function onAddStay() {
-        const stay = stayService.getEmptyStay()
-        stay.vendor = prompt('Vendor?', 'Some Vendor')
-        try {
-            const savedStay = await addStay(stay)
-            showSuccessMsg(`stay added (id: ${savedStay._id})`)
-        } catch (err) {
-            showErrorMsg('Cannot add stay')
-        }        
-    }
+    // Group stays by city
+    const staysByCity = stays.reduce((acc, stay) => {
+        const city = stay.loc?.city || 'Unknown'
+        acc[city] = acc[city] || []
+        acc[city].push(stay)
+        return acc
+    }, {})
 
-    async function onUpdateStay(stay) {
-        const speed = +prompt('New speed?', stay.speed) || 0
-        if(speed === 0 || speed === stay.speed) return
+    // Get unique cities and limit to 6 rows
+    const cities = Object.keys(staysByCity).slice(0, 6)
 
-        const stayToSave = { ...stay, speed }
-        try {
-            const savedStay = await updateStay(stayToSave)
-            showSuccessMsg(`stay updated, new speed: ${savedStay.speed}`)
-        } catch (err) {
-            showErrorMsg('Cannot update stay')
-        }        
+    // Show loading or empty state
+    if (!stays?.length) {
+        return (
+            <section className="stay-index">
+                <div className="empty-state">
+                    <h2>{!stays ? "Loading stays..." : "No stays available"}</h2>
+                    {stays && <p>Check back later for new listings</p>}
+                </div>
+            </section>
+        )
     }
 
     return (
         <section className="stay-index">
-            <StayList 
-                stays={stays}
-                onRemoveStay={onRemoveStay} 
-                onUpdateStay={onUpdateStay}/>
+            {cities.map(city => {
+                const staysForCity = staysByCity[city] || []
+                const currentPosition = cityScrollPositions[city] || 0
+                const visibleStays = staysForCity.slice(currentPosition, currentPosition + 7)
+                const canScrollLeft = currentPosition > 0
+                const canScrollRight = currentPosition < staysForCity.length - 7
+
+                return (
+                    <div key={city} className="city-section">
+                        <div className="city-header">
+                            <h2 className="city-title">Stay near {city}</h2>
+                            <div className="navigation-arrows">
+                                <button 
+                                    className={`nav-arrow nav-arrow-left ${!canScrollLeft ? 'disabled' : ''}`}
+                                    type="button"
+                                    onClick={() => handleScroll(city, 'left')}
+                                    disabled={!canScrollLeft}
+                                >
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                        <path d="M15 18l-6-6 6-6"/>
+                                    </svg>
+                                </button>
+                                <button 
+                                    className={`nav-arrow nav-arrow-right ${!canScrollRight ? 'disabled' : ''}`}
+                                    type="button"
+                                    onClick={() => handleScroll(city, 'right')}
+                                    disabled={!canScrollRight}
+                                >
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                        <path d="M9 18l6-6-6-6"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <StayList stays={visibleStays} />
+                    </div>
+                )
+            })}
         </section>
     )
 }

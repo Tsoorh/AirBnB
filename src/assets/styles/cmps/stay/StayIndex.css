@@ -1,18 +1,135 @@
 .stay-index {
-    & header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+    padding: 24px 0;
+    max-width: 100%;
+    margin: 0 auto;
+}
 
-        padding-block: .3em;
+/* Responsive breakpoints */
+@media (min-width: 1600px) {
+    .stay-index {
+        max-width: 1600px;
     }
+}
 
-    & h2 {
-        margin: 0;
-        font-size: 1.3em;
+@media (min-width: 1200px) and (max-width: 1599px) {
+    .stay-index {
+        max-width: 1200px;
     }
+}
 
-    & button {
-        margin-inline-end: 0;
+@media (min-width: 900px) and (max-width: 1199px) {
+    .stay-index {
+        max-width: 900px;
     }
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+    .stay-index {
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 599px) {
+    .stay-index {
+        max-width: 100%;
+        padding: 24px 16px;
+    }
+}
+
+.city-section {
+    margin-bottom: 48px;
+    padding: 0 24px;
+}
+
+.city-section:last-child {
+    margin-bottom: 0;
+}
+
+.city-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px 0 0;
+    margin-bottom: 8px;
+}
+
+.city-title {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #222;
+    margin: 0;
+}
+
+.city-title::after {
+    content: "›";
+    margin-left: 4px;
+    font-weight: 600;
+    font-size: 24px;
+    color: #222;
+}
+
+.city-title:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.navigation-arrows {
+    display: flex;
+    gap: 8px;
+}
+
+.nav-arrow {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #222;
+}
+
+.nav-arrow:hover:not(.disabled) {
+    background: #f7f7f7;
+    transform: scale(1.05);
+}
+
+.nav-arrow.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    background: #f9f9f9;
+    border-color: #e5e5e5;
+}
+
+.nav-arrow.disabled:hover {
+    transform: none;
+    background: #f9f9f9;
+}
+
+.nav-arrow svg {
+    width: 16px;
+    height: 16px;
+}
+
+.loading-state,
+.empty-state {
+    text-align: center;
+    padding: 48px 24px;
+    color: #717171;
+}
+
+.loading-state h2,
+.empty-state h2 {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.empty-state p {
+    margin: 0;
+    font-size: 16px;
 }

@@ -1,7 +1,5 @@
 .stays-section {
-    padding: 24px;
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: 0 24px;
     z-index: 1;
     position: relative;
 }
@@ -11,13 +9,43 @@
     z-index: 1000 !important;
 }
 
-.stays-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
+.stays-horizontal-scroll {
+    display: flex;
+    gap: 16px;
+    overflow-x: visible;
+    padding: 8px 0 16px 0;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    width: 100%;
+    flex-wrap: nowrap;
+}
+
+.stays-horizontal-scroll::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
 }
 
 .stay-card {
     position: relative;
     z-index: 1;
+    flex-shrink: 0;
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+}
+
+.stays-grid-empty {
+    text-align: center;
+    padding: 48px 24px;
+    color: #717171;
+}
+
+.stays-grid-empty h2 {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.stays-grid-empty p {
+    margin: 0;
+    font-size: 16px;
 }
