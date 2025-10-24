@@ -115,52 +115,69 @@ export function StayFilter({isOnViewPort }) {
     else return "";
   }
 
-  function handleChange(field, value) {
-    switch (field) {
-      case "city":
-        setFilter((prevFilter) => ({
-          ...prevFilter,
-          city: value,
-        }));
-        break;
-      case "guests":
-        setFilter((prevFilter) => ({
-          ...prevFilter,
-          guests: { ...value },
-        }));
-        break;
-      case "checkIn":
-        setFilter((prevFilter) => ({
-          ...prevFilter,
-          dates: {
-            ...prevFilter.dates,
-            checkIn: value,
-          },
-        }));
-        break;
-      case "checkOut":
-        setFilter((prevFilter) => ({
-          ...prevFilter,
-          dates: {
-            ...prevFilter.dates,
-            checkOut: value,
-          },
-        }));
-        break;
-    }
+  // function handleChange(field, value) {
+  //   switch (field) {
+  //     case "city":
+  //       setFilter((prevFilter) => ({
+  //         ...prevFilter,
+  //         city: value,
+  //       }));
+  //       break;
+  //     case "guests":
+  //       setFilter((prevFilter) => ({
+  //         ...prevFilter,
+  //         guests: { ...value },
+  //       }));
+  //       break;
+  //     case "checkIn":
+  //       setFilter((prevFilter) => ({
+  //         ...prevFilter,
+  //         dates: {
+  //           ...prevFilter.dates,
+  //           checkIn: value,
+  //         },
+  //       }));
+  //       break;
+  //     case "checkOut":
+  //       setFilter((prevFilter) => ({
+  //         ...prevFilter,
+  //         dates: {
+  //           ...prevFilter.dates,
+  //           checkOut: value,
+  //         },
+  //       }));
+  //       break;
+  //   }
+  // }
+  
+  function handleCityChange({target}) {
+    const city = target.value;
+    setFilter((prev) => ({ ...prev, city }));
   }
+  
+  function handleGuestsChange(guests) {
+    setFilter((prev) => ({ ...prev, guests }));
+}
+
+function handleDateChange(field, date) {
+  setFilter((prev) => ({
+    ...prev,
+    dates: { ...prev.dates, [field]: date },
+  }));
+}
 
   function handleGuests(){
-    let guestStr = "add guests";
-    if(filter.guests){
-      for (const key in filter.guests){
-        const value = filter.guests[key];
-        if(value>0){
-          (guestStr !== "add guests") ? guestStr += " "+ key.toString() + ":" + value : guestStr = " "+ key.toString() + ":" + value;
-        }
-      }
-    }
-    return guestStr;
+
+    console.log("🚀 ~ handleGuests ~ filter.guests:", filter.guests)
+    if (!filter.guests) return "add guests";
+    
+    const guestsEntries = Object.entries(filter.guests)
+    .filter(([_,value]) =>value >0)
+    .map(([key,value]) => `${key}: ${value}`);
+    console.log("🚀 ~ handleGuests ~ guestsEntries:", guestsEntries)
+    
+    
+    return guestsEntries.length > 0 ? guestsEntries.join(", ") : "add guests";
   }
 
   if (isFilterOpen) {
@@ -176,7 +193,7 @@ export function StayFilter({isOnViewPort }) {
               type="text"
               placeholder="Search destinations"
               value={filter.city}
-              onChange={handleChange}
+              onChange={handleCityChange}
             />
           </button>
           {buttonDetails.map((btn) => {
@@ -205,13 +222,15 @@ export function StayFilter({isOnViewPort }) {
             onClick={onSearchClick}
           >
             <SearchIcon />
-            <span className="search-text">{"Search"} </span>
+            <span className="search-text">Search</span>
           </button>
 
           {isModalOpen && (
             <DynamicModalCmp
               currentModalContent={currentModalContent}
-              handleChange={handleChange}
+              handleCityChange={handleCityChange}
+              handleGuestsChange={handleGuestsChange}
+              handleDateChange={handleDateChange}
               onCloseModal={onCloseModal}
             />
           )}

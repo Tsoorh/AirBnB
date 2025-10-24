@@ -4,23 +4,23 @@ import { GuestsPicker } from "./GuestsPicker";
 import { ChooseDates } from "./ChooseDates";
 import { ClassNames } from "@emotion/react";
 
-export function  DynamicModalCmp({currentModalContent,handleChange, onCloseModal}){
+export function  DynamicModalCmp({currentModalContent,handleCityChange,handleGuestsChange,handleDateChange, onCloseModal}){
 
     const modalContent = {
     destination: {
-      cmp:<SearchDestination handleChange={handleChange} isOpen={currentModalContent === 'destination'} onCloseModal={onCloseModal} />,
+      cmp:<SearchDestination handleChange={handleCityChange} isOpen={currentModalContent === 'destination'} onCloseModal={onCloseModal} />,
       className:"destination"
     },
     checkIn: {
-      cmp:<ChooseDates handleChange={handleChange} isOpen={currentModalContent === 'checkIn'} onCloseModal={onCloseModal}/>,
+      cmp:<ChooseDates handleChange={handleDateChange} isOpen={currentModalContent === 'checkIn'} onCloseModal={onCloseModal}/>,
       className:"dates "
   },
     checkOut: {
-      cmp:<ChooseDates handleChange={handleChange} isOpen={currentModalContent === 'checkOut'} onCloseModal={onCloseModal}/>,
+      cmp:<ChooseDates handleChange={handleDateChange} isOpen={currentModalContent === 'checkOut'} onCloseModal={onCloseModal}/>,
       className:"dates"
  },
     guest:{
-      cmp:<GuestsPicker handleChange={handleChange} isOpen={currentModalContent === 'guest'} onCloseModal={onCloseModal}/>,
+      cmp:<GuestsPicker handleChange={handleGuestsChange} isOpen={currentModalContent === 'guest'} onCloseModal={onCloseModal}/>,
       className:"guest"
     } 
     };

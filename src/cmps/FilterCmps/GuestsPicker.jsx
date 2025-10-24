@@ -6,7 +6,7 @@ export function GuestsPicker({ handleChange }) {
   const [counters, setCounters] = useState(getEssentialFilter);
 
   useEffect(() => {
-    handleChange("guests", counters);
+    handleChange(counters);
   }, [counters]);
 
   const guestsDetails = [
