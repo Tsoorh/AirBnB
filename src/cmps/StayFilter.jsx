@@ -150,6 +150,19 @@ export function StayFilter({isOnViewPort }) {
     }
   }
 
+  function handleGuests(){
+    let guestStr = "add guests";
+    if(filter.guests){
+      for (const key in filter.guests){
+        const value = filter.guests[key];
+        if(value>0){
+          (guestStr !== "add guests") ? guestStr += " "+ key.toString() + ":" + value : guestStr = " "+ key.toString() + ":" + value;
+        }
+      }
+    }
+    return guestStr;
+  }
+
   if (isFilterOpen) {
     return (
         <section className="stay-filter shadow open">
@@ -185,14 +198,14 @@ export function StayFilter({isOnViewPort }) {
             onClick={onHandleClick}
           >
             <span>Who</span>
-            <span className="light-color">{"add guests" || filter.guests}</span>
+            <span className="light-color">{handleGuests()}</span>
           </button>
           <button
             className={`search-btn ${classModalOpen()}`}
             onClick={onSearchClick}
           >
             <SearchIcon />
-            <span className="search-text">{"Search" ||filter.guests} </span>
+            <span className="search-text">{"Search"} </span>
           </button>
 
           {isModalOpen && (
