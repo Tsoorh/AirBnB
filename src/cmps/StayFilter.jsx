@@ -36,7 +36,13 @@ export function StayFilter({ isOnViewPort }) {
     {
       name: "checkIn",
       Label: "When",
-      Placeholder: "Add dates",
+      Placeholder:
+        (filter.dates.checkIn && filter.dates.checkIn + "-") ||
+        (filter.dates.checkIn &&
+          filter.dates.checkOutfilter.dates.checkIn +
+            "-" +
+            filter.dates.checkOut) ||
+        "Add dates",
       Component: ChooseDates,
       propHandler: handleDateChange,
       selectionState: mobileFilterSelection.checkIn,
@@ -61,7 +67,6 @@ export function StayFilter({ isOnViewPort }) {
   }, [location.pathname]);
 
   useEffect(() => {
-    console.log(filter);
     setSearchParams({ ...refactorFilter(filter) });
   }, [filter]);
 
@@ -202,13 +207,11 @@ export function StayFilter({ isOnViewPort }) {
   }
 
   function handleGuests() {
-    console.log("🚀 ~ handleGuests ~ filter.guests:", filter.guests);
     if (!filter.guests) return "add guests";
 
     const guestsEntries = Object.entries(filter.guests)
       .filter(([_, value]) => value > 0)
       .map(([key, value]) => `${key}: ${value}`);
-    console.log("🚀 ~ handleGuests ~ guestsEntries:", guestsEntries);
 
     return guestsEntries.length > 0 ? guestsEntries.join(", ") : "add guests";
   }
@@ -225,10 +228,6 @@ export function StayFilter({ isOnViewPort }) {
       guests: false,
       [name]: true,
     });
-    console.log(
-      "🚀 ~ StayFilter ~ mobileFilterSelection:",
-      mobileFilterSelection
-    );
   }
 
   if (mobileFilterOpen) {
