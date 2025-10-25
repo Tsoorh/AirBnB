@@ -3,7 +3,7 @@ import { loadStays } from "../store/actions/stay.actions"
 import { useSearchParams } from 'react-router-dom'
 import { useSelector } from "react-redux"
 import { StayList } from "../cmps/StayList"
-import {AdvancedMarker, APIProvider, Map} from '@vis.gl/react-google-maps';
+import { AdvancedMarker, APIProvider, Map } from '@vis.gl/react-google-maps';
 
 
 
