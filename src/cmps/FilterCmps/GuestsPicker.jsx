@@ -1,16 +1,12 @@
 import { ChildCare } from "@mui/icons-material";
 import { useEffect, useState } from "react";
+import { getDefaultFilter } from "../../services/stay";
 
 export function GuestsPicker({ handleChange }) {
-  const [counters, setCounters] = useState({
-    adults: 0,
-    children: 0,
-    infants: 0,
-    pets: 0,
-  });
+  const [counters, setCounters] = useState(getEssentialFilter);
 
   useEffect(() => {
-    handleChange("guests", counters);
+    handleChange(counters);
   }, [counters]);
 
   const guestsDetails = [
@@ -36,9 +32,14 @@ export function GuestsPicker({ handleChange }) {
     },
   ];
 
+  function getEssentialFilter(){
+    const fullFilter = getDefaultFilter();
+    const essentialPickerFilter = {... fullFilter.guests}
+    return essentialPickerFilter
+  }
+
   function onHandleChange({ target }) {
     const { innerText, name } = target;
-    console.log("🚀 ~ onHandleChange ~ name:", name);
     switch (innerText) {
       case "+":
         setCounters((prevCounters) => ({

@@ -115,44 +115,73 @@ export function StayFilter({isOnViewPort }) {
     else return "";
   }
 
-  function handleChange(field, value) {
-    switch (field) {
-      case "city":
-        setFilter((prevFilter) => ({
-          ...prevFilter,
-          city: value,
-        }));
-        break;
-      case "guests":
-        setFilter((prevFilter) => ({
-          ...prevFilter,
-          guests: { ...value },
-        }));
-        break;
-      case "checkIn":
-        setFilter((prevFilter) => ({
-          ...prevFilter,
-          dates: {
-            ...prevFilter.dates,
-            checkIn: value,
-          },
-        }));
-        break;
-      case "checkOut":
-        setFilter((prevFilter) => ({
-          ...prevFilter,
-          dates: {
-            ...prevFilter.dates,
-            checkOut: value,
-          },
-        }));
-        break;
-    }
+  // function handleChange(field, value) {
+  //   switch (field) {
+  //     case "city":
+  //       setFilter((prevFilter) => ({
+  //         ...prevFilter,
+  //         city: value,
+  //       }));
+  //       break;
+  //     case "guests":
+  //       setFilter((prevFilter) => ({
+  //         ...prevFilter,
+  //         guests: { ...value },
+  //       }));
+  //       break;
+  //     case "checkIn":
+  //       setFilter((prevFilter) => ({
+  //         ...prevFilter,
+  //         dates: {
+  //           ...prevFilter.dates,
+  //           checkIn: value,
+  //         },
+  //       }));
+  //       break;
+  //     case "checkOut":
+  //       setFilter((prevFilter) => ({
+  //         ...prevFilter,
+  //         dates: {
+  //           ...prevFilter.dates,
+  //           checkOut: value,
+  //         },
+  //       }));
+  //       break;
+  //   }
+  // }
+  
+  function handleCityChange(city) {
+    setFilter((prev) => ({ ...prev, city }));
+  }
+  
+  function handleGuestsChange(guests) {
+    setFilter((prev) => ({ ...prev, guests }));
+}
+
+function handleDateChange(field, date) {
+  setFilter((prev) => ({
+    ...prev,
+    dates: { ...prev.dates, [field]: date },
+  }));
+}
+
+  function handleGuests(){
+
+    console.log("🚀 ~ handleGuests ~ filter.guests:", filter.guests)
+    if (!filter.guests) return "add guests";
+    
+    const guestsEntries = Object.entries(filter.guests)
+    .filter(([_,value]) =>value >0)
+    .map(([key,value]) => `${key}: ${value}`);
+    console.log("🚀 ~ handleGuests ~ guestsEntries:", guestsEntries)
+    
+    
+    return guestsEntries.length > 0 ? guestsEntries.join(", ") : "add guests";
   }
 
   if (isFilterOpen) {
     return (
-              <section className="stay-filter shadow open">
+        <section className="stay-filter shadow open">
           <button
             className="filter-btn flex column"
             name="destination"
@@ -163,7 +192,7 @@ export function StayFilter({isOnViewPort }) {
               type="text"
               placeholder="Search destinations"
               value={filter.city}
-              onChange={handleChange}
+              onChange={handleCityChange}
             />
           </button>
           {buttonDetails.map((btn) => {
@@ -185,7 +214,7 @@ export function StayFilter({isOnViewPort }) {
             onClick={onHandleClick}
           >
             <span>Who</span>
-            <span className="light-color">{"add guests" || filter.guests}</span>
+            <span className="light-color">{handleGuests()}</span>
           </button>
           <button
             className={`search-btn ${classModalOpen()}`}
@@ -198,7 +227,9 @@ export function StayFilter({isOnViewPort }) {
           {isModalOpen && (
             <DynamicModalCmp
               currentModalContent={currentModalContent}
-              handleChange={handleChange}
+              handleCityChange={handleCityChange}
+              handleGuestsChange={handleGuestsChange}
+              handleDateChange={handleDateChange}
               onCloseModal={onCloseModal}
             />
           )}

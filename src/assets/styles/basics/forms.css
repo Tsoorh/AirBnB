@@ -10,8 +10,8 @@ button {
 
 
 button:hover {
-	transition: 0.3s;
-	background-color: rgb(163, 163, 163)
+	/* transition: 0.3s; */
+	background-color: rgb(163, 163, 163);
 }
 
 .btn-round{

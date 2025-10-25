@@ -90,7 +90,7 @@ export function SearchDestination({ handleChange, isOpen, onCloseModal }) {
   }, [query]);
 
   function selectCity(cityObj) {
-    handleChange?.("city", cityObj.name);
+    handleChange?.(cityObj.name);
     onCloseModal?.();
   }
 

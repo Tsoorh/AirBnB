@@ -10,19 +10,19 @@
     > button:not(:last-of-type) {
         text-align: start;
         padding: 0rem 1rem;
-        /* border-right: 2px rgb(226, 226, 226) solid; */
+        border-right: 2px rgb(226, 226, 226) solid;
     }
     > button:hover,
     > button.active {
         border-radius: 2rem;
         padding: 12px;
+        
     }
 }
 
 
 .stay-filter.open {
     border-radius: 3rem;
-
     > button:hover,
     > button.active {
         border-radius: 2rem;
@@ -49,7 +49,7 @@
         border-radius: 1em;
         padding: 0.2rem;
         background-color: #fff;
-
+        
     }
     >input:focus{
         outline: none;
@@ -104,7 +104,7 @@ span.light-color{
 }
 
 .check-in{
-        border-right: 2px solid rgb(226, 226, 226);
+    border-right: 2px solid rgb(226, 226, 226);
     border-left: 2px solid rgb(226, 226, 226);
 
 }

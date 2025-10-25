@@ -20,11 +20,11 @@ export function ChooseDates({ handleChange }) {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className="flex justify-center align-center modal-calendar-container">
         <div className="calendar-container">
-        <span>Check in</span>
+        {/* <span>Check in</span> */}
         <DateCalendar  onChange={(ev)=>onChangeDate(ev,"checkIn")} />
         </div>
         <div className="calendar-container">
-        <span>Check out</span>
+        {/* <span>Check out</span> */}
         <DateCalendar  onChange={(ev)=>onChangeDate(ev,"checkOut")}/>
         </div>
       </div>
