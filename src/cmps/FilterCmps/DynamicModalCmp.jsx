@@ -2,7 +2,6 @@ import { StayFilterModal } from "./StayFilterModal";
 import { SearchDestination } from "./SearchDestination";
 import { GuestsPicker } from "./GuestsPicker";
 import { ChooseDates } from "./ChooseDates";
-import { ClassNames } from "@emotion/react";
 
 export function  DynamicModalCmp({currentModalContent,handleCityChange,handleGuestsChange,handleDateChange, onCloseModal}){
 

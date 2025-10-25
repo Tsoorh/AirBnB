@@ -8,7 +8,7 @@ import { StayFilter } from './StayFilter'
 import MenuIcon from '@mui/icons-material/Menu';
 import { LoginSignupModal } from './LoginSignupModal';
 import { useObserver } from "../customHooks/useObserver";
-
+import { useWindowSize } from '../customHooks/useWindowSize'
 
 export function AppHeader() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -16,6 +16,7 @@ export function AppHeader() {
 	const navigate = useNavigate()
 	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
 	const [isOnViewPort, observeRef] = useObserver();
+	const {width} = useWindowSize();
 
 
 	
@@ -46,19 +47,18 @@ export function AppHeader() {
 
 	return (
 		<>
-		        <div ref={observeRef}></div>
-
-		<header className="app-header full">
-			<Link to="/" className='logo'>
+		<div ref={observeRef}></div>
+		<header className="app-header full wrap ">
+			<Link to="/" className='logo not-mobile-item'>
 				<img src='public\img\airbnb-icon.svg' alt="Airbnb" /><span>airbnb</span>
 			</Link>
 
-			<div className='flex align-center'>
+			{/* <div className='flex align-center'> */}
 				{/* filter */}
-				<StayFilter isOnViewPort={isOnViewPort}/>
-			</div>
+				<StayFilter isOnViewPort={isOnViewPort} className='flex align-center'/>
+			{/* </div> */}
 			
-			<div className='flex align-center'>
+			<div className='flex align-center not-mobile-item'>
 				<a href="/">Become a host</a>
 				{ user && (
 					<button className='btn-account' >{`${user.fullname[0]}`}</button>
