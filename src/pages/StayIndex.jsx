@@ -3,14 +3,19 @@ import { useSelector } from 'react-redux'
 
 import { loadStays } from '../store/actions/stay.actions'
 import { StayList } from '../cmps/StayList'
+import { useZoomLevel } from '../customHooks/useZoomLevel'
 
 export function StayIndex() {
     const stays = useSelector(storeState => storeState.stayModule.stays)
     const [cityScrollPositions, setCityScrollPositions] = useState({})
-
-    // useEffect(() => {
-    //     loadStays()
-    // }, [searchParams])
+    const zoomLevel = useZoomLevel()
+    
+    // Calculate responsive stay count based on zoom level
+    const getStaysPerRow = () => {
+        return zoomLevel >= 90 ? 6 : 7
+    }
+    
+    const staysPerRow = getStaysPerRow()
 
     useEffect(() => {
         loadStays()
@@ -25,7 +30,7 @@ export function StayIndex() {
         if (direction === 'left') {
             newPosition = Math.max(0, currentPosition - 1)
         } else {
-            newPosition = Math.min(staysForCity.length - 7, currentPosition + 1)
+            newPosition = Math.min(staysForCity.length - staysPerRow, currentPosition + 1)
         }
         
         setCityScrollPositions(prev => ({
@@ -62,9 +67,9 @@ export function StayIndex() {
             {cities.map(city => {
                 const staysForCity = staysByCity[city] || []
                 const currentPosition = cityScrollPositions[city] || 0
-                const visibleStays = staysForCity.slice(currentPosition, currentPosition + 7)
+                const visibleStays = staysForCity.slice(currentPosition, currentPosition + staysPerRow)
                 const canScrollLeft = currentPosition > 0
-                const canScrollRight = currentPosition < staysForCity.length - 7
+                const canScrollRight = currentPosition < staysForCity.length - staysPerRow
 
                 return (
                     <div key={city} className="city-section">
