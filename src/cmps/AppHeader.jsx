@@ -55,9 +55,9 @@ export function AppHeader() {
 		<>
 		<div ref={observeRef}></div>
 		<header className="app-header full wrap ">
-			<Link to="/" className='logo not-mobile-item'>
-				<img src='public\img\airbnb-icon.svg' alt="Airbnb" /><span>airbnb</span>
-			</Link>
+				<Link to="/" className='logo not-mobile-item'>
+					<img src='public\img\airbnb-icon.svg' alt="Airbnb" /><span>airbnb</span>
+				</Link>
 
 			{/* <div className='flex align-center'> */}
 				{/* filter */}
@@ -71,6 +71,9 @@ export function AppHeader() {
 				)}
 				<button className='btn-menu' onClick={toggleMenu}><MenuIcon/></button>
 			</div>
+
+
+
 
 			{isMenuOpen && (
 				<>
