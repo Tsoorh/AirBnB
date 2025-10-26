@@ -1,13 +1,25 @@
 import { ChildCare } from "@mui/icons-material";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { getDefaultFilter } from "../../services/stay";
 
-export function GuestsPicker({ handleChange }) {
+export function GuestsPicker({ handleChange, onCloseModal }) {
   const [counters, setCounters] = useState(getEssentialFilter);
+  const wrapperRef = useRef(null);
+  
 
   useEffect(() => {
     handleChange(counters);
   }, [counters]);
+
+    // Close on outside click
+  useEffect(() => {
+    function onDocClick(e) {
+      if (!wrapperRef.current) return;
+      if (!wrapperRef.current.contains(e.target)) onCloseModal?.();
+    }
+    document.addEventListener("mousedown", onDocClick);
+    return () => document.removeEventListener("mousedown", onDocClick);
+  }, [onCloseModal]);
 
   const guestsDetails = [
     {
@@ -56,7 +68,7 @@ export function GuestsPicker({ handleChange }) {
   }
 
   return (
-    <ul className="guest-picker-container">
+    <ul className="guest-picker-container" ref={wrapperRef}>
       {guestsDetails.map((Details, idx) => {
         return (
           <li

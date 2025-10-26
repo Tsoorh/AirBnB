@@ -72,7 +72,7 @@ export function StayFilter({ isOnViewPort }) {
 
   useEffect(() => {
     setSearchParams({ ...refactorFilter(filter) });
-    
+    console.log('filter: ', filter);
   }, [filter]);
 
   useEffect(() => {
@@ -84,7 +84,7 @@ export function StayFilter({ isOnViewPort }) {
   }, [isOnViewPort]);
 
   useEffect(()=>{
-    if(width>754) setMobileFilterOpen(false)
+    if( width > 754 ) setMobileFilterOpen(false)
   },[width])
 
   function refactorFilter(filterObj) {
