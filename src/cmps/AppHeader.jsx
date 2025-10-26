@@ -49,7 +49,6 @@ export function AppHeader() {
 	function closeLoginModal() {
 		setIsLoginModalOpen(false)
 	}
-	console.log('header: ', isOnViewPort);
 	
 
 	return (
