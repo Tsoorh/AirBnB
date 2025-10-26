@@ -55,9 +55,11 @@ export function AppHeader() {
 		<>
 		<div ref={observeRef}></div>
 		<header className="app-header full wrap ">
-			<Link to="/" className='logo not-mobile-item'>
-				<img src='public\img\airbnb-icon.svg' alt="Airbnb" /><span>airbnb</span>
-			</Link>
+
+			<div className='main-header flex'>
+				<Link to="/" className='logo not-mobile-item'>
+					<img src='public\img\airbnb-icon.svg' alt="Airbnb" /><span>airbnb</span>
+				</Link>
 
 			{/* <div className='flex align-center'> */}
 				{/* filter */}
@@ -65,7 +67,7 @@ export function AppHeader() {
 			{/* </div> */}
 			
 			<div className='flex align-center not-mobile-item'>
-				<Link to="/become-host">Become a host</Link>
+				<a href="/">Become a host</a>
 				{ user && (
 					<button className='btn-account' >{`${user.fullname[0]}`}</button>
 				)}

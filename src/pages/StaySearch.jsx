@@ -28,10 +28,6 @@ export function StaySearch(){
     const mapCenter = stays.length > 0 && stays[0].loc
         ? { lat: stays[0].loc.lat, lng: stays[0].loc.lng }
         : { lat: 32.0853, lng: 34.7818 }
-
-
-        console.log(mapCenter);
-        console.log('srays: ', stays);
         
         
     return(
@@ -56,9 +52,6 @@ export function StaySearch(){
                                 console.log('Stay missing location:', stay.name)
                                 return null
                             }
-
-                            console.log(`Marker ${index}:`, stay.name, stay.loc.lat, stay.loc.lng)
-
                             return (
                                 <AdvancedMarker
                                     key={stay._id}

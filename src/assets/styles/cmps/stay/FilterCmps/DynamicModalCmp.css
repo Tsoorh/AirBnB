@@ -2,7 +2,8 @@
     left: -5px;
 }
 .dates{
-    left: -5px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 650px;
 }
 .guest{

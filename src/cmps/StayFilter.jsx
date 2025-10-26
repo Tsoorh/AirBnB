@@ -72,11 +72,11 @@ export function StayFilter({ isOnViewPort }) {
 
   useEffect(() => {
     setSearchParams({ ...refactorFilter(filter) });
-    
+    console.log('filter: ', filter);
   }, [filter]);
 
   useEffect(() => {
-    if (isOnViewPort && width > 745) {
+    if (!isOnViewPort && width > 745) {
       setIsFilterOpen(true);
     } else {
       setIsFilterOpen(false);
@@ -84,7 +84,7 @@ export function StayFilter({ isOnViewPort }) {
   }, [isOnViewPort]);
 
   useEffect(()=>{
-    if(width>754) setMobileFilterOpen(false)
+    if( width > 754 ) setMobileFilterOpen(false)
   },[width])
 
   function refactorFilter(filterObj) {
@@ -101,16 +101,35 @@ export function StayFilter({ isOnViewPort }) {
     return flatObj;
   }
 
+  function formatDateRange() {
+    const { checkIn, checkOut } = filter.dates;
+
+    if (!checkIn && !checkOut) return "Add dates";
+
+    const formatDate = (dateStr) => {
+      if (!dateStr) return null;
+      const date = new Date(dateStr);
+      const month = date.toLocaleDateString('en-US', { month: 'short' });
+      const day = date.getDate();
+      return `${month} ${day}`;
+    };
+
+    const formattedCheckIn = formatDate(checkIn);
+    const formattedCheckOut = formatDate(checkOut);
+
+    if (formattedCheckIn && formattedCheckOut) {
+      return `${formattedCheckIn} - ${formattedCheckOut}`;
+    } else if (formattedCheckIn) {
+      return formattedCheckIn;
+    }
+    return "Add dates";
+  }
+
   const buttonDetails = [
     {
-      name: "checkIn",
-      span: "Check in",
-      placeholder: filter.dates.checkIn || "Add dates",
-    },
-    {
-      name: "checkOut",
-      span: "Check out",
-      placeholder: filter.dates.checkOut || "Add dates",
+      name: "dates",
+      span: "When",
+      placeholder: formatDateRange(),
     },
   ];
 
