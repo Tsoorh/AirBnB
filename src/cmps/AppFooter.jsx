@@ -1,7 +1,14 @@
 import { useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 
 export function AppFooter() {
+	const location = useLocation()
 	const count = useSelector(storeState => storeState.userModule.count)
+
+	// Don't show footer on become-host page
+	if (location.pathname === '/become-host') {
+		return null
+	}
 
 	return (
 		<footer className="app-footer full">
