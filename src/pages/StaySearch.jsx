@@ -13,11 +13,13 @@ import { AdvancedMarker, APIProvider, Map } from '@vis.gl/react-google-maps';
 export function StaySearch(){
     const [searchParams] = useSearchParams()
     const stays = useSelector(storeState => storeState.stayModule.stays)
-    
+
 
     useEffect(() => {
         loadStays()
     },[searchParams])
+
+    console.log('Stays data:', stays)
     
 
         

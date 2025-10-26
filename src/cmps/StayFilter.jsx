@@ -8,6 +8,8 @@ import { useLocation } from "react-router-dom";
 import { SearchDestination } from "./FilterCmps/SearchDestination";
 import { ChooseDates } from "./FilterCmps/ChooseDates";
 import { GuestsPicker } from "./FilterCmps/GuestsPicker";
+import { useNavigate } from 'react-router'
+
 
 export function StayFilter({ isOnViewPort }) {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -23,6 +25,8 @@ export function StayFilter({ isOnViewPort }) {
   const [searchParams, setSearchParams] = useSearchParams({ ...filter });
   const location = useLocation();
   const { width } = useWindowSize();
+  const navigate = useNavigate()
+
 
   const filterConfigs = [
     {
@@ -68,6 +72,9 @@ export function StayFilter({ isOnViewPort }) {
 
   useEffect(() => {
     setSearchParams({ ...refactorFilter(filter) });
+
+    console.log('filter" ', filter);
+    
   }, [filter]);
 
   useEffect(() => {
@@ -139,8 +146,8 @@ export function StayFilter({ isOnViewPort }) {
     setIsModalOpen(false);
 
     // Apply the filter (if setFilterBy is provided as prop)
-    if (setFilterBy) {
-      setFilterBy(filter);
+    if (setFilter) {
+      setFilter(filter);
     }
     // Update URL search params (this will trigger filtering in parent component)
     setSearchParams({ ...refactorFilter(filter) });
@@ -149,6 +156,8 @@ export function StayFilter({ isOnViewPort }) {
     if (filterContainer) {
       filterContainer.classList.remove("active");
     }
+    navigate(`/search?${searchParams}`)
+
   }
 
   function classModalOpen() {
