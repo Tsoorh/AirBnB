@@ -54,24 +54,24 @@ export function AppHeader() {
 	return (
 		<>
 		<div ref={observeRef}></div>
-		<header className="app-header full wrap ">
-
-			<div className='main-header flex'>
+		<header className="app-header full wrap">
+			<div className='main-header'>
 				<Link to="/" className='logo not-mobile-item'>
 					<img src='public\img\airbnb-icon.svg' alt="Airbnb" /><span>airbnb</span>
 				</Link>
 
-			{/* <div className='flex align-center'> */}
-				{/* filter */}
-				<StayFilter isOnViewPort={isOnViewPort} className='flex align-center'/>
-			{/* </div> */}
-			
-			<div className='flex align-center not-mobile-item'>
-				<a href="/">Become a host</a>
-				{ user && (
-					<button className='btn-account' >{`${user.fullname[0]}`}</button>
-				)}
-				<button className='btn-menu' onClick={toggleMenu}><MenuIcon/></button>
+				{/* <div className='flex align-center'> */}
+					{/* filter */}
+					<StayFilter isOnViewPort={isOnViewPort} className='flex align-center'/>
+				{/* </div> */}
+				
+				<div className='flex align-center not-mobile-item'>
+					<Link to="/become-host">Become a host</Link>
+					{ user && (
+						<button className='btn-account' >{`${user.fullname[0]}`}</button>
+					)}
+					<button className='btn-menu' onClick={toggleMenu}><MenuIcon/></button>
+				</div>
 			</div>
 
 			{isMenuOpen && (
