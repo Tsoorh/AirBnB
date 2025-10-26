@@ -22,6 +22,9 @@ import { UserMsg } from './cmps/UserMsg.jsx'
 
 
 export function RootCmp() {
+    console.log('this is from Inbal');
+    
+
     return (
         <div className="main-container">
             <AppHeader />
