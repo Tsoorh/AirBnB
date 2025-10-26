@@ -10,18 +10,14 @@ export function  DynamicModalCmp({currentModalContent,handleCityChange,handleGue
       cmp:<SearchDestination handleChange={handleCityChange} isOpen={currentModalContent === 'destination'} onCloseModal={onCloseModal} />,
       className:"destination"
     },
-    checkIn: {
-      cmp:<ChooseDates handleChange={handleDateChange} isOpen={currentModalContent === 'checkIn'} onCloseModal={onCloseModal}/>,
-      className:"dates "
-  },
-    checkOut: {
-      cmp:<ChooseDates handleChange={handleDateChange} isOpen={currentModalContent === 'checkOut'} onCloseModal={onCloseModal}/>,
+    dates: {
+      cmp:<ChooseDates handleChange={handleDateChange} isOpen={currentModalContent === 'dates'} onCloseModal={onCloseModal}/>,
       className:"dates"
- },
+    },
     guest:{
       cmp:<GuestsPicker handleChange={handleGuestsChange} isOpen={currentModalContent === 'guest'} onCloseModal={onCloseModal}/>,
       className:"guest"
-    } 
+    }
     };
 
   const activeComponent = modalContent[currentModalContent];

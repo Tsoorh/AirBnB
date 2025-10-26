@@ -27,7 +27,8 @@
 
     .flex.align-center{
         display: flex;
-        gap: 15px;        
+        gap: 15px;
+        order: 4;
     }
 
     a.logo:hover,

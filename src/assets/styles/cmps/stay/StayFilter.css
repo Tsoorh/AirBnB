@@ -1,3 +1,9 @@
+
+
+
+
+
+
 .stay-filter {
     display: flex;
     align-items: center;
@@ -6,10 +12,12 @@
     position: relative;
     border: 1px solid #b7b5b5;
     padding: 5px 10px;
+    max-width:900px;
     > button:not(:last-of-type) {
         text-align: start;
         padding: 0rem 1rem;
-        border-right: 2px rgb(226, 226, 226) solid;
+        flex: 1;
+        min-width: 0;
     }
     > button:hover,
     > button.active {
@@ -34,7 +42,7 @@
     > button:not(:last-of-type):not(:nth-last-child(2)) {
         border-right: 2px rgb(226, 226, 226) solid;
     }
-    
+
 }
 
 .filter-btn.flex.column{
@@ -51,13 +59,12 @@
     >input {
         border: none;
         border-radius: 1em;
-        padding: 0.2rem;
-        background-color: #fff;
-        
+        padding: 0.2rem;        
     }
     >input:focus{
         outline: none;
         border: none;
+
     }
 }
 
@@ -91,7 +98,7 @@ span.light-color{
 .filter-btn:hover{
     background-color: #b7b5b5;
     >input{
-            background-color: #eeeeee;
+        background-color: #b7b5b5;
     }
 }
 
@@ -99,7 +106,8 @@ span.light-color{
     background-color: #fff;
     transition: background-color 0.5s ease-in-out;
     >input{
-        background:fixed;
+        background-color: #fff;
+        transition: background-color 0.5s ease-in-out;
     }
 }
 

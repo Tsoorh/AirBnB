@@ -53,10 +53,7 @@ export function AppHeader() {
 				<img src='public\img\airbnb-icon.svg' alt="Airbnb" /><span>airbnb</span>
 			</Link>
 
-			{/* <div className='flex align-center'> */}
-				{/* filter */}
-				<StayFilter isOnViewPort={isOnViewPort} className='flex align-center'/>
-			{/* </div> */}
+			<StayFilter isOnViewPort={isOnViewPort} className='flex align-center'/>
 			
 			<div className='flex align-center not-mobile-item'>
 				<a href="/">Become a host</a>
