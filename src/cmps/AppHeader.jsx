@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
@@ -11,12 +11,18 @@ import { useObserver } from "../customHooks/useObserver";
 import { useWindowSize } from '../customHooks/useWindowSize'
 
 export function AppHeader() {
+	const location = useLocation()
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
 	const user = useSelector(storeState => storeState.userModule.user)
 	const navigate = useNavigate()
 	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
 	const [isOnViewPort, observeRef] = useObserver();
 	const {width} = useWindowSize();
+
+	// Don't show header on become-host page
+	if (location.pathname === '/become-host') {
+		return null
+	}
 
 
 	
@@ -58,7 +64,7 @@ export function AppHeader() {
 				{isOnViewPort && <StayFilter isOnViewPort={isOnViewPort} className='flex align-center'/>}
 
 				<div className='flex align-center not-mobile-item'>
-					<a href="/">Become a host</a>
+					<Link to="/become-host">Become a host</Link>
 					{ user && (
 						<button className='btn-account' >{`${user.fullname[0]}`}</button>
 					)}
@@ -88,12 +94,12 @@ export function AppHeader() {
 								</>
 							)}
 
-							<Link to="/help" onClick={toggleMenu}>Help Center</Link>
-							<hr />
-							<Link to="" onClick={toggleMenu}>
-								Become a host
-								<p>it's easy to start hosting and earn extra income.</p>
-							</Link>
+						<Link to="/help" onClick={toggleMenu}>Help Center</Link>
+						<hr />
+						<Link to="/become-host" onClick={toggleMenu}>
+							Become a host
+							<p>it's easy to start hosting and earn extra income.</p>
+						</Link>
 							{/* <Link to="/account" onClick={toggleMenu}>Account</Link> */}
 							<hr />
 							<Link to="" onClick={toggleMenu}>Refer a host</Link>
