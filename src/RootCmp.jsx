@@ -12,6 +12,7 @@ import { StayDetails } from './pages/StayDetails'
 import { UserDetails } from './pages/UserDetails'
 import { Order } from './pages/Order'
 import { StaySearch } from './pages/StaySearch'
+import { BecomeHost } from './pages/BecomeHost.jsx'
 
 import { AppHeader } from './cmps/AppHeader'
 import { AppFooter } from './cmps/AppFooter'
@@ -41,6 +42,7 @@ export function RootCmp() {
                     <Route path="stay/:stayId/order" element={<Order />} />
                     <Route path="admin" element={<AdminIndex />} />
                     <Route path="search" element={<StaySearch />} />
+                    <Route path="become-host" element={<BecomeHost />} />
                     {/* <Route path="auth" element={<LoginSignupModal />} /> */}
                     {/* <Route path="auth" element={<LoginSignupModal />}>
                         <Route path="login" element={<Login />} />
