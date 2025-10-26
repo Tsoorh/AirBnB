@@ -13,6 +13,21 @@
 
 .results-stay-list{
     grid-column: 1;
+    overflow-y: auto;
+}
+
+.stay-search .stays-horizontal-scroll {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    overflow-x: visible;
+    flex-wrap: wrap;
+}
+
+.stay-search .stay-card {
+    width: 100%;
+    min-width: auto;
+    max-width: none;
 }
 
 
@@ -20,13 +35,12 @@
 .map-container{
     grid-column: 2;
     position: sticky;
-    /* width: 100%; */
-
-  top: 88px;                /* adjust to match your header height */
-  height: calc(100vh - 88px - 24px);
+    width: 100%;
+    top: 88px;
+    height: calc(100vh - 88px - 24px);
 }
 
-#map{
+.map-container > div {
   width: 100%;
   height: 100%;
   border-radius: 14px;

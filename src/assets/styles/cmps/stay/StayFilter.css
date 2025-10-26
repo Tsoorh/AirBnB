@@ -5,7 +5,6 @@
     background-color: #fff;
     position: relative;
     border: 1px solid #b7b5b5;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     padding: 5px 10px;
     > button:not(:last-of-type) {
         text-align: start;
@@ -23,6 +22,10 @@
 
 .stay-filter.open {
     border-radius: 3rem;
+    order: 3;
+    width: 80%;
+    justify-content: space-between;
+    margin: auto;
     > button:hover,
     > button.active {
         border-radius: 2rem;
@@ -31,6 +34,7 @@
     > button:not(:last-of-type):not(:nth-last-child(2)) {
         border-right: 2px rgb(226, 226, 226) solid;
     }
+    
 }
 
 .filter-btn.flex.column{
@@ -157,6 +161,8 @@ span.light-color{
 SearchIcon {
     padding: 10;
 }
+
+
 
 /*
     display: grid;

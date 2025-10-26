@@ -1,9 +1,13 @@
 import PropTypes from 'prop-types'
 import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
+import { useSearchParams } from "react-router-dom";
+
 
 export function StayPreview({ stay }) {
     const price = stay.price?.base || 0
+    const [searchParams] = useSearchParams()
+
     
     // Generate consistent dates based on stay ID for demo purposes
     const { startDate, endDate, nights, totalPrice, isGuestFavorite } = useMemo(() => {
@@ -25,7 +29,7 @@ export function StayPreview({ stay }) {
     }
     
     return (
-        <Link to={`/stay/${stay._id}`} className="stay-preview-link">
+        <Link to={`/stay/${stay._id}?${searchParams}`} className="stay-preview-link">
             <article className="stay-preview">
                 <div className="stay-image-container">
                     <img 
