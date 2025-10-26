@@ -23,8 +23,9 @@ import { UserMsg } from './cmps/UserMsg.jsx'
 
 export function RootCmp() {
     console.log('this is from Inbal');
+    console.log('this is conflict fronm inbals branch');
     
-
+    
     return (
         <div className="main-container">
             <AppHeader />
