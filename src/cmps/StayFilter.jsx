@@ -83,6 +83,7 @@ export function StayFilter({ isOnViewPort }) {
     }
   }, [isOnViewPort]);
 
+
   useEffect(()=>{
     if( width > 754 ) setMobileFilterOpen(false)
   },[width])
@@ -186,40 +187,6 @@ export function StayFilter({ isOnViewPort }) {
     else return "";
   }
 
-  // function handleChange(field, value) {
-  //   switch (field) {
-  //     case "city":
-  //       setFilter((prevFilter) => ({
-  //         ...prevFilter,
-  //         city: value,
-  //       }));
-  //       break;
-  //     case "guests":
-  //       setFilter((prevFilter) => ({
-  //         ...prevFilter,
-  //         guests: { ...value },
-  //       }));
-  //       break;
-  //     case "checkIn":
-  //       setFilter((prevFilter) => ({
-  //         ...prevFilter,
-  //         dates: {
-  //           ...prevFilter.dates,
-  //           checkIn: value,
-  //         },
-  //       }));
-  //       break;
-  //     case "checkOut":
-  //       setFilter((prevFilter) => ({
-  //         ...prevFilter,
-  //         dates: {
-  //           ...prevFilter.dates,
-  //           checkOut: value,
-  //         },
-  //       }));
-  //       break;
-  //   }
-  // }
 
   function handleCityChange(city) {
     setFilter((prev) => ({ ...prev, city }));
@@ -289,60 +256,6 @@ export function StayFilter({ isOnViewPort }) {
             )}
           </li>
         ))}
-        {/* <li>
-          {mobileFilterSelection.destination ? (
-            <SearchDestination
-              handleChange={handleCityChange}
-              isOpen={currentModalContent === "destination"}
-              onCloseModal={onCloseModal}
-            />
-          ) : (
-            <button
-              className="filter-btn flex shadow"
-              name="destination"
-              onClick={handleMobileFilterClick}
-            >
-              <span>Where</span>
-              <span>{filter.city || "I'm flexible"}</span>
-            </button>
-          )}
-        </li>
-        <li>
-          {mobileFilterSelection.checkIn ? (
-            <ChooseDates
-              handleChange={handleDateChange}
-              isOpen={currentModalContent === "checkIn"}
-              onCloseModal={onCloseModal}
-            />
-          ) : (
-            <button
-              className="filter-btn flex shadow"
-              name="checkIn"
-              onClick={handleMobileFilterClick}
-            >
-              <span>When</span>
-              <span>{"Add dates"}</span>
-            </button>
-          )}
-        </li>
-        <li>
-          {mobileFilterSelection.guest ? (
-            <GuestsPicker
-              handleChange={handleGuestsChange}
-              isOpen={currentModalContent === "guest"}
-              onCloseModal={onCloseModal}
-            />
-          ) : (
-            <button
-              className="filter-btn flex shadow"
-              name="guest"
-              onClick={handleMobileFilterClick}
-            >
-              <span>Who</span>
-              <span>{handleGuests()}</span>
-            </button>
-          )}
-        </li>*/}
         <li>
           <a onClick={onResetFilter}>Clear all</a>
           <button onClick={onSearchClick}>Search</button>
@@ -407,7 +320,7 @@ export function StayFilter({ isOnViewPort }) {
     );
   } else {
     return (
-      <section className="stay-filter shadow">
+      <section className="stay-filter close shadow">
         <input
           type="text"
           className="mobile-only-item search-mobile "
@@ -455,35 +368,3 @@ export function StayFilter({ isOnViewPort }) {
     );
   }
 }
-
-// const [ filterToEdit, setFilterToEdit ] = useState(structuredClone(filterBy))
-
-// useEffect(() => {
-//     setFilterBy(filterToEdit)
-// }, [filterToEdit])
-
-// function handleChange(ev) {
-//     const type = ev.target.type
-//     const field = ev.target.name
-//     let value
-
-//     switch (type) {
-//         case 'text':
-//         case 'radio':
-//             value = field === 'sortDir' ? +ev.target.value : ev.target.value
-//             if(!filterToEdit.sortDir) filterToEdit.sortDir = 1
-//             break
-//         case 'number':
-//             value = +ev.target.value || ''
-//             break
-//     }
-//     setFilterToEdit({ ...filterToEdit, [field]: value })
-// }
-
-// function clearFilter() {
-//     setFilterToEdit({ ...filterToEdit, txt: '', minSpeed: '', maxPrice: '' })
-// }
-
-// function clearSort() {
-//     setFilterToEdit({ ...filterToEdit, sortField: '', sortDir: '' })
-// }

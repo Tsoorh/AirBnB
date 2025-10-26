@@ -43,20 +43,20 @@ export function AppHeader() {
 	function closeLoginModal() {
 		setIsLoginModalOpen(false)
 	}
+	console.log('header: ', isOnViewPort);
 	
 
 	return (
 		<>
 		<div ref={observeRef}></div>
 		<header className="app-header full wrap ">
-
 			<div className='main-header flex'>
 				<Link to="/" className='logo not-mobile-item'>
 					<img src='public\img\airbnb-icon.svg' alt="Airbnb" /><span>airbnb</span>
 				</Link>
 
-				{/* <StayFilter isOnViewPort={isOnViewPort} className='flex align-center'/> */}
-				
+				{isOnViewPort && <StayFilter isOnViewPort={isOnViewPort} className='flex align-center'/>}
+
 				<div className='flex align-center not-mobile-item'>
 					<a href="/">Become a host</a>
 					{ user && (
@@ -66,8 +66,8 @@ export function AppHeader() {
 				</div>
 			</div>
 
+			{!isOnViewPort && <StayFilter isOnViewPort={isOnViewPort} className='flex align-center'/>}
 
-			<StayFilter isOnViewPort={isOnViewPort} className='flex align-center'/>
 
 
 			{isMenuOpen && (

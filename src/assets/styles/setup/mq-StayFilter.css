@@ -2,13 +2,13 @@
     display: none !important;
 }
 
-.not-mobile-item {
+/* .not-mobile-item {
     display: flex !important;
     align-items: center;
-}
+} */
 
-/* search input in mobile */
-.search-mobile {
+
+/* .search-mobile {
     border: none;
     padding: 0.8rem;
     width: 80vw;
@@ -23,9 +23,9 @@
         border: none;
 
     }
-}
+} */
 
-
+/* 
 @media screen and (max-width:745px) {
     .main-container {
         display: flex;
@@ -104,4 +104,4 @@
         display: none !important;
     }
 
-}
+} */
