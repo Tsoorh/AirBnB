@@ -170,7 +170,7 @@
 
 .order-modal-content {
     background: white;
-    border-radius: 12px;
+    border-radius: 2rem;
     padding: 24px;
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
     max-width: 90vw;
@@ -178,12 +178,17 @@
     overflow: auto;
     display: flex;
     flex-direction: column;
+    margin-block-end: 500px;
 
 }
 
 .order-modal-content .modal-calendar-container {
     border-bottom: 1px solid #ddd;
     padding-bottom: 24px;
+    margin-left: -24px;
+    margin-right: -24px;
+    padding-left: 24px;
+    padding-right: 24px;
 }
 
 .order-modal-content button:focus{
@@ -193,6 +198,7 @@
 
 .order-modal-content h2{
     margin-top: 20px;
+    font-size: 1.7rem;
 }
 .order-modal-content .save-btn{
     margin-top: 10px;
