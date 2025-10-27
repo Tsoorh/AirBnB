@@ -1,12 +1,12 @@
 .stays-horizontal-scroll {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Default for mobile */
     gap: 16px;
     overflow-x: visible;
-    padding: 8px 8px 5px 0; /* Added right padding */
+    padding: 8px 8px 16px 0;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
     width: 100%;
-    flex-wrap: nowrap;
 }
 
 .stays-horizontal-scroll::-webkit-scrollbar {
@@ -16,9 +16,39 @@
 .stay-card {
     position: relative;
     z-index: 1;
-    flex-shrink: 0;
-    width: 280px;
-    min-width: 280px;
-    max-width: 280px;
+    width: 100%;
+    min-width: auto;
+    max-width: none;
+}
+
+/* mobile */
+@media (max-width: 799px){
+    .stays-horizontal-scroll {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 800px){
+    .stays-horizontal-scroll{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (min-width: 1000px){
+    .stays-horizontal-scroll{
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (min-width: 1190px){
+    .stays-horizontal-scroll{
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media (min-width: 1440px){
+    .stays-horizontal-scroll{
+        grid-template-columns: repeat(7, 1fr);
+    }
 }
 
