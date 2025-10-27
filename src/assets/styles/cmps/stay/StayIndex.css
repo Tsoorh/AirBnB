@@ -39,10 +39,12 @@
 .city-section {
     margin-bottom: 48px;
     padding: 0 24px;
+    overflow: hidden;
 }
 
 .city-section:last-child {
     margin-bottom: 0;
+
 }
 
 .city-header {

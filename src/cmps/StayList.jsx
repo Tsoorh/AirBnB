@@ -1,23 +1,22 @@
-import { StayPreview } from './StayPreview'
-import PropTypes from 'prop-types'
+import { StayPreview } from "./StayPreview";
+import PropTypes from "prop-types";
 
 export function StayList({ stays, maxStays }) {
-    // Limit the number of stays displayed if maxStays is provided
-    const displayStays = maxStays ? stays.slice(0, maxStays) : stays
-    
-    return (
-        <div className="stays-horizontal-scroll">
-            {displayStays.map(stay => (
-                <div key={stay._id} className="stay-card">
-                    <StayPreview stay={stay}/>
-                </div>
-            ))}
+  // Limit the number of stays displayed if maxStays is provided
+  const displayStays = maxStays ? stays.slice(0, maxStays) : stays;
+
+  return (
+    <div className="stays-horizontal-scroll">
+      {displayStays.map((stay) => (
+        <div key={stay._id} className="stay-card">
+          <StayPreview stay={stay} />
         </div>
-    )
+      ))}
+    </div>
+  );
 }
 
 StayList.propTypes = {
-    stays: PropTypes.arrayOf(PropTypes.object).isRequired,
-    maxStays: PropTypes.number
-}
-
+  stays: PropTypes.arrayOf(PropTypes.object).isRequired,
+  maxStays: PropTypes.number,
+};
