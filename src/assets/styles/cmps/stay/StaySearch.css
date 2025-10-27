@@ -46,3 +46,14 @@
   border-radius: 14px;
   overflow: hidden;
 }
+
+.price-stay-on-map{
+    background-color: white;
+    padding: 6px 10px;
+    border-radius: 20px;
+    border: 1.5px solid #222;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    cursor: pointer;
+}
