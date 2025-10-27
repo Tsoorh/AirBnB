@@ -315,7 +315,7 @@ export function StayFilter({ isOnViewPort }) {
           return (
             <button
               key={btn.name}
-              className="filter-btn open flex column"
+              className="filter-btn open flex column" 
               name={btn.name}
               onClick={onHandleClick}
             >
@@ -325,19 +325,22 @@ export function StayFilter({ isOnViewPort }) {
           );
         })}
         <button
-          className="filter-btn open flex column"
+          className="filter-btn open flex row"
           name="guest"
           onClick={onHandleClick}
         >
+          <div className="flex column">
+
         <span className="btn-header">Who</span>
           <span className="light-color">{handleGuests()}</span>
-        </button>
+          </div>
         <button
           className={`search-btn ${classModalOpen()}`}
           onClick={onSearchClick}
-        >
+          >
           <SearchIcon />
           <span className="search-text">Search</span>
+        </button>
         </button>
 
         {isModalOpen && (
