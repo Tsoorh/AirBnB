@@ -303,7 +303,7 @@ export function StayFilter({ isOnViewPort }) {
           name="destination"
           onClick={onHandleClick}
         >
-          <span>Where</span>
+          <span className="btn-header">Where</span>
           <input
             type="text"
             placeholder="Search destinations"
@@ -319,7 +319,7 @@ export function StayFilter({ isOnViewPort }) {
               name={btn.name}
               onClick={onHandleClick}
             >
-              <span>{btn.span}</span>
+              <span className="btn-header">{btn.span}</span>
               <span className="light-color">{btn.placeholder}</span>
             </button>
           );
@@ -329,7 +329,7 @@ export function StayFilter({ isOnViewPort }) {
           name="guest"
           onClick={onHandleClick}
         >
-          <span>Who</span>
+        <span className="btn-header">Who</span>
           <span className="light-color">{handleGuests()}</span>
         </button>
         <button
