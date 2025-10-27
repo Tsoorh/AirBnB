@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CountrySelect } from "./CountrySelect";
+import { CountrySelect } from "../CountrySelect";
 
 export default function CreditCardForm({ saveOrder }) {
   const [cardDetails, setCardDetails] =useState({cardNumber: '', expiration:'', cvv: ''})

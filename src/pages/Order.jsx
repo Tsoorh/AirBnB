@@ -3,17 +3,19 @@ import { useSelector } from 'react-redux'
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom'
 import { orderService } from '../services/order'
 import { loadStay } from '../store/actions/stay.actions'
-import CreditCardForm from '../cmps/CreditCardForm.jsx'
+import CreditCardForm from '../cmps/modals/CreditCardForm.jsx'
 import { addOrder } from '../store/actions/order.actiona.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { LoginSignupModal } from '../cmps/LoginSignupModal.jsx'
+import { ChooseDates } from '../cmps/FilterCmps/ChooseDates.jsx'
 
 
 export function Order() {
     const navigate = useNavigate()
     const {stayId} = useParams()
-    const [searchParams] = useSearchParams()
+    const [searchParams, setSearchParams] = useSearchParams()
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
+    const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false)
 
 
     // const [card, setCard] = useState({cardNumber: '', expiration: '', cvv: '',zipCode: '', })
@@ -28,6 +30,32 @@ export function Order() {
     const children = Number(searchParams.get('children')) || 0
     const pets = Number(searchParams.get('pets')) || 0
     const infants = Number(searchParams.get('infants')) || 0
+
+    const formatDateRange = (checkInDate, checkOutDate) => {
+        if (!checkInDate || !checkOutDate) return ''
+
+        const dateIn = new Date(checkInDate)
+        const dateOut = new Date(checkOutDate)
+
+        const monthNameIn = dateIn.toLocaleString('en-US', { month: 'short' })
+        const monthNameOut = dateOut.toLocaleString('en-US', { month: 'short' })
+        const dayIn = dateIn.getDate()
+        const dayOut = dateOut.getDate()
+        const year = dateIn.getFullYear()
+
+        if (monthNameIn === monthNameOut) {
+            return `${monthNameIn} ${dayIn}-${dayOut}, ${year}`
+        } else {
+            return `${monthNameIn} ${dayIn} - ${monthNameOut} ${dayOut}, ${year}`
+        }
+    }
+
+    // Handle date change from calendar modal
+    const handleDateChange = (field, value) => {
+        const newParams = new URLSearchParams(searchParams)
+        newParams.set(field, value)
+        setSearchParams(newParams)
+    }
 
     useEffect(() => {
         if (stayId) {
@@ -121,6 +149,10 @@ export function Order() {
 		setIsLoginModalOpen(false)
 	}
 
+    function closeCalendarModal() {
+        setIsCalendarModalOpen(false)
+    }
+
 
     if (!stay || !order) {
         return (
@@ -176,9 +208,9 @@ export function Order() {
                     <div className='order-dates'>
                         <div>
                             <h2>Dates</h2>
-                            <p>{`${checkIn} - ${checkOut}`}</p>  
+                            <p>{formatDateRange(checkIn, checkOut)}</p>
                         </div>
-                        <button className='change-btn'>Change</button>
+                        <button className='change-btn' onClick={() => setIsCalendarModalOpen(true)}>Change</button>
                     </div>
                     <div className='order-guests'>
                         <div>
@@ -220,6 +252,17 @@ export function Order() {
                 </div>
                 {isLoginModalOpen && (
                     <LoginSignupModal onClose={closeLoginModal} />
+                )}
+
+                {isCalendarModalOpen && (
+                    <div className="modal-overlay" onClick={() => setIsCalendarModalOpen(false)}>
+                        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                            <ChooseDates
+                                handleChange={handleDateChange}
+                                onCloseModal={() => setIsCalendarModalOpen(false)}
+                            />
+                        </div>
+                    </div>
                 )}
 
             </section>
@@ -273,9 +316,9 @@ export function Order() {
                     <div className='order-dates'>
                         <div>
                             <h2>Dates</h2>
-                            <p>{`${checkIn} - ${checkOut}`}</p>  
+                            <p>{formatDateRange(checkIn, checkOut)}</p>
                         </div>
-                        <button className='change-btn'>Change</button>
+                        <button className='change-btn' onClick={() => setIsCalendarModalOpen(true)}>Change</button>
                     </div>
                     <div className='order-guests'>
                         <div>
@@ -315,6 +358,21 @@ export function Order() {
                         <strong>{`₪${order.priceBreakdown.total.toFixed(2)}`}</strong>
                     </div>
                 </div>
+
+                {isCalendarModalOpen && (
+                    <div className="order-modal-overlay" onClick={() => setIsCalendarModalOpen(false)}>
+                        <div className="order-modal-content" onClick={(e) => e.stopPropagation()}>
+                            <button className="close-modal-btn" onClick={closeCalendarModal}>×</button>
+
+                            <h2>Change dates</h2>
+                            <ChooseDates
+                                handleChange={handleDateChange}
+                                onCloseModal={() => setIsCalendarModalOpen(false)}
+                            />
+                        <button className='save-btn' >Save</button>
+                        </div>
+                    </div>
+                )}
 
             </section>
         )
