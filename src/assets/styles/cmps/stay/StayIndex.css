@@ -7,25 +7,25 @@
 /* Responsive breakpoints */
 @media (min-width: 1600px) {
     .stay-index {
-        max-width: 1600px;
+        max-width: 1920px;
     }
 }
 
 @media (min-width: 1200px) and (max-width: 1599px) {
     .stay-index {
-        max-width: 1200px;
+        max-width: 1400px;
     }
 }
 
 @media (min-width: 900px) and (max-width: 1199px) {
     .stay-index {
-        max-width: 900px;
+        max-width: 1100px;
     }
 }
 
 @media (min-width: 600px) and (max-width: 899px) {
     .stay-index {
-        max-width: 600px;
+        max-width: 800px;
     }
 }
 
@@ -39,7 +39,7 @@
 .city-section {
     margin-bottom: 48px;
     padding: 0 24px;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .city-section:last-child {

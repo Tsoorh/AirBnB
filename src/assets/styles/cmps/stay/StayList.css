@@ -2,7 +2,7 @@
     display: flex;
     gap: 16px;
     overflow-x: visible;
-    padding: 8px 0 16px 0;
+    padding: 8px 8px 5px 0; /* Added right padding */
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
     width: 100%;
@@ -17,8 +17,8 @@
     position: relative;
     z-index: 1;
     flex-shrink: 0;
-    width: 200px;
-    min-width: 200px;
-    max-width: 200px;
+    width: 280px;
+    min-width: 280px;
+    max-width: 280px;
 }
 
