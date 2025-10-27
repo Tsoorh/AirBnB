@@ -16,8 +16,8 @@ export function StayIndex() {
         if(windowWidth <= 800 ) return 2
         if(windowWidth <=1000) return 4
         if (windowWidth <= 1190) return 5
-        if (windowWidth <= 1440) return 6
-        if (windowWidth >1440) return 7
+        if (windowWidth <= 1439) return 6
+        if (windowWidth >=1440) return 7
         // if (windowWidth <= 1120) return 4
         // if (windowWidth <= 1330) return 5
         // return zoomLevel >= 90 ? 6 : 7
@@ -52,6 +52,9 @@ export function StayIndex() {
             [city]: newPosition
         }))
     }
+
+    console.log(`Viewport width: ${document.documentElement.clientWidth}px`)
+
 
     // Group stays by city
     const staysByCity = stays.reduce((acc, stay) => {

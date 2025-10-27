@@ -3,7 +3,7 @@
     grid-template-columns: repeat(2, 1fr); /* Default for mobile */
     gap: 16px;
     overflow-x: visible;
-    padding: 8px 8px 16px 0;
+    padding: 8px 8px 16px 8px;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
     width: 100%;
@@ -46,7 +46,7 @@
     }
 }
 
-@media (min-width: 1440px){
+@media (min-width: 1439px){
     .stays-horizontal-scroll{
         grid-template-columns: repeat(7, 1fr);
     }
