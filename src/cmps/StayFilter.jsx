@@ -167,41 +167,6 @@ export function StayFilter({ isOnViewPort }) {
     else return "";
   }
 
-  // function handleChange(field, value) {
-  //   switch (field) {
-  //     case "city":
-  //       setFilter((prevFilter) => ({
-  //         ...prevFilter,
-  //         city: value,
-  //       }));
-  //       break;
-  //     case "guests":
-  //       setFilter((prevFilter) => ({
-  //         ...prevFilter,
-  //         guests: { ...value },
-  //       }));
-  //       break;
-  //     case "checkIn":
-  //       setFilter((prevFilter) => ({
-  //         ...prevFilter,
-  //         dates: {
-  //           ...prevFilter.dates,
-  //           checkIn: value,
-  //         },
-  //       }));
-  //       break;
-  //     case "checkOut":
-  //       setFilter((prevFilter) => ({
-  //         ...prevFilter,
-  //         dates: {
-  //           ...prevFilter.dates,
-  //           checkOut: value,
-  //         },
-  //       }));
-  //       break;
-  //   }
-  // }
-
   function handleCityChange(city) {
     setFilter((prev) => ({ ...prev, city }));
   }
@@ -334,7 +299,7 @@ export function StayFilter({ isOnViewPort }) {
     return (
       <section className="stay-filter shadow open">
         <button
-          className="filter-btn flex column"
+          className="filter-btn open flex column"
           name="destination"
           onClick={onHandleClick}
         >
@@ -350,7 +315,7 @@ export function StayFilter({ isOnViewPort }) {
           return (
             <button
               key={btn.name}
-              className="filter-btn flex column"
+              className="filter-btn open flex column"
               name={btn.name}
               onClick={onHandleClick}
             >
@@ -360,7 +325,7 @@ export function StayFilter({ isOnViewPort }) {
           );
         })}
         <button
-          className="filter-btn flex column"
+          className="filter-btn open flex column"
           name="guest"
           onClick={onHandleClick}
         >
@@ -388,7 +353,7 @@ export function StayFilter({ isOnViewPort }) {
     );
   } else {
     return (
-      <section className="stay-filter shadow">
+      <section className="stay-filter close shadow">
         <input
           type="text"
           className="mobile-only-item search-mobile "
@@ -399,7 +364,7 @@ export function StayFilter({ isOnViewPort }) {
         />
         <div className="not-mobile-item">
           <button
-            className="filter-btn flex column des"
+            className="filter-btn close flex column des"
             onClick={onHandleOpenFilter}
             name="destination"
             id="destination"
@@ -408,15 +373,15 @@ export function StayFilter({ isOnViewPort }) {
             Anywhere
           </button>
           <button
-            className="filter-btn flex column border-right"
+            className="filter-btn close flex column border-right"
             onClick={onHandleOpenFilter}
             name="time"
             id="time"
           >
-            Any Week
+            Anytime
           </button>
           <button
-            className="filter-btn flex column"
+            className="filter-btn close flex column"
             onClick={onHandleOpenFilter}
             name="guest"
             id="guest"
