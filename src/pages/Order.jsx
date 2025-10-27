@@ -8,6 +8,7 @@ import { addOrder } from '../store/actions/order.actiona.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { LoginSignupModal } from '../cmps/LoginSignupModal.jsx'
 import { ChooseDates } from '../cmps/FilterCmps/ChooseDates.jsx'
+import { GuestsPicker } from '../cmps/FilterCmps/GuestsPicker.jsx'
 
 
 export function Order() {
@@ -16,7 +17,7 @@ export function Order() {
     const [searchParams, setSearchParams] = useSearchParams()
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
     const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false)
-
+    const [isGuestsModalOpen, setIsGuestsModalOpen] = useState(false)
 
     // const [card, setCard] = useState({cardNumber: '', expiration: '', cvv: '',zipCode: '', })
     const [order, setOrder] = useState(null)
@@ -26,17 +27,15 @@ export function Order() {
     // Get from url
     const checkIn = searchParams.get('checkIn') || ''
     const checkOut = searchParams.get('checkOut') || ''
-    const adults = Number(searchParams.get('adults')) || 1
+    const adults = Number(searchParams.get('adults')) || 0
     const children = Number(searchParams.get('children')) || 0
     const pets = Number(searchParams.get('pets')) || 0
     const infants = Number(searchParams.get('infants')) || 0
 
     const formatDateRange = (checkInDate, checkOutDate) => {
         if (!checkInDate || !checkOutDate) return ''
-
         const dateIn = new Date(checkInDate)
         const dateOut = new Date(checkOutDate)
-
         const monthNameIn = dateIn.toLocaleString('en-US', { month: 'short' })
         const monthNameOut = dateOut.toLocaleString('en-US', { month: 'short' })
         const dayIn = dateIn.getDate()
@@ -56,6 +55,17 @@ export function Order() {
         newParams.set(field, value)
         setSearchParams(newParams)
     }
+
+    // Handle guest change from guests modal
+    const handleGuestChange = (guestCounts) => {
+        const newParams = new URLSearchParams(searchParams)
+        newParams.set('adults', guestCounts.adults || 0)
+        newParams.set('children', guestCounts.children || 0)
+        newParams.set('infants', guestCounts.infants || 0)
+        newParams.set('pets', guestCounts.pets || 0)
+        setSearchParams(newParams)
+    }
+
 
     useEffect(() => {
         if (stayId) {
@@ -336,7 +346,7 @@ export function Order() {
                                 <p>{`${pets} pet${pets > 1 ? 's' : ''}`}</p>
                             )}       
                         </div>
-                        <button className='change-btn'>Change</button>
+                        <button className='change-btn' onClick={() => setIsGuestsModalOpen(true)}>Change</button>
                     </div>
                     <div className='order-price-details'>
                         <h2>Price details</h2>
@@ -368,6 +378,21 @@ export function Order() {
                             <ChooseDates
                                 handleChange={handleDateChange}
                                 onCloseModal={() => setIsCalendarModalOpen(false)}
+                            />
+                        <button className='save-btn' >Save</button>
+                        </div>
+                    </div>
+                )}                
+                
+                {isGuestsModalOpen && (
+                    <div className="order-modal-overlay" onClick={() => setIsGuestsModalOpen(false)}>
+                        <div className="order-modal-content" onClick={(e) => e.stopPropagation()}>
+                            <button className="close-modal-btn" onClick={() => setIsGuestsModalOpen(false)}>×</button>
+
+                            <h2>Change guests</h2>
+                            <GuestsPicker
+                                handleChange={handleGuestChange}
+                                onCloseModal={() => setIsGuestsModalOpen(false)}
                             />
                         <button className='save-btn' >Save</button>
                         </div>

@@ -117,6 +117,8 @@
     cursor: pointer;
 }
 
+
+
 .back-btn:hover {
     background: var(--gray0);
 }
@@ -161,7 +163,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -182,19 +184,7 @@
 
 }
 
-.order-modal-content .modal-calendar-container {
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 24px;
-    margin-left: -24px;
-    margin-right: -24px;
-    padding-left: 24px;
-    padding-right: 24px;
-}
 
-.order-modal-content button:focus{
-    background: #222;
-
-}
 
 .order-modal-content h2{
     margin-top: 20px;
@@ -209,6 +199,15 @@
     font-size: 1rem;
 }
 
+.order-modal-content .modal-calendar-container {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 24px;
+    margin-left: -24px;
+    margin-right: -24px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
 .order-modal-content .save-btn:hover{
     background-color: #222;
 }
@@ -216,3 +215,21 @@
 .order-modal-content .close-modal-btn{
     align-self: flex-end;
 }
+
+
+.order-modal-content .guest-picker-container li{
+    border-bottom:  none;
+    display: flex;
+    flex-direction: row;
+    gap: 200px;
+}
+
+.order-modal-content .guest-picker-container {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 24px;
+    margin-left: -2rem;
+    margin-right: -2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
