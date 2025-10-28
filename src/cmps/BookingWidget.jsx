@@ -50,6 +50,16 @@ export function BookingWidget() {
         setSearchParams(newParams)
     }
 
+    // Clear dates without closing modal
+    const handleClearDates = () => {
+        setCheckIn('')
+        setCheckOut('')
+        const newParams = new URLSearchParams(searchParams)
+        newParams.delete('checkIn')
+        newParams.delete('checkOut')
+        setSearchParams(newParams)
+    }
+
   // Show loading state if stay is not loaded yet
   if (!stay) {
     return (
@@ -83,30 +93,43 @@ export function BookingWidget() {
 
       {/* Booking Form */}
       <div className="booking-form">
-        <div className="date-picker">
+        <div className="date-picker" onClick={() => setIsCalendarModalOpen(true)}>
           <div className="check-in">
-            <label>CHECK-IN</label>
-            <input
-              type="date"
-              placeholder="Add dates"
-              value={checkIn}
-              onChange={e => setCheckIn(e.target.value)}
-            />
+            <button className='booking-btn'>
+              <label>CHECK-IN</label>
+              <span>{checkIn}</span>
+          </button>
           </div>
           <div className="check-out">
-            <label>CHECKOUT</label>
-            <input
-              type="date"
-              placeholder="Add dates"
-              value={checkOut}
-              onChange={e => setCheckOut(e.target.value)}
-            />
+            <button className='booking-btn'>
+              <label>CHECKOUT</label>
+              <span>{checkOut ? checkOut : 'Add date'}</span>
+          </button>
           </div>
+          {isCalendarModalOpen && (
+            <>
+              <div className="booking-modal-overlay" onClick={() =>  setIsCalendarModalOpen(false)}></div>
+              <div className="booking-calendar-modal-content" onClick={(e) => e.stopPropagation()}>
+                <ChooseDates
+                    handleChange={handleDateChange}
+                    onCloseModal={() => setIsCalendarModalOpen(false)}
+                />
+                <div className="modal-footer">
+                    <p onClick={handleClearDates}>Clear dates</p>
+                    <button onClick={() => setIsCalendarModalOpen(false)}>Close</button>
+                </div>
+  
+              </div>
+            </>
+          )}
+
+
+
         </div>
 
         <div className="guests-picker">
           <button
-            className='guests-btn'
+            className='booking-btn'
             onClick={() => setIsGuestsModalOpen(true)}>
             <label>GUESTS</label>
             <span>{adults + children} guests</span>
@@ -119,7 +142,7 @@ export function BookingWidget() {
                     handleChange={handleGuestChange}
                     onCloseModal={() => setIsGuestsModalOpen(false)}
                 />
-                <button>Close</button>
+                <button onClick={() => setIsGuestsModalOpen(false)}>Close</button>
               </div>
             </>
           )}
