@@ -84,7 +84,11 @@ export function StayFilter({ isOnViewPort }) {
   }, [isOnViewPort]);
 
   useEffect(()=>{
-    if( width > 754 ) setMobileFilterOpen(false)
+    if( width > 745 ) {
+       setMobileFilterOpen(false)
+      }else{
+        setMobileFilterOpen(true)
+    }
   },[width])
 
   function refactorFilter(filterObj) {

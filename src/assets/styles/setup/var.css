@@ -16,4 +16,17 @@
 
   --success: rgb(41, 189, 73);
   --error: rgb(216, 59, 59);
+
+
+  /* header-filter */
+
+    --h-border-radius: 32px;
+    --h-close-header-fontsize: 14px;
+    --h-close-span-fontsize: 16px;
+    --h-close-font-weight: 500;
+    --h-light-text-color: rgb(108, 108, 108);
+    --h--close-border-color: rgb(221, 221, 221);
+    --search-svg-bgc-bright: #FF385C;
+    --search-svg-bgc-dark: #d72f4e;
+    --bgc-light-grey: rgb(230, 230, 230);
 }
