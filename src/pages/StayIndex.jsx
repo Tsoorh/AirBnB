@@ -11,7 +11,7 @@ export function StayIndex() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     // const zoomLevel = useZoomLevel()
 
-    // Calculate responsive stay count based on window width and zoom level
+    // Calculate responsive stay count based on window width
     const getStaysPerRow = () => {
         if(windowWidth <= 800 ) return 2
         if(windowWidth <=1000) return 4
@@ -52,8 +52,6 @@ export function StayIndex() {
             [city]: newPosition
         }))
     }
-
-    console.log(`Viewport width: ${document.documentElement.clientWidth}px`)
 
 
     // Group stays by city
