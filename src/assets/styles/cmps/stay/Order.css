@@ -236,7 +236,6 @@
 }
 
 .order-modal-content .choose-dates-btns button{
-    justify-content: space-between;
     content: "Save";
 }
 

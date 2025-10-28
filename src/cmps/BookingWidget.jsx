@@ -40,8 +40,6 @@ export function BookingWidget() {
         setSearchParams(newParams)
     }
 
-    console.log('checkin:', checkIn);
-    console.log('checkout:', checkOut);
     
     
     // Handle guest change from guests modal
@@ -58,9 +56,7 @@ export function BookingWidget() {
     const handleClearDates = () => {
         setCheckIn('')
         setCheckOut('')
-        const newParams = new URLSearchParams(searchParams)
-        console.log('function');
-        
+        const newParams = new URLSearchParams(searchParams)        
         newParams.delete('checkIn')
         newParams.delete('checkOut')
         setSearchParams(newParams)
@@ -100,18 +96,19 @@ export function BookingWidget() {
       {/* Booking Form */}
       <div className="booking-form">
         <div className="date-picker" onClick={() => setIsCalendarModalOpen(true)}>
-          <div className="check-in">
-            <button className='booking-btn'>
-              <label>CHECK-IN</label>
-              <span>{checkIn}</span>
+        <div className="check-in">
+          <button className='booking-btn'>
+            <label>CHECK-IN</label>
+            <span>{checkIn ? checkIn : 'Add date'}</span>
           </button>
-          </div>
-          <div className="check-out">
-            <button className='booking-btn'>
-              <label>CHECKOUT</label>
-              <span>{checkOut ? checkOut : 'Add date'}</span>
+        </div>
+
+        <div className="check-out">
+          <button className='booking-btn'>
+            <label>CHECKOUT</label>
+            <span>{checkOut ? checkOut : 'Add date'}</span>
           </button>
-          </div>
+        </div>
           {isCalendarModalOpen && (
             <>
               <div className="booking-modal-overlay" onClick={() =>  setIsCalendarModalOpen(false)}></div>
