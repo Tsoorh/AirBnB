@@ -77,14 +77,18 @@ export function StayFilter({ isOnViewPort }) {
 
   useEffect(() => {
     if (isOnViewPort && width > 745) {
-      setIsFilterOpen(true);
-    } else {
       setIsFilterOpen(false);
+    } else {
+      setIsFilterOpen(true);
     }
   }, [isOnViewPort]);
 
   useEffect(()=>{
-    if( width > 754 ) setMobileFilterOpen(false)
+    if( width > 745 ) {
+       setMobileFilterOpen(false)
+      }else{
+        setMobileFilterOpen(true)
+    }
   },[width])
 
   function refactorFilter(filterObj) {
@@ -335,7 +339,7 @@ export function StayFilter({ isOnViewPort }) {
           <span className="light-color">{handleGuests()}</span>
           </div>
         <button
-          className={`search-btn ${classModalOpen()}`}
+          className={`search-btn search-sml ${classModalOpen()}`}
           onClick={onSearchClick}
           >
           <SearchIcon />

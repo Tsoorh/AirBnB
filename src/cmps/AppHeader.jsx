@@ -23,8 +23,6 @@ export function AppHeader() {
 	if (location.pathname === '/become-host') {
 		return null
 	}
-
-
 	
 
 	async function onLogout() {
