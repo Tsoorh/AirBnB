@@ -8,6 +8,7 @@
     --h--close-border-color: rgb(221, 221, 221);
     --search-svg-bgc-bright:#FF385C;
     --search-svg-bgc-dark:#d72f4e;
+    --bgc-light-grey: rgb(230, 230, 230);
 }
 
 .stay-filter {
@@ -64,6 +65,14 @@
 
 }
 
+
+.stay-filter.active {
+    background-color: var(--bgc-light-grey);
+    >input{
+        background-color: var(--bgc-light-grey);
+    }
+}
+
 /*span -  light-color */
 span.light-color {
     color: var(--h-light-text-color);
@@ -98,6 +107,9 @@ SearchIcon {
     &.open {
         height: 70px;
         padding: 15px 32px ;
+        >input{
+            background-color: var(--bgc-light-grey);
+        }
     }
 
     width: auto;
@@ -164,7 +176,6 @@ SearchIcon {
     border: none;
     border-radius: var(--h-border-radius);
     align-items: stretch;
-
     >input {
         background-color: #DDDDDD;
     }
@@ -185,9 +196,6 @@ SearchIcon {
     }
 }
 
-.stay-filter.active {
-    background-color: rgb(230, 230, 230);
-}
 
 
 /* check-in */

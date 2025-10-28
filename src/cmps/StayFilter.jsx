@@ -77,9 +77,9 @@ export function StayFilter({ isOnViewPort }) {
 
   useEffect(() => {
     if (isOnViewPort && width > 745) {
-      setIsFilterOpen(true);
-    } else {
       setIsFilterOpen(false);
+    } else {
+      setIsFilterOpen(true);
     }
   }, [isOnViewPort]);
 
