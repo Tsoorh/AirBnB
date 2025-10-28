@@ -40,6 +40,10 @@ export function BookingWidget() {
         setSearchParams(newParams)
     }
 
+    console.log('checkin:', checkIn);
+    console.log('checkout:', checkOut);
+    
+    
     // Handle guest change from guests modal
     const handleGuestChange = (guestCounts) => {
         const newParams = new URLSearchParams(searchParams)
@@ -55,6 +59,8 @@ export function BookingWidget() {
         setCheckIn('')
         setCheckOut('')
         const newParams = new URLSearchParams(searchParams)
+        console.log('function');
+        
         newParams.delete('checkIn')
         newParams.delete('checkOut')
         setSearchParams(newParams)
@@ -114,11 +120,6 @@ export function BookingWidget() {
                     handleChange={handleDateChange}
                     onCloseModal={() => setIsCalendarModalOpen(false)}
                 />
-                <div className="modal-footer">
-                    <p onClick={handleClearDates}>Clear dates</p>
-                    <button onClick={() => setIsCalendarModalOpen(false)}>Close</button>
-                </div>
-  
               </div>
             </>
           )}

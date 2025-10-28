@@ -379,7 +379,6 @@ export function Order() {
                                 handleChange={handleDateChange}
                                 onCloseModal={() => setIsCalendarModalOpen(false)}
                             />
-                        <button className='save-btn' >Save</button>
                         </div>
                     </div>
                 )}                

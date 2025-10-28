@@ -180,11 +180,9 @@
     overflow: auto;
     display: flex;
     flex-direction: column;
-    margin-block-end: 500px;
+    /* margin-block-end: 400px; */
 
 }
-
-
 
 .order-modal-content h2{
     margin-top: 20px;
@@ -232,4 +230,15 @@
     padding-left: 2rem;
     padding-right: 2rem;
 }
+
+.order-modal-content .choose-dates-btns{
+    justify-content: space-between;
+}
+
+.order-modal-content .choose-dates-btns button{
+    justify-content: space-between;
+    content: "Save";
+}
+
+
 

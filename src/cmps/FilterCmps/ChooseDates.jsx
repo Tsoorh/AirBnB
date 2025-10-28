@@ -43,6 +43,11 @@ export function ChooseDates({ handleChange, onCloseModal }) {
         <DateCalendar  onChange={(ev)=>onChangeDate(ev,"checkOut")}/>
         </div>
       </div>
+      <div className='choose-dates-btns'>
+        <p>Clear dates</p>
+        <button onClick={onCloseModal}>Close</button>   
+      </div>
+
     </LocalizationProvider>
   );
 }
