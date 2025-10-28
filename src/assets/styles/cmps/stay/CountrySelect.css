@@ -98,7 +98,7 @@
 
 }
 
-.country-modal-header .close-btn {
+.close-modal-btn {
     position: relative;
     background: none;
     border: none;
@@ -116,7 +116,7 @@
     font-weight: 300;
 }
 
-.country-modal-header .close-btn:hover {
+.close-modal-btn:hover {
     background-color: #f7f7f7;
 }
 

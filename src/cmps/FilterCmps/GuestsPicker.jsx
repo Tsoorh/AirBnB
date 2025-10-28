@@ -79,7 +79,7 @@ export function GuestsPicker({ handleChange, onCloseModal }) {
               <p>{Details.title}</p>
               <span className="light-color">{Details.subtitle}</span>
             </div>
-            <div className="flex align-center">
+            <div className="plus-minus-btns flex align-center">
               {counters[Details.counterName] > 0 ? (
                 <button
                   className="btn-round"

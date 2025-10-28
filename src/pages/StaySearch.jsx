@@ -57,16 +57,7 @@ export function StaySearch(){
                                     key={stay._id}
                                     position={{ lat: stay.loc.lat, lng: stay.loc.lng }}
                                 >
-                                    <div style={{
-                                        backgroundColor: 'white',
-                                        padding: '6px 10px',
-                                        borderRadius: '20px',
-                                        border: '1.5px solid #222',
-                                        fontWeight: '600',
-                                        fontSize: '14px',
-                                        boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
-                                        cursor: 'pointer'
-                                    }}>
+                                    <div className="price-stay-on-map">
                                         ₪{stay.price.base}
                                     </div>
                                 </AdvancedMarker>

@@ -66,7 +66,7 @@ export function getDefaultFilter() {
             checkOut: null
         },
         guests: {
-            adults: 1,
+            adults: 0,
             children: 0,
             infants: 0,
             pets: 0,

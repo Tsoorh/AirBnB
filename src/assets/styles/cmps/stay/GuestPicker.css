@@ -11,14 +11,37 @@
     } */
     >li{
         margin: 0.2rem;
+        padding: 1.3rem 0;
+    }
+
+    >li:not(:last-child){
         border-bottom: rgb(229, 229, 229) 1px solid;
-    >div{
-    >p{
-            margin-bottom: 0.5rem;
     }
-    >button{
-        margin: 0.5rem;
+    >li{
+        >div{
+        >p{
+                margin-bottom: 0.5rem;
+                font-size: 1rem;
+                font-weight: 500;
+        }
+        >button{
+            margin: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        }
     }
-    }
-    }
+}
+
+.plus-minus-btns{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.plus-minus-btns > span {
+    display: inline-block;
+    text-align: center;
+    font-size: 1rem;
 }

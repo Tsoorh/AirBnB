@@ -57,7 +57,7 @@ export function CountrySelect({ selectedCountry, onCountryChange, className = ''
                 <div className="country-modal-overlay" onClick={closeModal}>
                     <div className="country-modal" onClick={(e) => e.stopPropagation()}>
                         <div className="country-modal-header">
-                            <button className="close-btn" onClick={closeModal}>×</button>
+                            <button className="close-modal-btn" onClick={closeModal}>×</button>
                             <h2>Country/region</h2>
                         </div>
                         <div className="country-list">

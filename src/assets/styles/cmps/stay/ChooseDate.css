@@ -7,8 +7,29 @@
         margin-left: 24px;
     }
 }
+
+/* Selected date styling - black background */
+.modal-calendar-container .MuiPickersDay-root.Mui-selected {
+    background-color: #222 !important;
+    color: white !important;
+    font-weight: 600;
+}
+
+.modal-calendar-container .MuiPickersDay-root.Mui-selected:hover {
+    background-color: #000 !important;
+}
+
+.modal-calendar-container .MuiPickersDay-root.Mui-selected:focus {
+    background-color: #222 !important;
+}
+
+/* Remove border from today's date */
+.modal-calendar-container .MuiPickersDay-today {
+    border: none !important;
+}
+
 @media screen and (max-width:745px) {
      .modal-calendar-container{
         flex-direction: column;
-     }   
+     }
 }

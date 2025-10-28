@@ -2,44 +2,35 @@
     padding: 24px 0;
     max-width: 100%;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Responsive breakpoints */
-@media (min-width: 1600px) {
+@media (min-width: 1439px){
     .stay-index {
-        max-width: 1600px;
+        max-width: 1920px;
     }
 }
 
-@media (min-width: 1200px) and (max-width: 1599px) {
+@media (min-width: 1440px) and (max-width: 1950px) {
     .stay-index {
-        max-width: 1200px;
+        max-width: 1400px;
     }
 }
 
-@media (min-width: 900px) and (max-width: 1199px) {
+@media (min-width: 1950){
     .stay-index {
-        max-width: 900px;
+        max-width: 1900px;
     }
 }
 
-@media (min-width: 600px) and (max-width: 899px) {
-    .stay-index {
-        max-width: 600px;
-    }
-}
-
-@media (max-width: 599px) {
-    .stay-index {
-        max-width: 100%;
-        padding: 24px 16px;
-    }
-}
 
 .city-section {
     margin-bottom: 48px;
     padding: 0 24px;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .city-section:last-child {
