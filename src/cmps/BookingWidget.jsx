@@ -5,6 +5,8 @@ import '../assets/styles/cmps/BookingWidget.css'
 import { Link } from 'react-router-dom'
 import { ChooseDates } from '../cmps/FilterCmps/ChooseDates.jsx'
 import { GuestsPicker } from './FilterCmps/GuestsPicker.jsx'
+import { useNavigate } from 'react-router'
+
 
 
 export function BookingWidget() {
@@ -12,6 +14,8 @@ export function BookingWidget() {
   const [searchParams, setSearchParams] = useSearchParams()
   const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false)
   const [isGuestsModalOpen, setIsGuestsModalOpen] = useState(false)
+  const navigate = useNavigate()
+
 
   // Get dates from URL params or use empty string
   const [checkIn, setCheckIn] = useState(searchParams.get('checkIn') || '')
@@ -26,8 +30,8 @@ export function BookingWidget() {
     const urlAdults = searchParams.get('adults')
     const urlChildren = searchParams.get('children')
 
-    if (urlCheckIn) setCheckIn(urlCheckIn)
-    if (urlCheckOut) setCheckOut(urlCheckOut)
+    setCheckIn(urlCheckIn || '')
+    setCheckOut(urlCheckOut || '')
     if (urlAdults) setAdults(Number(urlAdults))
     if (urlChildren) setChildren(Number(urlChildren))
   }, [searchParams])
@@ -38,6 +42,12 @@ export function BookingWidget() {
         const newParams = new URLSearchParams(searchParams)
         newParams.set(field, value)
         setSearchParams(newParams)
+    }
+
+    function handleReserve(){
+      if(!checkIn || !checkOut) setIsCalendarModalOpen(true)
+      if(adults + children == 0) setIsGuestsModalOpen(true)
+      else if (checkIn && checkOut && (adults+children) != 0) navigate(`/stay/${stay._id}/order?${searchParams.toString()}`)
     }
 
     
@@ -51,16 +61,17 @@ export function BookingWidget() {
         newParams.set('pets', guestCounts.pets || 0)
         setSearchParams(newParams)
     }
+    
 
     // Clear dates without closing modal
-    const handleClearDates = () => {
-        setCheckIn('')
-        setCheckOut('')
-        const newParams = new URLSearchParams(searchParams)        
-        newParams.delete('checkIn')
-        newParams.delete('checkOut')
-        setSearchParams(newParams)
-    }
+    // const handleClearDates = () => {
+    //     setCheckIn('')
+    //     setCheckOut('')
+    //     const newParams = new URLSearchParams(searchParams)        
+    //     newParams.delete('checkIn')
+    //     newParams.delete('checkOut')
+    //     setSearchParams(newParams)
+    // }
 
   // Show loading state if stay is not loaded yet
   if (!stay) {
@@ -146,9 +157,13 @@ export function BookingWidget() {
           )}
         </div>
 
-        <Link to={`/stay/${stay._id}/order?${searchParams.toString()}`}>
+        {/* <Link to={`/stay/${stay._id}/order?${searchParams.toString()}`}>
           <button className="reserve-button">Reserve</button>
-        </Link>
+        </Link> */}
+
+        <button 
+          className="reserve-button"
+          onClick={handleReserve}>Reserve</button>
 
         <p className="no-charge-text">You won&apos;t be charged yet</p>
       </div>
