@@ -5,6 +5,8 @@ import '../assets/styles/cmps/BookingWidget.css'
 import { Link } from 'react-router-dom'
 import { ChooseDates } from '../cmps/FilterCmps/ChooseDates.jsx'
 import { GuestsPicker } from './FilterCmps/GuestsPicker.jsx'
+import { useNavigate } from 'react-router'
+
 
 
 export function BookingWidget() {
@@ -12,6 +14,8 @@ export function BookingWidget() {
   const [searchParams, setSearchParams] = useSearchParams()
   const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false)
   const [isGuestsModalOpen, setIsGuestsModalOpen] = useState(false)
+  const navigate = useNavigate()
+
 
   // Get dates from URL params or use empty string
   const [checkIn, setCheckIn] = useState(searchParams.get('checkIn') || '')
@@ -26,8 +30,8 @@ export function BookingWidget() {
     const urlAdults = searchParams.get('adults')
     const urlChildren = searchParams.get('children')
 
-    if (urlCheckIn) setCheckIn(urlCheckIn)
-    if (urlCheckOut) setCheckOut(urlCheckOut)
+    setCheckIn(urlCheckIn || '')
+    setCheckOut(urlCheckOut || '')
     if (urlAdults) setAdults(Number(urlAdults))
     if (urlChildren) setChildren(Number(urlChildren))
   }, [searchParams])
@@ -40,6 +44,14 @@ export function BookingWidget() {
         setSearchParams(newParams)
     }
 
+    function handleReserve(){
+      if(!checkIn || !checkOut) setIsCalendarModalOpen(true)
+      else if(adults + children == 0) setIsGuestsModalOpen(true)
+      else if (checkIn && checkOut && (adults+children) != 0) navigate(`/stay/${stay._id}/order?${searchParams.toString()}`)
+    }
+
+    
+    
     // Handle guest change from guests modal
     const handleGuestChange = (guestCounts) => {
         const newParams = new URLSearchParams(searchParams)
@@ -49,6 +61,17 @@ export function BookingWidget() {
         newParams.set('pets', guestCounts.pets || 0)
         setSearchParams(newParams)
     }
+    
+
+    // Clear dates without closing modal
+    // const handleClearDates = () => {
+    //     setCheckIn('')
+    //     setCheckOut('')
+    //     const newParams = new URLSearchParams(searchParams)        
+    //     newParams.delete('checkIn')
+    //     newParams.delete('checkOut')
+    //     setSearchParams(newParams)
+    // }
 
   // Show loading state if stay is not loaded yet
   if (!stay) {
@@ -83,30 +106,39 @@ export function BookingWidget() {
 
       {/* Booking Form */}
       <div className="booking-form">
-        <div className="date-picker">
-          <div className="check-in">
+        <div className="date-picker" onClick={() => setIsCalendarModalOpen(true)}>
+        <div className="check-in">
+          <button className='booking-btn'>
             <label>CHECK-IN</label>
-            <input
-              type="date"
-              placeholder="Add dates"
-              value={checkIn}
-              onChange={e => setCheckIn(e.target.value)}
-            />
-          </div>
-          <div className="check-out">
+            <span>{checkIn ? checkIn : 'Add date'}</span>
+          </button>
+        </div>
+
+        <div className="check-out">
+          <button className='booking-btn'>
             <label>CHECKOUT</label>
-            <input
-              type="date"
-              placeholder="Add dates"
-              value={checkOut}
-              onChange={e => setCheckOut(e.target.value)}
-            />
-          </div>
+            <span>{checkOut ? checkOut : 'Add date'}</span>
+          </button>
+        </div>
+          {isCalendarModalOpen && (
+            <>
+              <div className="booking-modal-overlay" onClick={() =>  setIsCalendarModalOpen(false)}></div>
+              <div className="booking-calendar-modal-content" onClick={(e) => e.stopPropagation()}>
+                <ChooseDates
+                    handleChange={handleDateChange}
+                    onCloseModal={() => setIsCalendarModalOpen(false)}
+                />
+              </div>
+            </>
+          )}
+
+
+
         </div>
 
         <div className="guests-picker">
           <button
-            className='guests-btn'
+            className='booking-btn'
             onClick={() => setIsGuestsModalOpen(true)}>
             <label>GUESTS</label>
             <span>{adults + children} guests</span>
@@ -119,15 +151,19 @@ export function BookingWidget() {
                     handleChange={handleGuestChange}
                     onCloseModal={() => setIsGuestsModalOpen(false)}
                 />
-                <button>Close</button>
+                <button onClick={() => setIsGuestsModalOpen(false)}>Close</button>
               </div>
             </>
           )}
         </div>
 
-        <Link to={`/stay/${stay._id}/order?${searchParams.toString()}`}>
+        {/* <Link to={`/stay/${stay._id}/order?${searchParams.toString()}`}>
           <button className="reserve-button">Reserve</button>
-        </Link>
+        </Link> */}
+
+        <button 
+          className="reserve-button"
+          onClick={handleReserve}>Reserve</button>
 
         <p className="no-charge-text">You won&apos;t be charged yet</p>
       </div>

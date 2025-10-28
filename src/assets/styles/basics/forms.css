@@ -1,6 +1,6 @@
 
 button {
-	padding: .5em .8em;
+	/* padding: .5em .8em; */
 	border: 0;
 	/* margin: .5em; */
 	cursor: pointer;
@@ -11,7 +11,7 @@ button {
 
 button:hover {
 	/* transition: 0.3s; */
-	background-color: rgb(163, 163, 163);
+	/* background-color: rgb(163, 163, 163); */
 }
 
 .btn-round{

@@ -162,6 +162,8 @@ export function Order() {
     function closeCalendarModal() {
         setIsCalendarModalOpen(false)
     }
+    
+    
 
 
     if (!stay || !order) {
@@ -211,9 +213,6 @@ export function Order() {
                         </div>
                         <div className='refund-rule'>Cancel within 24 hours for a full refund.</div>                        
                     </div>
-
-
-
 
                     <div className='order-dates'>
                         <div>
@@ -291,7 +290,6 @@ export function Order() {
                         <p className='payment-step'>1.Add a Payment method</p>
                         <p className='credit-or-debit'>💳 Credit or debit card</p>
                         <CreditCardForm saveOrder={addedOrderAfterPayment}/>
-
                     </div>
                     <div className='step step-2'>2.Review your request</div>
                 </div>
@@ -319,9 +317,6 @@ export function Order() {
                         </div>
                         <div className='refund-rule'>Cancel within 24 hours for a full refund.</div>                        
                     </div>
-
-
-
 
                     <div className='order-dates'>
                         <div>
@@ -379,7 +374,6 @@ export function Order() {
                                 handleChange={handleDateChange}
                                 onCloseModal={() => setIsCalendarModalOpen(false)}
                             />
-                        <button className='save-btn' >Save</button>
                         </div>
                     </div>
                 )}                

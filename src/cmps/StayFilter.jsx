@@ -77,14 +77,18 @@ export function StayFilter({ isOnViewPort }) {
 
   useEffect(() => {
     if (isOnViewPort && width > 745) {
-      setIsFilterOpen(true);
-    } else {
       setIsFilterOpen(false);
+    } else {
+      setIsFilterOpen(true);
     }
   }, [isOnViewPort]);
 
   useEffect(()=>{
-    if( width > 754 ) setMobileFilterOpen(false)
+    if( width > 745 ) {
+       setMobileFilterOpen(false)
+      }else{
+        setMobileFilterOpen(true)
+    }
   },[width])
 
   function refactorFilter(filterObj) {
@@ -166,41 +170,6 @@ export function StayFilter({ isOnViewPort }) {
     if (isModalOpen) return "open";
     else return "";
   }
-
-  // function handleChange(field, value) {
-  //   switch (field) {
-  //     case "city":
-  //       setFilter((prevFilter) => ({
-  //         ...prevFilter,
-  //         city: value,
-  //       }));
-  //       break;
-  //     case "guests":
-  //       setFilter((prevFilter) => ({
-  //         ...prevFilter,
-  //         guests: { ...value },
-  //       }));
-  //       break;
-  //     case "checkIn":
-  //       setFilter((prevFilter) => ({
-  //         ...prevFilter,
-  //         dates: {
-  //           ...prevFilter.dates,
-  //           checkIn: value,
-  //         },
-  //       }));
-  //       break;
-  //     case "checkOut":
-  //       setFilter((prevFilter) => ({
-  //         ...prevFilter,
-  //         dates: {
-  //           ...prevFilter.dates,
-  //           checkOut: value,
-  //         },
-  //       }));
-  //       break;
-  //   }
-  // }
 
   function handleCityChange(city) {
     setFilter((prev) => ({ ...prev, city }));
@@ -334,11 +303,11 @@ export function StayFilter({ isOnViewPort }) {
     return (
       <section className="stay-filter shadow open">
         <button
-          className="filter-btn flex column"
+          className="filter-btn open flex column"
           name="destination"
           onClick={onHandleClick}
         >
-          <span>Where</span>
+          <span className="btn-header">Where</span>
           <input
             type="text"
             placeholder="Search destinations"
@@ -350,29 +319,32 @@ export function StayFilter({ isOnViewPort }) {
           return (
             <button
               key={btn.name}
-              className="filter-btn flex column"
+              className="filter-btn open flex column" 
               name={btn.name}
               onClick={onHandleClick}
             >
-              <span>{btn.span}</span>
+              <span className="btn-header">{btn.span}</span>
               <span className="light-color">{btn.placeholder}</span>
             </button>
           );
         })}
         <button
-          className="filter-btn flex column"
+          className="filter-btn open flex row"
           name="guest"
           onClick={onHandleClick}
         >
-          <span>Who</span>
+          <div className="flex column">
+
+        <span className="btn-header">Who</span>
           <span className="light-color">{handleGuests()}</span>
-        </button>
+          </div>
         <button
-          className={`search-btn ${classModalOpen()}`}
+          className={`search-btn search-sml ${classModalOpen()}`}
           onClick={onSearchClick}
-        >
+          >
           <SearchIcon />
           <span className="search-text">Search</span>
+        </button>
         </button>
 
         {isModalOpen && (
@@ -388,7 +360,7 @@ export function StayFilter({ isOnViewPort }) {
     );
   } else {
     return (
-      <section className="stay-filter shadow">
+      <section className="stay-filter close shadow">
         <input
           type="text"
           className="mobile-only-item search-mobile "
@@ -399,7 +371,7 @@ export function StayFilter({ isOnViewPort }) {
         />
         <div className="not-mobile-item">
           <button
-            className="filter-btn flex column des"
+            className="filter-btn close flex column des"
             onClick={onHandleOpenFilter}
             name="destination"
             id="destination"
@@ -408,15 +380,15 @@ export function StayFilter({ isOnViewPort }) {
             Anywhere
           </button>
           <button
-            className="filter-btn flex column border-right"
+            className="filter-btn close flex column border-right"
             onClick={onHandleOpenFilter}
             name="time"
             id="time"
           >
-            Any Week
+            Anytime
           </button>
           <button
-            className="filter-btn flex column"
+            className="filter-btn close flex column"
             onClick={onHandleOpenFilter}
             name="guest"
             id="guest"

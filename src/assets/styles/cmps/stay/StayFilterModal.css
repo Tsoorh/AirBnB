@@ -8,3 +8,7 @@
     height: auto;
     width: auto;
 }
+
+.filter-modal .choose-dates-btns{
+    display: none;
+}
