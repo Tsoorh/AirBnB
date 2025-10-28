@@ -3,15 +3,20 @@ import { useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 import '../assets/styles/cmps/BookingWidget.css'
 import { Link } from 'react-router-dom'
+import { ChooseDates } from '../cmps/FilterCmps/ChooseDates.jsx'
+import { GuestsPicker } from './FilterCmps/GuestsPicker.jsx'
+
 
 export function BookingWidget() {
   const stay = useSelector(storeState => storeState.stayModule.stay)
-  const [searchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false)
+  const [isGuestsModalOpen, setIsGuestsModalOpen] = useState(false)
 
   // Get dates from URL params or use empty string
   const [checkIn, setCheckIn] = useState(searchParams.get('checkIn') || '')
   const [checkOut, setCheckOut] = useState(searchParams.get('checkOut') || '')
-  const [adults, setAdults] = useState(Number(searchParams.get('adults')) || 1)
+  const [adults, setAdults] = useState(Number(searchParams.get('adults')) || 0)
   const [children, setChildren] = useState(Number(searchParams.get('children')) || 0)
 
   // Update state when URL params change
@@ -27,6 +32,23 @@ export function BookingWidget() {
     if (urlChildren) setChildren(Number(urlChildren))
   }, [searchParams])
   
+
+    // Handle date change from calendar modal
+    const handleDateChange = (field, value) => {
+        const newParams = new URLSearchParams(searchParams)
+        newParams.set(field, value)
+        setSearchParams(newParams)
+    }
+
+    // Handle guest change from guests modal
+    const handleGuestChange = (guestCounts) => {
+        const newParams = new URLSearchParams(searchParams)
+        newParams.set('adults', guestCounts.adults || 0)
+        newParams.set('children', guestCounts.children || 0)
+        newParams.set('infants', guestCounts.infants || 0)
+        newParams.set('pets', guestCounts.pets || 0)
+        setSearchParams(newParams)
+    }
 
   // Show loading state if stay is not loaded yet
   if (!stay) {
@@ -83,17 +105,24 @@ export function BookingWidget() {
         </div>
 
         <div className="guests-picker">
-          <label>GUESTS</label>
-          <select
-            value={adults + children}
-            onChange={e => setAdults(Number(e.target.value))}
-          >
-            <option value={1}>1 guest</option>
-            <option value={2}>2 guests</option>
-            <option value={3}>3 guests</option>
-            <option value={4}>4 guests</option>
-            <option value={5}>5+ guests</option>
-          </select>
+          <button
+            className='guests-btn'
+            onClick={() => setIsGuestsModalOpen(true)}>
+            <label>GUESTS</label>
+            <span>{adults + children} guests</span>
+          </button>
+          {isGuestsModalOpen && (
+            <>
+              <div className="booking-modal-overlay" onClick={() => setIsGuestsModalOpen(false)}></div>
+              <div className="booking-modal-content" onClick={(e) => e.stopPropagation()}>
+                <GuestsPicker
+                    handleChange={handleGuestChange}
+                    onCloseModal={() => setIsGuestsModalOpen(false)}
+                />
+                <button>Close</button>
+              </div>
+            </>
+          )}
         </div>
 
         <Link to={`/stay/${stay._id}/order?${searchParams.toString()}`}>
