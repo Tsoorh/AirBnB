@@ -46,7 +46,7 @@ export function BookingWidget() {
 
     function handleReserve(){
       if(!checkIn || !checkOut) setIsCalendarModalOpen(true)
-      if(adults + children == 0) setIsGuestsModalOpen(true)
+      else if(adults + children == 0) setIsGuestsModalOpen(true)
       else if (checkIn && checkOut && (adults+children) != 0) navigate(`/stay/${stay._id}/order?${searchParams.toString()}`)
     }
 
