@@ -7,6 +7,7 @@ import { StayIndex } from './pages/StayIndex.jsx'
 import { ReviewIndex } from './pages/ReviewIndex.jsx'
 import { ChatApp } from './pages/Chat.jsx'
 import { AdminIndex } from './pages/AdminIndex.jsx'
+import { PhotoTour } from './pages/PhotoTour'
 
 import { StayDetails } from './pages/StayDetails'
 import { UserDetails } from './pages/UserDetails'
@@ -36,6 +37,7 @@ export function RootCmp() {
                     </Route>
                     <Route path="stay" element={<StayIndex />} />
                     <Route path="stay/:stayId" element={<StayDetails />} />
+                    <Route path="stay/:stayId/photos" element={<PhotoTour />} />
                     <Route path="user/:id" element={<UserDetails />} />
                     <Route path="review" element={<ReviewIndex />} />
                     <Route path="chat" element={<ChatApp />} />

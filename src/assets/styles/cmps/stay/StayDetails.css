@@ -16,10 +16,10 @@
 .stay-details-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: 16px;
   padding-bottom: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 8px;
 }
 
 .header-main {
@@ -27,15 +27,15 @@
   min-width: 0;
 }
 
-.stay-title {
-  margin: 0 0 8px;
-  font-size: 32px;
+.stay-details .stay-title {
+  margin: 0;
+  font-size: 36px;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.35;
 }
 
 @media (min-width: 1128px) {
-  .stay-title {
+  .stay-details .stay-title {
     font-size: 36px;
   }
 }
@@ -45,6 +45,9 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  border-bottom: 1px solid #dddddd;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
 }
 
 .stay-summary-title {
@@ -191,12 +194,17 @@
   height: 16px;
 }
 
-.stay-content-grid {
+.stay-main-content {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 360px);
   gap: 48px;
   align-items: flex-start;
   margin-top: 40px;
+}
+
+.stay-content-grid {
+  /* This class is no longer used for the main layout, so I'll clear it. */
+  display: block;
 }
 
 .stay-content {
@@ -304,7 +312,6 @@
 }
 
 .stay-highlights {
-  border-top: 1px solid #dddddd;
   border-bottom: 1px solid #dddddd;
   padding: 24px 0;
   display: flex;
@@ -391,7 +398,7 @@
 .stay-amenity {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   font-size: 16px;
   color: #222222;
 }
@@ -400,11 +407,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  background-color: #f2f2f2;
-  font-size: 14px;
   color: #222222;
 }
 
@@ -549,8 +551,8 @@
     align-items: flex-start;
   }
 
-  .stay-title {
-    font-size: 28px;
+  .stay-details .stay-title {
+    font-size: 68px;
   }
 
   .header-actions {

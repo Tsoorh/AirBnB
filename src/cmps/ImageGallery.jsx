@@ -1,7 +1,8 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom';
 import '../assets/styles/cmps/ImageGallery.css'
 
-export function ImageGallery({ images, alt }) {
+export function ImageGallery({ images, alt, stayId }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [showAllPhotos, setShowAllPhotos] = useState(false)
 
@@ -92,15 +93,9 @@ export function ImageGallery({ images, alt }) {
                 />
                 {/* Show "Show all photos" button on the last small image if there are more than 5 images */}
                 {index === 3 && images.length > 5 && (
-                  <button 
-                    className="show-all-photos-button"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      handleShowAllPhotos()
-                    }}
-                  >
+                  <Link to={`/stay/${stayId}/photos`} className="show-all-photos-button">
                     Show all photos
-                  </button>
+                  </Link>
                 )}
               </div>
             )

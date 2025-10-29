@@ -1,0 +1,28 @@
+.photo-tour {
+  padding: 2rem;
+}
+
+.photo-tour-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.back-link {
+  margin-right: 1rem;
+  font-size: 1rem;
+  color: #222;
+  text-decoration: none;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.photo-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
