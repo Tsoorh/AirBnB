@@ -11,6 +11,7 @@ export function StayDetails() {
   const { stayId } = useParams()
   const stay = useSelector(storeState => storeState.stayModule.stay)
   const mapSectionRef = useRef(null)
+  const reviewsSectionRef = useRef(null)
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false)
 
   useEffect(() => {
@@ -52,6 +53,10 @@ export function StayDetails() {
 
   const handleShowMap = () => {
     mapSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  const handleShowReviews = () => {
+    reviewsSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   return (
@@ -246,7 +251,7 @@ export function StayDetails() {
         </section>
       )}
 
-      <section className="stay-reviews">
+      <section className="stay-reviews" ref={reviewsSectionRef}>
         <div className="reviews-header">
           <h2>Guest reviews</h2>
           {formattedRating && ratingCount && (

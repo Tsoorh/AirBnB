@@ -20,7 +20,6 @@
   gap: 16px;
   padding-bottom: 16px;
   margin-bottom: 24px;
-  border-bottom: 1px solid #dddddd;
 }
 
 .header-main {
@@ -42,8 +41,7 @@
 }
 
 .stay-summary-intro {
-  padding: 24px 0;
-  border-bottom: 1px solid #dddddd;
+  padding: 24px 0 16px;
   display: flex;
   flex-direction: column;
   gap: 12px;

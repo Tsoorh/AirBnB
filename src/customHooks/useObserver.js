@@ -18,10 +18,11 @@ export const useObserver = () => {
       setIsOnTop(!entry.isIntersecting);
     }, options);
 
-    observer.observe(ref.current);
+    const target = ref.current;
+    observer.observe(target);
 
     return () => {
-      observer.unobserve(ref.current);
+      if (target) observer.unobserve(target);
     };
   }, []); 
 
