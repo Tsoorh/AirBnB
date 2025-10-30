@@ -48,19 +48,23 @@
     order: 3;
     width: 80%;
     justify-content: left;
+    max-width: 780px;
     margin: auto;
-    min-width: 780px;
     >button:hover,
     >button.active {
         border-radius: var(--h-border-radius);
     }
-
     >.filter-btn:last-of-type {
         justify-content: space-between;
         align-items: center;
         flex-grow: 1;
     }
+}
 
+.open-filter-div{
+    order: 3;
+    flex-basis: 100%;
+    flex-grow: 1;
 }
 
 
@@ -152,14 +156,9 @@ SearchIcon {
 
     width: 1px;
     height: 50%;
-
     background-color: rgb(226, 226, 226);
 }
 
-.filter-btn.border-right {
-    /* border-right: 2px solid rgb(226, 226, 226); */
-    /* border-left: 2px solid rgb(226, 226, 226); */
-}
 
 .filter-btn.des {
     display: flex;
