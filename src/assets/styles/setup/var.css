@@ -20,9 +20,9 @@
 
   /* header-filter */
 
-    --h-border-radius: 32px;
-    --h-close-header-fontsize: 14px;
-    --h-close-span-fontsize: 16px;
+    --h-border-radius: 2rem;
+    --h-close-header-fontsize: 0.875rem;
+    --h-close-span-fontsize: 1rem;
     --h-close-font-weight: 500;
     --h-light-text-color: rgb(108, 108, 108);
     --h--close-border-color: rgb(221, 221, 221);
