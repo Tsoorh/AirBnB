@@ -41,28 +41,18 @@ useEffect(()=>{
   function getFormattedDate(date) {
     return date.replaceAll(".", "-");
   }
-  //   function onChangeDate(ev, field) {
-  //     const { $D, $M, $y } = ev;
 
-  //     // Format as YYYY-MM-DD (e.g., "2025-10-22")
-  //     const year = $y;
-  //     const month = String($M + 1).padStart(2, "0"); // $M is 0-indexed
-  //     const day = String($D).padStart(2, "0");
 
-  //     const pickedDateFormatted = `${year}-${month}-${day}`;
-  //     handleChange(field, pickedDateFormatted);
-  //   }
-
-    const handleClearDates = () => {
-      const newParams = new URLSearchParams(searchParams);
-      newParams.delete("checkIn");
-      newParams.delete("checkOut");
-      setSearchParams(newParams);
-    };
+    // const handleClearDates = () => {
+    //   const newParams = new URLSearchParams(searchParams);
+    //   newParams.delete("checkIn");
+    //   newParams.delete("checkOut");
+    //   setSearchParams(newParams);
+    // };
 
   return (
     <div className="modal-calendar-container" ref={wrapperRef}>
-      <div className="flex justify-center">
+      <div className="flex justify-center day-picker-container">
         <DayPicker
           animate
           mode="range"

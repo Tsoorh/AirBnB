@@ -20,6 +20,7 @@
 @import "cmps/AppHeader";
 @import "cmps/AppFooter";
 @import "cmps/UserMsg";
+@import "cmps/MobileDates.css";
 
 @import "cmps/stay/StayIndex";
 @import "cmps/stay/StayList";
