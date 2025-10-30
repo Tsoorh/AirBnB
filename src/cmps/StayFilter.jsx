@@ -8,8 +8,7 @@ import { useLocation } from "react-router-dom";
 import { SearchDestination } from "./FilterCmps/SearchDestination";
 import { ChooseDates } from "./FilterCmps/ChooseDates";
 import { GuestsPicker } from "./FilterCmps/GuestsPicker";
-import { useNavigate } from 'react-router'
-
+import { useNavigate } from "react-router";
 
 export function StayFilter({ isOnViewPort }) {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -25,8 +24,7 @@ export function StayFilter({ isOnViewPort }) {
   const [searchParams, setSearchParams] = useSearchParams({ ...filter });
   const location = useLocation();
   const { width } = useWindowSize();
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   const filterConfigs = [
     {
@@ -72,7 +70,7 @@ export function StayFilter({ isOnViewPort }) {
 
   useEffect(() => {
     setSearchParams({ ...refactorFilter(filter) });
-    console.log('filter: ', filter);
+    console.log("filter: ", filter);
   }, [filter]);
 
   useEffect(() => {
@@ -83,13 +81,13 @@ export function StayFilter({ isOnViewPort }) {
     }
   }, [isOnViewPort]);
 
-  useEffect(()=>{
-    if( width > 745 ) {
-       setMobileFilterOpen(false)
-      }else{
-        setMobileFilterOpen(true)
+  useEffect(() => {
+    if (width > 745) {
+      setMobileFilterOpen(false);
+    } else {
+      setMobileFilterOpen(true);
     }
-  },[width])
+  }, [width]);
 
   function refactorFilter(filterObj) {
     let flatObj = {};
@@ -162,8 +160,7 @@ export function StayFilter({ isOnViewPort }) {
     if (filterContainer) {
       filterContainer.classList.remove("active");
     }
-    navigate(`/search?${searchParams}`)
-
+    navigate(`/search?${searchParams}`);
   }
 
   function classModalOpen() {
@@ -301,62 +298,63 @@ export function StayFilter({ isOnViewPort }) {
     );
   } else if (isFilterOpen) {
     return (
-      <section className="stay-filter shadow open">
-        <button
-          className="filter-btn open flex column"
-          name="destination"
-          onClick={onHandleClick}
-        >
-          <span className="btn-header">Where</span>
-          <input
-            type="text"
-            placeholder="Search destinations"
-            value={filter.city}
-            onChange={handleCityChange}
-          />
-        </button>
-        {buttonDetails.map((btn) => {
-          return (
-            <button
-              key={btn.name}
-              className="filter-btn open flex column" 
-              name={btn.name}
-              onClick={onHandleClick}
-            >
-              <span className="btn-header">{btn.span}</span>
-              <span className="light-color">{btn.placeholder}</span>
-            </button>
-          );
-        })}
-        <button
-          className="filter-btn open flex row"
-          name="guest"
-          onClick={onHandleClick}
-        >
-          <div className="flex column">
-
-        <span className="btn-header">Who</span>
-          <span className="light-color">{handleGuests()}</span>
-          </div>
-        <button
-          className={`search-btn search-sml ${classModalOpen()}`}
-          onClick={onSearchClick}
+      <div className="open-filter-div">
+        <section className="stay-filter shadow open">
+          <button
+            className="filter-btn open flex column"
+            name="destination"
+            onClick={onHandleClick}
           >
-          <SearchIcon />
-          <span className="search-text">Search</span>
-        </button>
-        </button>
+            <span className="btn-header">Where</span>
+            <input
+              type="text"
+              placeholder="Search destinations"
+              value={filter.city}
+              onChange={handleCityChange}
+            />
+          </button>
+          {buttonDetails.map((btn) => {
+            return (
+              <button
+                key={btn.name}
+                className="filter-btn open flex column"
+                name={btn.name}
+                onClick={onHandleClick}
+              >
+                <span className="btn-header">{btn.span}</span>
+                <span className="light-color">{btn.placeholder}</span>
+              </button>
+            );
+          })}
+          <button
+            className="filter-btn open flex row"
+            name="guest"
+            onClick={onHandleClick}
+          >
+            <div className="flex column">
+              <span className="btn-header">Who</span>
+              <span className="light-color">{handleGuests()}</span>
+            </div>
+            <button
+              className={`search-btn search-sml ${classModalOpen()}`}
+              onClick={onSearchClick}
+            >
+              <SearchIcon />
+              <span className="search-text">Search</span>
+            </button>
+          </button>
 
-        {isModalOpen && (
-          <DynamicModalCmp
-            currentModalContent={currentModalContent}
-            handleCityChange={handleCityChange}
-            handleGuestsChange={handleGuestsChange}
-            handleDateChange={handleDateChange}
-            onCloseModal={onCloseModal}
-          />
-        )}
-      </section>
+          {isModalOpen && (
+            <DynamicModalCmp
+              currentModalContent={currentModalContent}
+              handleCityChange={handleCityChange}
+              handleGuestsChange={handleGuestsChange}
+              handleDateChange={handleDateChange}
+              onCloseModal={onCloseModal}
+            />
+          )}
+        </section>
+      </div>
     );
   } else {
     return (
