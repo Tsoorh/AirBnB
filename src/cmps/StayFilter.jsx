@@ -39,11 +39,7 @@ export function StayFilter({ isOnViewPort }) {
       name: "checkIn",
       Label: "When",
       Placeholder:
-        (filter.dates.checkIn && filter.dates.checkIn + "-") ||
-        (filter.dates.checkIn &&
-          filter.dates.checkOutfilter.dates.checkIn +
-            "-" +
-            filter.dates.checkOut) ||
+        (filter.dates.checkIn && filter.dates.checkIn + " - " +filter.dates.checkOut) ||
         "Add dates",
       Component: ChooseDates,
       propHandler: handleDateChange,
@@ -74,10 +70,11 @@ export function StayFilter({ isOnViewPort }) {
   }, [filter]);
 
   useEffect(() => {
-    if (isOnViewPort && width > 745) {
-      setIsFilterOpen(false);
+    if (width > 745) {
+      if (isOnViewPort) setIsFilterOpen(false);
+      else setIsFilterOpen(true);
     } else {
-      setIsFilterOpen(true);
+      setIsFilterOpen(false);
     }
   }, [isOnViewPort]);
 
@@ -85,6 +82,7 @@ export function StayFilter({ isOnViewPort }) {
     if (width > 745) {
       setMobileFilterOpen(false);
     } else {
+      setIsFilterOpen(false);
       setMobileFilterOpen(true);
     }
   }, [width]);
@@ -169,6 +167,7 @@ export function StayFilter({ isOnViewPort }) {
   }
 
   function handleCityChange(city) {
+    if(width<745) setMobileFilterSelection(prev=>({...prev,destination:false}));
     setFilter((prev) => ({ ...prev, city }));
   }
 
@@ -203,7 +202,7 @@ export function StayFilter({ isOnViewPort }) {
       destination: false,
       checkIn: false,
       guests: false,
-      [name]: true,
+      [name]: true
     });
   }
 
@@ -219,11 +218,14 @@ export function StayFilter({ isOnViewPort }) {
         {filterConfigs.map((config) => (
           <li key={config.name}>
             {config.selectionState ? (
-              <config.Component
-                handleChange={config.propHandler}
-                isOpen={currentModalContent === config.name}
-                onCloseModal={onCloseModal}
-              />
+              <div className="shadow mobile-modal">
+                <span>{config.Label}?</span>
+                <config.Component
+                  handleChange={config.propHandler}
+                  isOpen={currentModalContent === config.name}
+                  onCloseModal={onCloseModal}
+                />
+              </div>
             ) : (
               <button
                 className="filter-btn flex shadow"
@@ -236,60 +238,6 @@ export function StayFilter({ isOnViewPort }) {
             )}
           </li>
         ))}
-        {/* <li>
-          {mobileFilterSelection.destination ? (
-            <SearchDestination
-              handleChange={handleCityChange}
-              isOpen={currentModalContent === "destination"}
-              onCloseModal={onCloseModal}
-            />
-          ) : (
-            <button
-              className="filter-btn flex shadow"
-              name="destination"
-              onClick={handleMobileFilterClick}
-            >
-              <span>Where</span>
-              <span>{filter.city || "I'm flexible"}</span>
-            </button>
-          )}
-        </li>
-        <li>
-          {mobileFilterSelection.checkIn ? (
-            <ChooseDates
-              handleChange={handleDateChange}
-              isOpen={currentModalContent === "checkIn"}
-              onCloseModal={onCloseModal}
-            />
-          ) : (
-            <button
-              className="filter-btn flex shadow"
-              name="checkIn"
-              onClick={handleMobileFilterClick}
-            >
-              <span>When</span>
-              <span>{"Add dates"}</span>
-            </button>
-          )}
-        </li>
-        <li>
-          {mobileFilterSelection.guest ? (
-            <GuestsPicker
-              handleChange={handleGuestsChange}
-              isOpen={currentModalContent === "guest"}
-              onCloseModal={onCloseModal}
-            />
-          ) : (
-            <button
-              className="filter-btn flex shadow"
-              name="guest"
-              onClick={handleMobileFilterClick}
-            >
-              <span>Who</span>
-              <span>{handleGuests()}</span>
-            </button>
-          )}
-        </li>*/}
         <li>
           <a onClick={onResetFilter}>Clear all</a>
           <button onClick={onSearchClick}>Search</button>
@@ -358,10 +306,10 @@ export function StayFilter({ isOnViewPort }) {
     );
   } else {
     return (
-      <section className="stay-filter close shadow">
+      <section className="stay-filter close shadow wide ">
         <input
           type="text"
-          className="mobile-only-item search-mobile "
+          className="mobile-only-item search-mobile"
           placeholder="Start your search"
           onClick={() => {
             setMobileFilterOpen(true);

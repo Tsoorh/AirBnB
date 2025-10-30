@@ -10,38 +10,36 @@
 /* search input in mobile */
 .search-mobile {
     border: none;
-    padding: 0.8rem;
-    width: 80vw;
-
+    border-radius: var(--h-border-radius);
+    padding: 0.625rem 1.1875rem;
+    width: 100vw;
+    height: 2.1875rem;
     &::placeholder {
-        color: rgb(34, 34, 34);
+        color: black;
         font-weight: 500;
         text-align: center;
     }
-
     &:focus {
         border: none;
 
     }
 }
 
-
 @media screen and (max-width:745px) {
     .main-container {
         display: flex;
         flex-direction: column;
-
         >.app-header {
             display: flex;
             flex-direction: column;
             justify-content: center;
             padding: 0;
-            overflow-y: auto;
+            /* overflow-y: auto; */
             background-color: #f1f1f1;
         }
-        overflow: hidden;
-        overflow-y: hidden;
-        overflow-x: hidden;
+        /* overflow: hidden;
+        overflow-y: hidden; */
+        /* overflow-x: hidden; */
     }
 
     .mobile-filter {
@@ -49,19 +47,21 @@
         flex-direction: column;
         align-items: center;
         margin: 0;
-        max-height: 100vh;
+        height: 100vh;
         width: 100vw;
         >.x-btn {
             position: absolute;
-            right: 1rem;
-            top: 1rem;
+
+            right: 0.8rem;
+            top: 0.8rem;
+            height: 2rem;
+            width: 2rem;
             border-radius: 50%;
             color: black;
             background-color: #fff;
-
         }
-
         >li {
+            
             >.filter-btn {
                 width: 80vw;
                 background-color: #fff;
@@ -76,11 +76,12 @@
 
             &:last-of-type {
                 width: 80vw;
-                justify-self: flex-end;
-                position: relative;
+                /* justify-self: flex-end; */
+                /* position: relative; */
                 display: flex;
                 justify-content: space-between;
-
+                position: absolute;
+                bottom: 1rem;
                 >a {
                     text-decoration: underline;
                     cursor: pointer;
@@ -88,11 +89,26 @@
 
                 >button {
                     border-radius: 5px;
+                    padding: 0.5rem;
                     color: whitesmoke;
                     background-color: rgb(20, 20, 20);
 
                 }
             }
+        }
+
+    }
+
+    .mobile-modal{
+        display: flex;
+        flex-direction: column;
+        border-radius:1rem;
+        width: 80vw;
+        >span{
+            padding-left: 2rem;
+            font-weight: 600;
+            font-size: 1.5rem;
+            padding-top: 2rem;
         }
     }
 
