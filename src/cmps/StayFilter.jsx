@@ -7,6 +7,7 @@ import { useSearchParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { SearchDestination } from "./FilterCmps/SearchDestination";
 import { ChooseDates } from "./FilterCmps/ChooseDates";
+import { MobileDates } from "./FilterCmps/MobileDates";
 import { GuestsPicker } from "./FilterCmps/GuestsPicker";
 import { useNavigate } from "react-router";
 
@@ -41,10 +42,20 @@ export function StayFilter({ isOnViewPort }) {
       Placeholder:
         (filter.dates.checkIn && filter.dates.checkIn + " - " +filter.dates.checkOut) ||
         "Add dates",
-      Component: ChooseDates,
+      Component: MobileDates,
       propHandler: handleDateChange,
       selectionState: mobileFilterSelection.checkIn,
     },
+    // {
+    //   name: "checkIn",
+    //   Label: "When",
+    //   Placeholder:
+    //     (filter.dates.checkIn && filter.dates.checkIn + " - " +filter.dates.checkOut) ||
+    //     "Add dates",
+    //   Component: ChooseDates,
+    //   propHandler: handleDateChange,
+    //   selectionState: mobileFilterSelection.checkIn,
+    // },
     {
       name: "guest",
       Label: "Who",
@@ -59,9 +70,6 @@ export function StayFilter({ isOnViewPort }) {
     setIsFilterOpen(false);
     setIsModalOpen(false);
     SetCurrentModalContent(null);
-
-    // const el = document.querySelector(".stay-filter");
-    // if (el) el.classList.remove("active");
   }, [location.pathname]);
 
   useEffect(() => {
