@@ -29,7 +29,6 @@
     .main-container {
         display: flex;
         flex-direction: column;
-
         >.app-header {
             display: flex;
             flex-direction: column;
@@ -61,8 +60,8 @@
             color: black;
             background-color: #fff;
         }
-
         >li {
+            
             >.filter-btn {
                 width: 80vw;
                 background-color: #fff;
@@ -96,6 +95,20 @@
 
                 }
             }
+        }
+
+    }
+
+    .mobile-modal{
+        display: flex;
+        flex-direction: column;
+        border-radius:1rem;
+        width: 80vw;
+        >span{
+            padding-left: 2rem;
+            font-weight: 600;
+            font-size: 1.5rem;
+            padding-top: 2rem;
         }
     }
 

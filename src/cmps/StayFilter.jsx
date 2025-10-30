@@ -77,9 +77,8 @@ export function StayFilter({ isOnViewPort }) {
     if (width > 745) {
       if (isOnViewPort) setIsFilterOpen(false);
       else setIsFilterOpen(true);
-    }
-    else{
-      setIsFilterOpen(false)
+    } else {
+      setIsFilterOpen(false);
     }
   }, [isOnViewPort]);
 
@@ -87,7 +86,7 @@ export function StayFilter({ isOnViewPort }) {
     if (width > 745) {
       setMobileFilterOpen(false);
     } else {
-      setIsFilterOpen(false)
+      setIsFilterOpen(false);
       setMobileFilterOpen(true);
     }
   }, [width]);
@@ -222,11 +221,14 @@ export function StayFilter({ isOnViewPort }) {
         {filterConfigs.map((config) => (
           <li key={config.name}>
             {config.selectionState ? (
-              <config.Component
-                handleChange={config.propHandler}
-                isOpen={currentModalContent === config.name}
-                onCloseModal={onCloseModal}
-              />
+              <div className="shadow mobile-modal">
+                <span>{config.Label}?</span>
+                <config.Component
+                  handleChange={config.propHandler}
+                  isOpen={currentModalContent === config.name}
+                  onCloseModal={onCloseModal}
+                />
+              </div>
             ) : (
               <button
                 className="filter-btn flex shadow"
