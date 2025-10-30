@@ -215,7 +215,7 @@
   overflow: auto;
   display: flex;
   flex-direction: column;
-  >:last-child{
+  /* >:last-child{
     display: flex;
     align-items: center;
     justify-content: end;
@@ -229,9 +229,9 @@
   }
   >:last-child p{
     text-decoration: underline;
-      cursor: pointer;
-  margin: 0;
-  }
+    cursor: pointer;
+    margin: 0;
+  } */
 }
 
 
@@ -239,13 +239,6 @@
 
 
 
-/* Modal footer */
-.modal-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 16px;
-}
 
 
 

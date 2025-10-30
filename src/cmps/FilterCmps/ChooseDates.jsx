@@ -3,10 +3,14 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { useEffect, useRef } from "react";
+import { useSearchParams } from 'react-router-dom'
+
 
 
 export function ChooseDates({ handleChange, onCloseModal }) {
     const wrapperRef = useRef(null);
+    const [searchParams, setSearchParams] = useSearchParams()
+
 
     // Close on outside click
     useEffect(() => {
@@ -31,16 +35,29 @@ export function ChooseDates({ handleChange, onCloseModal }) {
     handleChange(field, pickedDateFormatted);
   }
 
+    const handleClearDates = () => {
+        const newParams = new URLSearchParams(searchParams)
+        newParams.delete('checkIn')
+        newParams.delete('checkOut')
+        setSearchParams(newParams)
+    }
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <div className="flex justify-center align-center modal-calendar-container" ref={wrapperRef}>
-        <div className="calendar-container">
-        {/* <span>Check in</span> */}
-        <DateCalendar  onChange={(ev)=>onChangeDate(ev,"checkIn")} />
+      <div className="modal-calendar-container" ref={wrapperRef}>
+        <div className="flex justify-center align-center">
+          <div className="calendar-container">
+          {/* <span>Check in</span> */}
+          <DateCalendar  onChange={(ev)=>onChangeDate(ev,"checkIn")} />
+          </div>
+          <div className="calendar-container">
+          {/* <span>Check out</span> */}
+          <DateCalendar  onChange={(ev)=>onChangeDate(ev,"checkOut")}/>
+          </div>
         </div>
-        <div className="calendar-container">
-        {/* <span>Check out</span> */}
-        <DateCalendar  onChange={(ev)=>onChangeDate(ev,"checkOut")}/>
+        <div className='choose-dates-btns'>
+          <p onClick={handleClearDates}>Clear dates</p>
+          <button onClick={onCloseModal}>Close</button>
         </div>
       </div>
     </LocalizationProvider>

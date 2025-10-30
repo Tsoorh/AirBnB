@@ -15,7 +15,7 @@ export function getEmptyStay() {
         summary:'',
         imgUrls: [],
         price: { 
-            bace: 0,
+            base: 0,
             currency: 'USD',
             cleaningFee: 0,
             serviceFeePct: 0.12
@@ -40,11 +40,11 @@ export function getEmptyStay() {
             city: '',
             address: '',
             lat: null,
-            lan: null
+            lng: null
         },
         reviews: [],
         likedByUsersIds: [],
-        houseRule: [],
+        houseRules: [],
         checkIn: {from: '15:00', to: '22:00'},  
         checkOut: { by: '11:00'},
         unavailable: [], //array of objects like this: { startDate: "2025-10-18", endDate: "2025-10-21" } that tells the stay is booked in this dates

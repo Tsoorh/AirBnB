@@ -89,19 +89,22 @@ async function remove(stayId) {
 
 async function save(stay) {
     var savedStay
+    const now = Date.now()
     if (stay._id) {
-        const stayToSave = {
-            _id: stay._id,
-            speed: stay.speed
-        }
-        savedStay = await storageService.put(STORAGE_KEY, stayToSave)
+        // Update existing stay
+        savedStay = await storageService.put(STORAGE_KEY, { ...stay, updatedAt: now })
     } else {
+        // Create new stay
         const stayToSave = {
-            vendor: stay.vendor,
-            speed: stay.speed,
-            // Later, owner is set by the backend
-            owner: userService.getLoggedinUser(),
-            msgs: []
+            ...stay,
+            _id: makeId(),
+            createdAt: now,
+            updatedAt: now,
+            reviews: stay.reviews || [],
+            likedByUsersIds: stay.likedByUsersIds || [],
+            unavailable: stay.unavailable || [],
+            rating: stay.rating || { avg: 0, count: 0 },
+            labels: stay.labels || []
         }
         savedStay = await storageService.post(STORAGE_KEY, stayToSave)
     }
