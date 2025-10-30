@@ -87,6 +87,7 @@ export function StayFilter({ isOnViewPort }) {
     if (width > 745) {
       setMobileFilterOpen(false);
     } else {
+      setIsFilterOpen(false)
       setMobileFilterOpen(true);
     }
   }, [width]);

@@ -35,12 +35,12 @@
             flex-direction: column;
             justify-content: center;
             padding: 0;
-            overflow-y: auto;
+            /* overflow-y: auto; */
             background-color: #f1f1f1;
         }
-        overflow: hidden;
-        overflow-y: hidden;
-        overflow-x: hidden;
+        /* overflow: hidden;
+        overflow-y: hidden; */
+        /* overflow-x: hidden; */
     }
 
     .mobile-filter {
@@ -57,7 +57,6 @@
             border-radius: 50%;
             color: black;
             background-color: #fff;
-
         }
 
         >li {
