@@ -1,15 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-
 import { loadStays } from '../store/actions/stay.actions'
 import { StayList } from '../cmps/StayList'
-// import { useZoomLevel } from '../customHooks/useZoomLevel'
 
 export function StayIndex() {
     const stays = useSelector(storeState => storeState.stayModule.stays)
     const [cityScrollPositions, setCityScrollPositions] = useState({})
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-    // const zoomLevel = useZoomLevel()
 
     // Calculate responsive stay count based on window width
     const getStaysPerRow = () => {
@@ -18,9 +15,6 @@ export function StayIndex() {
         if (windowWidth <= 1190) return 5
         if (windowWidth <= 1439) return 6
         if (windowWidth >=1440) return 7
-        // if (windowWidth <= 1120) return 4
-        // if (windowWidth <= 1330) return 5
-        // return zoomLevel >= 90 ? 6 : 7
     }
 
     const staysPerRow = getStaysPerRow()
