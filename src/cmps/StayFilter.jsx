@@ -307,7 +307,7 @@ export function StayFilter({ isOnViewPort }) {
     );
   } else {
     return (
-      <section className="stay-filter close shadow wide">
+      <section className="stay-filter close shadow wide ">
         <input
           type="text"
           className="mobile-only-item search-mobile"
