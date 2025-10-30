@@ -41,6 +41,9 @@
             border-radius: var(--h-border-radius)
         }
     }
+    &.wide{
+        max-width: 90vw;
+    }
 }
 
 .stay-filter.open {
@@ -49,7 +52,9 @@
     width: 80%;
     justify-content: left;
     max-width: 780px;
+    min-width: 780px;
     margin: auto;
+
     >button:hover,
     >button.active {
         border-radius: var(--h-border-radius);
