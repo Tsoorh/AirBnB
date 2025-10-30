@@ -39,11 +39,7 @@ export function StayFilter({ isOnViewPort }) {
       name: "checkIn",
       Label: "When",
       Placeholder:
-        (filter.dates.checkIn && filter.dates.checkIn + "-") ||
-        (filter.dates.checkIn &&
-          filter.dates.checkOutfilter.dates.checkIn +
-            "-" +
-            filter.dates.checkOut) ||
+        (filter.dates.checkIn && filter.dates.checkIn + " - " +filter.dates.checkOut) ||
         "Add dates",
       Component: ChooseDates,
       propHandler: handleDateChange,
@@ -171,6 +167,7 @@ export function StayFilter({ isOnViewPort }) {
   }
 
   function handleCityChange(city) {
+    if(width<745) setMobileFilterSelection(prev=>({...prev,destination:false}));
     setFilter((prev) => ({ ...prev, city }));
   }
 
@@ -205,7 +202,7 @@ export function StayFilter({ isOnViewPort }) {
       destination: false,
       checkIn: false,
       guests: false,
-      [name]: true,
+      [name]: true
     });
   }
 
