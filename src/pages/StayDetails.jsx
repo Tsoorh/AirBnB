@@ -1,19 +1,42 @@
 import { useEffect, useRef, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { loadStay } from '../store/actions/stay.actions'
 import { ReviewList } from '../cmps/ReviewList'
 import { ImageGallery } from '../cmps/ImageGallery'
 import { BookingWidget } from '../cmps/BookingWidget'
 import { AmenityIcon } from '../cmps/AmenityIcon'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'
+import dayjs from 'dayjs'
 import '../assets/styles/cmps/stay/StayDetails.css'
 
 export function StayDetails() {
   const { stayId } = useParams()
   const stay = useSelector(storeState => storeState.stayModule.stay)
-  const mapSectionRef = useRef(null)
+  const [searchParams, setSearchParams] = useSearchParams()
   const reviewsSectionRef = useRef(null)
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false)
+  const [isHostBioExpanded, setIsHostBioExpanded] = useState(false)
+  
+  // Get dates from URL params and validate them
+  const checkInParamRaw = searchParams.get('checkIn') || ''
+  const checkOutParamRaw = searchParams.get('checkOut') || ''
+  const checkInParam = checkInParamRaw && dayjs(checkInParamRaw).isValid() ? checkInParamRaw : ''
+  const checkOutParam = checkOutParamRaw && dayjs(checkOutParamRaw).isValid() ? checkOutParamRaw : ''
+  
+  // State to control calendar months - left shows current/check-in month, right shows next month
+  const getLeftMonth = () => checkInParam ? dayjs(checkInParam).startOf('month') : dayjs().startOf('month')
+  const [leftMonth, setLeftMonth] = useState(getLeftMonth)
+  const [rightMonth, setRightMonth] = useState(() => getLeftMonth().add(1, 'month'))
+  
+  // Update calendar months when check-in changes
+  useEffect(() => {
+    const newLeftMonth = getLeftMonth()
+    setLeftMonth(newLeftMonth)
+    setRightMonth(newLeftMonth.add(1, 'month'))
+  }, [checkInParam])
 
   useEffect(() => {
     loadStay(stayId)
@@ -33,31 +56,144 @@ export function StayDetails() {
     stay.capacity?.beds && `${stay.capacity.beds} ${stay.capacity.beds === 1 ? 'bed' : 'beds'}`,
     stay.capacity?.bathrooms && `${stay.capacity.bathrooms} ${stay.capacity.bathrooms === 1 ? 'bathroom' : 'bathrooms'}`
   ].filter(Boolean)
-  const checkInWindow = stay.checkIn ? `${stay.checkIn.from} - ${stay.checkIn.to}` : null
   const checkOutTime = stay.checkOut?.by
   const hostAvatar = stay.host?.picture || (stay.host?.fullname ? `https://i.pravatar.cc/120?u=${encodeURIComponent(stay.host.fullname)}` : 'https://i.pravatar.cc/120')
+  
+  // Calculate years hosting from createdAt
+  const yearsHosting = stay.createdAt ? Math.floor((Date.now() - stay.createdAt) / (1000 * 60 * 60 * 24 * 365)) : 0
+  
+  // Mock host biography (in real app, this would come from stay.host.bio)
+  const hostBio = stay.host?.bio || `I am a passionate host who loves providing great stays for guests. With years of experience in hospitality, I ensure every guest feels welcome and comfortable during their stay.`
+  const hostBioPreview = hostBio.slice(0, 200)
+  const shouldTruncateBio = hostBio.length > 200
+  const displayedBio = !shouldTruncateBio || isHostBioExpanded ? hostBio : `${hostBioPreview}...`
+  
+  // Mock co-hosts (in real app, this would come from stay.host.coHosts)
+  const coHosts = stay.host?.coHosts || []
+  
+  // Mock host details
+  const responseRate = stay.host?.responseRate || 100
+  const responseTime = stay.host?.responseTime || 'within an hour'
   const amenitiesPreview = stay.amenities?.slice(0, 10) || []
   const hasMoreAmenities = (stay.amenities?.length || 0) > amenitiesPreview.length
   const descriptionPreview = stay.summary?.slice(0, 350)
   const shouldTruncateDescription = stay.summary && stay.summary.length > 350
   const displayedDescription = !shouldTruncateDescription || isDescriptionExpanded ? stay.summary : `${descriptionPreview}...`
-  const houseRulesItems = stay.houseRules?.length ? stay.houseRules : ['Follow local community guidelines.']
-  const safetyItems = [
-    checkInWindow ? `Self check-in after ${stay.checkIn.from}` : null,
+  // Format house rules for display
+  const houseRulesItems = [
+    stay.checkIn?.from ? `Check-in after ${stay.checkIn.from}` : null,
     checkOutTime ? `Checkout before ${checkOutTime}` : null,
-    'Carbon monoxide alarm not reported',
-    'Smoke alarm not reported'
+    stay.capacity?.guests ? `${stay.capacity.guests} guests maximum` : null,
+    ...(stay.houseRules || [])
   ].filter(Boolean)
-  const cancellationItems = [
-    stay.cancellationPolicy || 'Add your trip dates to get the cancellation details for this stay.'
+  
+  const safetyItems = [
+    'Carbon monoxide alarm',
+    'Smoke alarm'
   ]
-
-  const handleShowMap = () => {
-    mapSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
+  
+  const cancellationItems = [
+    'This reservation is non-refundable.',
+    "Review this host's full policy for details."
+  ]
 
   const handleShowReviews = () => {
     reviewsSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  // Handle date selection from calendar - both calendars can select either date
+  const handleDateChange = (ev) => {
+    if (!ev || ev.$D === undefined || ev.$M === undefined || ev.$y === undefined) return
+    
+    const { $D, $M, $y } = ev
+    const pickedDateFormatted = `${$y}-${String($M + 1).padStart(2, '0')}-${String($D).padStart(2, '0')}`
+    
+    if (!dayjs(pickedDateFormatted).isValid()) return
+    
+    const newParams = new URLSearchParams(searchParams)
+    
+    if (!checkInParam) {
+      newParams.set('checkIn', pickedDateFormatted)
+    } else if (!checkOutParam) {
+      if (pickedDateFormatted <= checkInParam) {
+        newParams.set('checkIn', pickedDateFormatted)
+      } else {
+        newParams.set('checkOut', pickedDateFormatted)
+      }
+    } else {
+      if (pickedDateFormatted < checkInParam) {
+        newParams.set('checkIn', pickedDateFormatted)
+        if (pickedDateFormatted >= checkOutParam) {
+          newParams.delete('checkOut')
+        }
+      } else if (pickedDateFormatted > checkOutParam) {
+        newParams.set('checkOut', pickedDateFormatted)
+      } else {
+        const distToCheckIn = Math.abs(dayjs(pickedDateFormatted).diff(dayjs(checkInParam), 'day'))
+        const distToCheckOut = Math.abs(dayjs(pickedDateFormatted).diff(dayjs(checkOutParam), 'day'))
+        
+        if (distToCheckIn <= distToCheckOut) {
+          newParams.set('checkIn', pickedDateFormatted)
+          if (pickedDateFormatted >= checkOutParam) {
+            newParams.delete('checkOut')
+          }
+        } else {
+          newParams.set('checkOut', pickedDateFormatted)
+          if (pickedDateFormatted <= checkInParam) {
+            newParams.set('checkIn', pickedDateFormatted)
+            newParams.delete('checkOut')
+          }
+        }
+      }
+    }
+    
+    setSearchParams(newParams)
+  }
+  
+  // Handle month navigation - keep calendars synchronized
+  const handleLeftMonthChange = (newMonth) => {
+    const newLeftMonth = dayjs(newMonth).startOf('month')
+    const newRightMonth = newLeftMonth.add(1, 'month')
+    setLeftMonth(newLeftMonth)
+    setRightMonth(newRightMonth)
+  }
+  
+  const handleRightMonthChange = (newMonth) => {
+    const newRightMonth = dayjs(newMonth).startOf('month')
+    const newLeftMonth = newRightMonth.subtract(1, 'month')
+    setLeftMonth(newLeftMonth)
+    setRightMonth(newRightMonth)
+  }
+
+  // Handle clear dates
+  const handleClearDates = () => {
+    const newParams = new URLSearchParams(searchParams)
+    newParams.delete('checkIn')
+    newParams.delete('checkOut')
+    setSearchParams(newParams)
+  }
+
+  // Format dates for display
+  const formatDateDisplay = (dateString) => {
+    if (!dateString) return ''
+    const date = dayjs(dateString)
+    return date.isValid() ? date.format('MMM D, YYYY') : dateString
+  }
+
+  // Calculate nights
+  const nights = checkInParam && checkOutParam ? dayjs(checkOutParam).diff(dayjs(checkInParam), 'day') : 0
+
+  // Check if a date is unavailable
+  const isDateUnavailable = (date) => {
+    if (!stay?.unavailable || !date) return false
+    return stay.unavailable.some(range => {
+      const start = dayjs(range.startDate)
+      const end = dayjs(range.endDate)
+      const dateStr = date.format('YYYY-MM-DD')
+      const startStr = start.format('YYYY-MM-DD')
+      const endStr = end.format('YYYY-MM-DD')
+      return dateStr >= startStr && dateStr <= endStr
+    })
   }
 
   return (
@@ -194,40 +330,59 @@ export function StayDetails() {
               </section>
             )}
 
-            {(houseRulesItems.length || safetyItems.length || cancellationItems.length) > 0 && (
-              <section className="stay-things-to-know">
-                <h3>Things to know</h3>
-                <div className="things-grid">
-                  <div className="thing-column">
-                    <h4>House rules</h4>
-                    <ul>
-                      {houseRulesItems.map(rule => (
-                        <li key={rule}>{rule}</li>
-                      ))}
-                    </ul>
+            <section className="stay-date-selection">
+              <div className="date-selection-header">
+                <h3>Select check-in date</h3>
+                <p className="date-selection-subtitle">Add your travel dates for exact pricing</p>
+              </div>
+              {(checkInParam || checkOutParam) && (
+                <div className="date-selection-summary">
+                  {nights > 0 ? (
+                    <p>{nights} {nights === 1 ? 'night' : 'nights'} in {locationLabel || 'this location'}</p>
+                  ) : (
+                    <p>Select dates</p>
+                  )}
+                  {(checkInParam && checkOutParam) && (
+                    <p className="date-range">
+                      {formatDateDisplay(checkInParam)} - {formatDateDisplay(checkOutParam)}
+                    </p>
+                  )}
+                </div>
+              )}
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <div className="date-calendars-container">
+                  <div className="date-calendar-wrapper">
+                    <DateCalendar
+                      key={`left-${leftMonth.format('YYYY-MM')}`}
+                      value={checkInParam ? dayjs(checkInParam) : null}
+                      onChange={handleDateChange}
+                      minDate={dayjs()}
+                      disablePast
+                      shouldDisableDate={(date) => date?.isValid() && isDateUnavailable(date)}
+                      onMonthChange={handleLeftMonthChange}
+                      defaultCalendarMonth={leftMonth}
+                    />
                   </div>
-                  <div className="thing-column">
-                    <h4>Safety & property</h4>
-                    <ul>
-                      {safetyItems.map(item => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="thing-column">
-                    <h4>Cancellation policy</h4>
-                    <ul>
-                      {cancellationItems.map(item => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                    <button type="button" className="link-button link-button--inline">
-                      Show more
-                    </button>
+                  <div className="date-calendar-wrapper">
+                    <DateCalendar
+                      key={`right-${rightMonth.format('YYYY-MM')}`}
+                      value={checkOutParam ? dayjs(checkOutParam) : null}
+                      onChange={handleDateChange}
+                      minDate={dayjs()}
+                      disablePast
+                      shouldDisableDate={(date) => date?.isValid() && isDateUnavailable(date)}
+                      onMonthChange={handleRightMonthChange}
+                      defaultCalendarMonth={rightMonth}
+                    />
                   </div>
                 </div>
-              </section>
-            )}
+              </LocalizationProvider>
+              {(checkInParam || checkOutParam) && (
+                <button type="button" className="clear-dates-button" onClick={handleClearDates}>
+                  Clear dates
+                </button>
+              )}
+            </section>
           </div>
         </div>
         <aside className="stay-sidebar">
@@ -235,8 +390,27 @@ export function StayDetails() {
         </aside>
       </div>
 
+      <section className="stay-reviews" ref={reviewsSectionRef}>
+        <div className="reviews-header">
+          <h2>Guest reviews</h2>
+          {formattedRating && ratingCount && (
+            <div className="reviews-summary">
+              <span className="reviews-star" aria-hidden="true">{'\u2605'}</span>
+              <span>{formattedRating}</span>
+              <span className="reviews-dot">{'\u00b7'}</span>
+              <span>{ratingCount} reviews</span>
+            </div>
+          )}
+        </div>
+        {stay.reviews?.length ? (
+          <ReviewList reviews={stay.reviews} />
+        ) : (
+          <p className="no-reviews">No reviews yet</p>
+        )}
+      </section>
+
       {stay.loc && (
-        <section className="stay-location" ref={mapSectionRef}>
+        <section className="stay-location">
           <h2>Where you'll be</h2>
           <div className="stay-location-content">
             <div className="stay-location-text">
@@ -263,24 +437,145 @@ export function StayDetails() {
         </section>
       )}
 
-      <section className="stay-reviews" ref={reviewsSectionRef}>
-        <div className="reviews-header">
-          <h2>Guest reviews</h2>
-          {formattedRating && ratingCount && (
-            <div className="reviews-summary">
-              <span className="reviews-star" aria-hidden="true">{'\u2605'}</span>
-              <span>{formattedRating}</span>
-              <span className="reviews-dot">{'\u00b7'}</span>
-              <span>{ratingCount} reviews</span>
+      {stay.host && (
+        <section className="stay-meet-host">
+          <h2>Meet your host</h2>
+          <div className="meet-host-content">
+            <div className="host-profile-section">
+              <div className="host-profile-card">
+                <div className="host-profile-avatar">
+                  <img src={hostAvatar} alt={`Host ${stay.host.fullname}`} />
+                </div>
+                <div className="host-profile-info">
+                  <h3 className="host-profile-name">{stay.host.fullname}</h3>
+                  {stay.host.isSuperhost && (
+                    <div className="host-profile-superhost">
+                      <span className="superhost-star">★</span>
+                      <span>Superhost</span>
+                    </div>
+                  )}
+                  <div className="host-profile-stats">
+                    <span className="host-stat-reviews">{ratingCount || 0} Reviews</span>
+                    <span className="host-stat-rating">
+                      <span className="host-stat-star">★</span>
+                      {formattedRating || '0'}
+                    </span>
+                    {yearsHosting > 0 && (
+                      <span className="host-stat-years">{yearsHosting} Years hosting</span>
+                    )}
+                  </div>
+                  <div className="host-profile-details">
+                    <div className="host-detail-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="16" height="16">
+                        <path d="M9 21h6M12 3a6 6 0 0 1 6 6c0 2.22-1.78 4-4 4H10c-2.22 0-4-1.78-4-4a6 6 0 0 1 6-6z" />
+                        <path d="M12 7v2M12 11v2" />
+                      </svg>
+                      <span>Born in the 90s</span>
+                    </div>
+                    <div className="host-detail-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="16" height="16">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                      </svg>
+                      <span>Speaks English and Hebrew</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="host-biography">
+                <p>{displayedBio}</p>
+                {shouldTruncateBio && (
+                  <button
+                    type="button"
+                    className="link-button link-button--bio"
+                    onClick={() => setIsHostBioExpanded(prev => !prev)}
+                  >
+                    {isHostBioExpanded ? 'Show less' : 'Show more'} <span className="arrow">{'>'}</span>
+                  </button>
+                )}
+              </div>
             </div>
-          )}
-        </div>
-        {stay.reviews?.length ? (
-          <ReviewList reviews={stay.reviews} />
-        ) : (
-          <p className="no-reviews">No reviews yet</p>
-        )}
-      </section>
+            <div className="host-info-section">
+              {stay.host.isSuperhost && (
+                <div className="host-superhost-info">
+                  <h4>{stay.host.fullname} is a Superhost</h4>
+                  <p>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</p>
+                </div>
+              )}
+              {coHosts.length > 0 && (
+                <div className="host-cohosts">
+                  <h4>Co-hosts</h4>
+                  <div className="cohosts-list">
+                    {coHosts.map((cohost, idx) => (
+                      <div key={idx} className="cohost-item">
+                        <div className="cohost-avatar">
+                          <img src={cohost.picture || `https://i.pravatar.cc/40?u=${cohost.name}`} alt={cohost.name} />
+                        </div>
+                        <span className="cohost-name">{cohost.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              <div className="host-details-info">
+                <h4>Host details</h4>
+                <p>Response rate: {responseRate}%</p>
+                <p>Responds {responseTime}</p>
+              </div>
+              <button type="button" className="host-message-button">
+                Message host
+              </button>
+              <div className="host-payment-protection">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <path d="M9 12l2 2 4-4" />
+                </svg>
+                <span>To help protect your payment, always use Airbnb to send money and communicate with hosts.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {(houseRulesItems.length || safetyItems.length || cancellationItems.length) > 0 && (
+        <section className="stay-things-to-know">
+          <h2>Things to know</h2>
+          <div className="things-grid">
+            <div className="thing-column">
+              <h4>House rules</h4>
+              <ul>
+                {houseRulesItems.map((rule, idx) => (
+                  <li key={idx}>{rule}</li>
+                ))}
+              </ul>
+              <button type="button" className="link-button link-button--show-more">
+                Show more <span className="arrow">{'>'}</span>
+              </button>
+            </div>
+            <div className="thing-column">
+              <h4>Safety & property</h4>
+              <ul>
+                {safetyItems.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
+              <button type="button" className="link-button link-button--show-more">
+                Show more <span className="arrow">{'>'}</span>
+              </button>
+            </div>
+            <div className="thing-column">
+              <h4>Cancellation policy</h4>
+              <ul>
+                {cancellationItems.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
+              <button type="button" className="link-button link-button--show-more">
+                Show more <span className="arrow">{'>'}</span>
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   )
 }
