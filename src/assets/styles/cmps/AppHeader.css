@@ -8,12 +8,10 @@
     min-height: 5rem;
     background: linear-gradient(180deg, #ffffff 39.9%, #f0f0f0 100%);
     padding: 1rem 2rem;
-
     >.logo {
         display: flex;
         align-items:center;
         cursor: pointer;
-
         & img {
             max-height: 2.5rem;
         }

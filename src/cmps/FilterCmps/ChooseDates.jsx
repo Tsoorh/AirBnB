@@ -7,7 +7,7 @@ import { useSearchParams } from 'react-router-dom'
 
 
 
-export function ChooseDates({ handleChange, onCloseModal }) {
+export function ChooseDates({ handleChange, onCloseModal}) {
     const wrapperRef = useRef(null);
     const [searchParams, setSearchParams] = useSearchParams()
 
@@ -44,13 +44,13 @@ export function ChooseDates({ handleChange, onCloseModal }) {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <div className="modal-calendar-container" ref={wrapperRef}>
+      <div className="modal-calendar-container " ref={wrapperRef}>
         <div className="flex justify-center align-center">
           <div className="calendar-container">
           {/* <span>Check in</span> */}
           <DateCalendar  onChange={(ev)=>onChangeDate(ev,"checkIn")} />
           </div>
-          <div className="calendar-container">
+          <div className="calendar-container ">
           {/* <span>Check out</span> */}
           <DateCalendar  onChange={(ev)=>onChangeDate(ev,"checkOut")}/>
           </div>
