@@ -37,6 +37,13 @@
 }
 
 
+/* border-radius */
+
+.border-radius{
+    border-radius: var(--h-border-radius);
+}
+
+
 /* scrolling  */
 
 .no-scrolling{

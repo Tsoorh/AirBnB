@@ -3,11 +3,12 @@ import { useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { RangeCalendar, Provider, defaultTheme } from "@adobe/react-spectrum";
 import { I18nProvider } from "react-aria";
+import {getLocalTimeZone, today} from '@internationalized/date';
+
 
 export function RangeCalendarPicker({ handleChange, onCloseModal }) {
   const wrapperRef = useRef(null);
   const [searchParams, setSearchParams] = useSearchParams();
-
   // Close on outside click
   useEffect(() => {
     function onDocClick(e) {
@@ -19,7 +20,11 @@ export function RangeCalendarPicker({ handleChange, onCloseModal }) {
   }, [onCloseModal]);
 
   function onChangeDate(ev) {
-    console.log("🚀 ~ onChangeDate ~ ev:", ev)
+    const {start,end} = ev;
+    const checkIn = start.day+"-"+start.month+"-"+start.year;
+    const checkOut = end.day+"-"+end.month+"-"+end.year;
+    handleChange("checkIn",checkIn);
+    handleChange("checkOut",checkOut);
   }
 
   const handleClearDates = () => {
@@ -29,17 +34,17 @@ export function RangeCalendarPicker({ handleChange, onCloseModal }) {
     setSearchParams(newParams);
   };
 
+
   return (
-    <Provider theme={defaultTheme} colorScheme="light">
-      <div className="modal-calendar-container " ref={wrapperRef}>
+    <Provider theme={defaultTheme} colorScheme="light" className="black-range-calendar-theme">
+      <div className="modal-calendar-container border-radius" ref={wrapperRef}>
         <div className="flex justify-center">
           <I18nProvider locale="en-US">
             <RangeCalendar
               aria-label="Trip dates"
               visibleMonths={2}
-              start={onChangeDate}
-              end={onChangeDate}
-              // onChange={onChangeDate}
+              minValue={today(getLocalTimeZone())}
+              onChange={onChangeDate}
             />
           </I18nProvider>
         </div>

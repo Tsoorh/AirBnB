@@ -35,6 +35,7 @@
 @import "cmps/stay/CreditCardForm";
 @import "cmps/stay/CountrySelect";
 @import "cmps/stay/StaySearch";
+@import "cmps/stay/FilterCmps/RangeCalendarPicker";
 
 @import "cmps/review/ReviewEdit";
 @import "cmps/review/ReviewList";

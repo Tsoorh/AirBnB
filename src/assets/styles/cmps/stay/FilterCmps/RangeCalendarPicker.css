@@ -1,0 +1,20 @@
+.a0JGJW_spectrum-Calendar-date.a0JGJW_is-selection-start,.a0JGJW_spectrum-Calendar-date.a0JGJW_is-selection-end{
+    --background:black;
+    &.a0JGJW_is-hovered{
+        >span{
+            border-radius: 50%;
+            background-color: #00000057;
+        }
+    }
+}
+
+.a0JGJW_spectrum-Calendar-date.a0JGJW_is-range-selection {
+    background: rgba(0, 0, 0, 0.068);
+    &.a0JGJW_is-hovered{
+        >span{
+            border-radius: 50%;
+            background-color: #00000057;
+        }
+    }
+
+}
