@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useParams, useSearchParams, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { loadStay } from '../store/actions/stay.actions'
 import { ReviewList } from '../cmps/ReviewList'
@@ -267,7 +267,7 @@ export function StayDetails() {
               </div>
 
               {stay.host && (
-                <div className="stay-host-card">
+                <Link to={`/host/${stay.host._id}`} className="stay-host-card">
                   <div className="stay-host-avatar">
                     <img src={hostAvatar} alt={`Host ${stay.host.fullname}`} />
                   </div>
@@ -275,7 +275,7 @@ export function StayDetails() {
                     <span className="stay-host-name">{stay.host.fullname}</span>
                     {stay.host.isSuperhost && <span className="superhost-badge">Superhost</span>}
                   </div>
-                </div>
+                </Link>
               )}
             </section>
 
@@ -442,7 +442,7 @@ export function StayDetails() {
           <h2>Meet your host</h2>
           <div className="meet-host-content">
             <div className="host-profile-section">
-              <div className="host-profile-card">
+              <Link to={`/host/${stay.host._id}`} className="host-profile-card">
                 <div className="host-profile-avatar">
                   <img src={hostAvatar} alt={`Host ${stay.host.fullname}`} />
                 </div>
@@ -480,7 +480,7 @@ export function StayDetails() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
               <div className="host-biography">
                 <p>{displayedBio}</p>
                 {shouldTruncateBio && (

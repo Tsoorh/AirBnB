@@ -11,6 +11,7 @@ import { PhotoTour } from './pages/PhotoTour'
 
 import { StayDetails } from './pages/StayDetails'
 import { UserDetails } from './pages/UserDetails'
+import { HostDetails } from './pages/HostDetails'
 import { Order } from './pages/Order'
 import { StaySearch } from './pages/StaySearch'
 import { BecomeHost } from './pages/BecomeHost.jsx'
@@ -38,6 +39,7 @@ export function RootCmp() {
                     <Route path="stay" element={<StayIndex />} />
                     <Route path="stay/:stayId" element={<StayDetails />} />
                     <Route path="stay/:stayId/photos" element={<PhotoTour />} />
+                    <Route path="host/:hostId" element={<HostDetails />} />
                     <Route path="user/:id" element={<UserDetails />} />
                     <Route path="review" element={<ReviewIndex />} />
                     <Route path="chat" element={<ChatApp />} />

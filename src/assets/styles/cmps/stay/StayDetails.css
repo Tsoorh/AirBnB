@@ -184,6 +184,14 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.stay-host-card:hover {
+  opacity: 0.8;
 }
 
 .stay-host-text {
@@ -549,6 +557,14 @@
   display: flex;
   gap: 16px;
   align-items: flex-start;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.host-profile-card:hover {
+  opacity: 0.8;
 }
 
 .host-profile-avatar {
