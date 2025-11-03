@@ -5,7 +5,6 @@ import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import dayjs from "dayjs";
 import { useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
-import { getTodayDate } from "@mui/x-date-pickers/internals";
 
 export function ChooseDates({ handleChange, onCloseModal }) {
   const wrapperRef = useRef(null);

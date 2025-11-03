@@ -1,7 +1,8 @@
 import { StayFilterModal } from "./StayFilterModal";
 import { SearchDestination } from "./SearchDestination";
 import { GuestsPicker } from "./GuestsPicker";
-import { ChooseDates } from "./ChooseDates";
+// import { ChooseDates } from "./ChooseDates";
+import { RangeCalendarPicker } from "./RangeCalendarPicker";
 
 export function  DynamicModalCmp({currentModalContent,handleCityChange,handleGuestsChange,handleDateChange, onCloseModal}){
 
@@ -11,13 +12,21 @@ export function  DynamicModalCmp({currentModalContent,handleCityChange,handleGue
       className:"destination"
     },
     checkIn: {
-      cmp:<ChooseDates handleChange={handleDateChange} isOpen={currentModalContent === 'checkIn'} onCloseModal={onCloseModal}/>,
+      cmp:<RangeCalendarPicker handleChange={handleDateChange} isOpen={currentModalContent === 'checkIn'} onCloseModal={onCloseModal}/>,
       className:"dates "
   },
     checkOut: {
-      cmp:<ChooseDates handleChange={handleDateChange} isOpen={currentModalContent === 'checkOut'} onCloseModal={onCloseModal}/>,
+      cmp:<RangeCalendarPicker handleChange={handleDateChange} isOpen={currentModalContent === 'checkOut'} onCloseModal={onCloseModal}/>,
       className:"dates"
  },
+//     checkIn: {
+//       cmp:<ChooseDates handleChange={handleDateChange} isOpen={currentModalContent === 'checkIn'} onCloseModal={onCloseModal}/>,
+//       className:"dates "
+//   },
+//     checkOut: {
+//       cmp:<ChooseDates handleChange={handleDateChange} isOpen={currentModalContent === 'checkOut'} onCloseModal={onCloseModal}/>,
+//       className:"dates"
+//  },
     guest:{
       cmp:<GuestsPicker handleChange={handleGuestsChange} isOpen={currentModalContent === 'guest'} onCloseModal={onCloseModal}/>,
       className:"guest"

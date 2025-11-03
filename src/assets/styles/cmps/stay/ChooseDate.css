@@ -8,6 +8,10 @@
     }
 }
 
+.range-container{
+    padding: 2rem;
+}
+
 /* Selected date styling - black background */
 .modal-calendar-container .MuiPickersDay-root.Mui-selected {
     background-color: #222 !important;
